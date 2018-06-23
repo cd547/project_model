@@ -10,10 +10,10 @@ class MessageController extends BaseController
     {
         $mobile=$this->getRequest()->getParam("mobile","");
         $content=$this->getRequest()->getParam("content","");
-        file_put_contents("c:/ddd.log",'mobile->'.$mobile.' content'.$content."\r\n",FILE_APPEND);
+        file_put_contents("../log/ddd.log",'mobile->'.$mobile.' content'.$content."\r\n",FILE_APPEND);
     	$message=new message();
     	$r=$message->sendv4($mobile, $content);
-    	file_put_contents("c:/msg547.log",($r)."\r\n",FILE_APPEND);
+    	file_put_contents("../log/msg547.log",($r)."\r\n",FILE_APPEND);
     	$this->view->res=$r;
     	$this->render('msg');
     }

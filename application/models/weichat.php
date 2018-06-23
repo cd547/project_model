@@ -6,8 +6,8 @@ class weichat
 	 * @param  $touser 微信发送对象 （账号）
 	 * @param  $content 微信发送内容
 	 */
-	 const APPID="wx80fc258b43434cb2";//微信IDwx80fc258b43434cb2 
-	 const APPSECRET="Yng2kv1Ihm_cNyQ6_g_K6rxk1wCJ9gEaxdnwMlAESx0";
+	 const APPID="";//
+	 const APPSECRET="";
 
 	
 	 //"5kMtzb20IjhTiVYX7qIKDrEth-M2AbmShZmc6LRPf_nW2AV4WpGQbW5QArSEmIQg";//secret
