@@ -11,7 +11,7 @@ class BaseController extends Zend_Controller_Action
 		$db->query('SET NAMES UTF8');
 		Zend_Db_Table::setDefaultAdapter($db);
 	}
-	
+	/*
 	 public function backtable($table_name)
 	{
         $url= constant("APPLICATION_PATH").DIRECTORY_SEPARATOR.'configs'.DIRECTORY_SEPARATOR.'application.ini';
@@ -26,5 +26,6 @@ class BaseController extends Zend_Controller_Action
 	    exec($exec);
 	    
 	}
+	*/
 }
 ?>

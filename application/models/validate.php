@@ -26,7 +26,7 @@ class validate
         $url=$captcha->getId();
         $codeSession = new Zend_Session_Namespace('captcha_code_' . $id);
         $codeSession->code = $captcha->getWord();
-        file_put_contents("c:/url.log", $id."  code：". $codeSession->code."\r\n",FILE_APPEND);
+        file_put_contents("/../../log/url.log", $id."  code：". $codeSession->code."\r\n",FILE_APPEND);
         return $url;
         //exit;
     

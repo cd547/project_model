@@ -29,12 +29,12 @@ class weichat
 			//$array=curl_getinfo($curl);
 			//file_put_contents("c:/curlinfo.log",var_export($array, true),FILE_APPEND);		
 			if (curl_errno($curl)) {
-				file_put_contents("c:/curlerr.log", "readerr:".curl_error($curl)."\r\n",FILE_APPEND);
+				file_put_contents("../log/curlerr.log", "readerr:".curl_error($curl)."\r\n",FILE_APPEND);
 				return 'Errno'.curl_error($curl);
 			}
 			curl_close($curl);
 			$t2 = microtime(true);
-			file_put_contents("c:/curltime.log", "获取耗时:".round($t2-$t1,3)."秒"."\r\n",FILE_APPEND);
+			file_put_contents("../log/curltime.log", "获取耗时:".round($t2-$t1,3)."秒"."\r\n",FILE_APPEND);
 			$result=json_decode($json);
 			$ACC_TOKEN=$result->access_token;
 			//echo  $ACC_TOKEN;
@@ -56,13 +56,13 @@ class weichat
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			$result1= curl_exec($curl);
 			if (curl_errno($curl)) {
-				file_put_contents("c:/curlerr.log", "senderr:".curl_error($curl)."\r\n",FILE_APPEND);
+				file_put_contents("../log/curlerr.log", "senderr:".curl_error($curl)."\r\n",FILE_APPEND);
 				return 'Errno'.curl_error($curl);
 			}
 			curl_close($curl);
 			$t4 = microtime(true);
-			file_put_contents("c:/curltime.log", "发送耗时:".round($t4-$t3,3)."秒"."\r\n",FILE_APPEND);
-			file_put_contents("c:/result1.log", $result1."\r\n",FILE_APPEND);
+			file_put_contents("../log/curltime.log", "发送耗时:".round($t4-$t3,3)."秒"."\r\n",FILE_APPEND);
+			file_put_contents("../log/result1.log", $result1."\r\n",FILE_APPEND);
 			return $result1;
 		}
 	}
@@ -80,7 +80,7 @@ class weichat
 			//$array=curl_getinfo($curl);
 			//file_put_contents("c:/curlinfo.log",var_export($array, true),FILE_APPEND);		
 			if (curl_errno($curl)) {
-				file_put_contents("c:/curlerr.log", "readerr:".curl_error($curl)."\r\n",FILE_APPEND);
+				file_put_contents("../log/curlerr.log", "readerr:".curl_error($curl)."\r\n",FILE_APPEND);
 				return 'Errno'.curl_error($curl);
 			}
 			curl_close($curl);
@@ -107,7 +107,7 @@ class weichat
 
 			$json1= curl_exec($curl1);
 			if (curl_errno($curl1)) {
-				file_put_contents("c:/curlerr.log", "senderr:".curl_error($curl1)."\r\n",FILE_APPEND);
+				file_put_contents("../log/curlerr.log", "senderr:".curl_error($curl1)."\r\n",FILE_APPEND);
 				return 'Errno'.curl_error($curl1);
 			}
 			curl_close($curl1);
