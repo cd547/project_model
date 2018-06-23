@@ -1,0 +1,450 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link rel="icon" href="/exp/img/favicon.ico" mce_href="/exp/img/favicon.ico" type="image/x-icon">  
+	<link rel="shortcut icon" href="/exp/img/favicon.ico" mce_href="/exp/img/favicon.ico" type="image/x-icon"> 
+    <title>用户设置</title>
+ <!-- Bootstrap -->
+    <link href="/exp/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/exp/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+.table th, .table td { 
+vertical-align: middle!important;
+}
+@media print {
+ #navtop{ display:none;}
+ .input-group-addon{display:none;}
+ .form-control{border-style:none;padding:0;}
+}
+.top{
+    position: fixed;
+    top: 0;width: 100%;
+    height:60px;
+    background: rgba(30,30,30,.3);
+    z-index:999;
+    -webkit-transition: all .7s ease;
+    display: block;
+}
+.top:hover{
+    background: rgba(30,30,30,.6);
+	color:#fff;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+</style>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/exp/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/exp/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/exp/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+    <script src="/exp/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+</head>
+<body>
+<div class="top" id="navtop">
+<a class="btn btn-primary" style="position:absolute;top:10px;left:90px;" href="/exp/main/main?code=<?php echo $this->code;?>"><span class="glyphicon glyphicon-home"></span> 主页</a>
+<a href="javascript:void(0);" onclick="window.print();" id="print" class="btn btn-primary" style="position:absolute;top:10px;right:190px;"><span class="glyphicon glyphicon-print"></span> 打印</a>
+<ul style="position:absolute;right:90px;margin-right:0px;top:20px;list-style:none;">
+	<!-- BEGIN USER LOGIN DROPDOWN -->
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#fff;">
+			<i class="glyphicon glyphicon-user"></i>
+			<?php echo $this->loginname['username'];?>&nbsp;<i class="glyphicon glyphicon-menu-down"></i>
+		</a>
+		<ul class="dropdown-menu">
+			<li><a href="/exp/user/userinfo?userid=<?php echo $this->loginname['id'];?>&code=<?php echo $this->code;?>"><i class="icon-user"></i>我的资料</a></li>
+			<li><a href="/exp/login/logout"><i class="icon-key"></i>退出</a></li>
+		</ul>
+	</li>
+<!-- END USER LOGIN DROPDOWN -->
+</ul>
+</div>
+<div class="container">
+<p class="text-center" style="padding:10px;font-size:20px;background: #2B6695;color:#fff;border-radius: 6px 6px 6px 6px;"><strong>用户设置</strong></p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h6 class="panel-title">用户名及职位</h6>
+  </div>
+  <div class="panel-body">
+ <div class="form-group">
+     <div class="col-sm-5 form-inline">
+   	 <p class="form-control-static"><strong>姓名：</strong><?php echo $this->info[0]['username'];?></p>&nbsp;&nbsp;
+	<p class="form-control-static"><strong>状态：</strong><?php if($this->info[0]['status']==1):?><span class="label label-success">激活</span> 
+    <?php else:?><span class="label label-default">停用</span>
+	<?php endif;?></p>&nbsp;&nbsp;
+	<p class="form-control-static"><strong>职位：</strong><span class="label label-default"><?php echo $this->info[0]['position'];?></span></p>
+    </div>
+    
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h6 class="panel-title">密码</h6>
+  </div>
+  <div class="panel-body">
+ <div class="form-group">
+<div class="col-sm-5 form-inline">
+    	<input style="width: 200px;" type="password" class="form-control input-sm" id="password" placeholder="密码">
+    	<button id="change_pwd" type="button" class="btn btn-default btn-sm">修改</button>
+		<button id="reset_pwd" type="button" class="btn btn-warning btn-sm">重置</button>
+		</div>
+    </div>
+    </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h6 class="panel-title">电子邮件</h6>
+  </div>
+  <div class="panel-body">
+ <div class="form-group">
+       <div class="col-sm-5 form-inline">
+    	<input style="width: 200px;" type="email" class="form-control input-sm" id="email" placeholder="邮件地址" value="<?php echo $this->info[0]['email'];?>">
+    	<button id="change_email" type="button" class="btn btn-default btn-sm">修改</button>
+    	</div>
+ </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h6 class="panel-title">用户角色</h6>
+  </div>
+  <div class="panel-body">
+ <div class="form-group">
+<div class="col-sm-5 form-inline">
+    <p class="form-control-static"><?php echo $this->info[0]['role'];?></p>
+    </div>
+ </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h6 class="panel-title">手机</h6></div>
+  <div class="panel-body">
+ 	<div class="form-group">
+<div class="col-sm-5 form-inline">
+ <input type="text" class="form-control input-sm" id="cellphone" placeholder="手机号" value="<?php echo $this->info[0]['cellphone'];?>">
+    	<button id="change_cellphone" type="button" class="btn btn-default btn-sm">修改</button>
+    	&nbsp;&nbsp;
+<?php if($this->info[0]['短信提醒']==1):?>
+<span id='msg_att' class="label label-success">短信提醒：&nbsp;状态：<strong id="stat">开</strong></span>&nbsp;
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary btn-xs active" id="s1">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked="checked">开
+  </label>
+  <label class="btn btn-primary btn-xs" id="s0">
+    <input type="radio" name="options" id="option0" autocomplete="off">关
+  </label>
+  <?php else:?> <span id='msg_att' class="label label-default">短信提醒：&nbsp;状态：<strong id="stat">关</strong></span>&nbsp;
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-primary btn-xs" id="s1">
+    <input type="radio" name="options" id="option1" autocomplete="off">开
+  </label>
+  <label class="btn btn-primary btn-xs active" id="s0">
+    <input type="radio" name="options" id="option0" autocomplete="off" checked="checked">关
+  </label>
+  <?php endif;?>
+  </div>
+    </div>
+ </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h6 class="panel-title">部门</h6></div>
+  <div class="panel-body">
+ <div class="form-group">
+<div class="col-sm-5 form-inline">
+    <p class="form-control-static"><?php echo $this->info[0]['dep'];?></p>
+    </div>
+ </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h6 class="panel-title">负责节点</h6></div>
+ 
+  <div class="panel-body">
+  <style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button5 {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+	width: 177px;
+}
+
+.button5:hover {
+    background-color: #555555;
+    color: white;
+	width: 177px;
+}
+</style>
+	<a class="button button5" id="typ1" >建筑类</a>
+	<a class="button button5" id="typ2" >道路类</a>
+	<a class="button button5" id="typ3" >独立绿化类</a>
+	<a class="button button5" id="typ4" >土地储备类</a>
+	<a class="button button5" id="typ5" >河道（自筹）类</a>
+	<a class="button button5" id="typ6" >河道（争取市级资金）类</a>
+	<p></p>
+  	<select id="ppp" class="form-control" style="width:400px;">
+   		<option></option>
+  		<?php foreach ($this->pname as $item): ?>
+			<option><?php echo $item['项目']?></option>
+		<?php endforeach; ?>
+	</select>
+ <div class="form-group">
+<div id="usernode" class="col-sm-12 form-inline">
+    <p class="form-control-static">
+   <?php if($this->info[0]['role']!='admin'):?>
+	<?php if(count($this->nodeinfo)>0):?>
+	
+	 <table class="table">
+	 <tr><th>项目名称</th><th>节点号</th><th>节点名称</th><th>节点状态</th></tr>
+   <?php foreach ($this->nodeinfo as $item): ?>
+ 
+ <tr>
+ <td><?php echo $item['项目'];?></td>
+    <td><?php echo $item['流程'];?></td>
+  	<td> 
+  	  	<?php if($item['职位']==1):?>
+  	  		<?php if($this->loginname['position']=="总经理"||$this->loginname['position']=="董事长"||$this->loginname['position']=="监事长"||$this->loginname['position']=="专职监事"||$this->loginname['position']=="副总经理"):?>
+  				<a class="btn btn-primary btn-xs" style="margin:2px;" style="color:#fff;" href="/exp/user/chosemanager?code=<?php echo $item['项目'];?>&node=<?php echo $item['流程'];?>"><?php echo $item['节点名称'];?></a>
+   			<?php else:?>
+   		 		<a class="btn btn-primary btn-xs" style="margin:2px;" style="color:#fff;" href="/exp/user/chosemember?code=<?php echo $item['项目名称'];?>&node=<?php echo $item['节点'];?>"><?php echo $item['节点名称'];?></a>
+   		 	<?php endif;?>
+   		<?php else:?>
+   			<?php if($this->loginname['position']=="总经理"||$this->loginname['position']=="董事长"||$this->loginname['position']=="监事长"||$this->loginname['position']=="专职监事"||$this->loginname['position']=="副总经理"):?>
+   				<a class="btn btn-primary btn-xs" style="margin:2px;" style="color:#fff;" href="/exp/user/chosemanager?code=<?php echo $item['项目'];?>&node=<?php echo $item['流程'];?>"><?php echo $item['节点名称'];?></a>
+   			<?php else:?>
+   		 			<span class="btn btn-default btn-xs" style="margin:2px;"><?php echo $item['节点名称'];?></span>
+   		 	<?php endif;?>
+   		<?php endif;?>
+   	</td> 
+	<td><?php if($item['状态']=="2"):?>已完成<?php elseif($item['状态']=="1"):?>进行中<?php else :?>未开始<?php endif;?></td>
+   </tr>
+   <?php endforeach;?>
+   </table>
+   <?php endif;?>
+   <?php else:?>
+   <?php if(count($this->totaldata)>0):?>
+    <table class="table"> <tr><th>项目名称</th><th>节点号</th><th>节点名称</th><th>节点状态</th></tr>
+   <?php foreach ($this->totaldata as $item): ?>
+   <tr>
+   <td><?php echo $item['项目'];?></td>
+    <td><?php echo $item['流程'];?></td>
+	<td>
+		<a class="btn btn-primary btn-xs" style="margin:2px;" style="color:#fff;" href="/exp/user/chosemanager?code=<?php echo $item['项目'];?>&node=<?php echo $item['流程'];?>"><?php echo $item['节点名称'];?></a>
+   </td>
+   <td><?php if($item['状态']=="2"):?>已完成<?php elseif($item['状态']=="1"):?>进行中<?php else :?>未开始<?php endif;?></td>
+   </tr>
+   <?php endforeach;?>
+   </table>
+   <?php endif;?>
+      <?php endif;?>
+    </p>
+    </div>
+ </div>
+  </div>
+</div>
+
+</div>
+</body>
+<script type="text/javascript">
+$(function(){ 
+	$('#change_pwd').click(function(){
+		if($('#password').val()!=''){
+		$.post("/exp/user/changepwd", {pwd:$('#password').val(),uid:<?php echo $this->loginname['id'];?>},
+			function(returnedData, status) {
+				var result = returnedData;
+				if (result != null)
+				{
+					if(result==1)
+					{alert('修改成功');}
+					else{alert('修改失败');}
+				}
+		});}
+		else{alert('密码不能为空');}
+	});
+	$('#reset_pwd').click(function(){
+		$.post("/exp/user/resetpwd", {uid:<?php echo $this->loginname['id'];?>},
+			function(returnedData, status) {
+				var result = returnedData;
+				if (result != null)
+				{
+					if(result==1)
+					{alert('重置成功');}
+					else{alert('重置失败');}
+				}
+		});
+	});
+	$('#change_email').click(function(){
+		if($('#email').val()!=''&&(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test($('#email').val().trim()))){
+		$.post("/exp/user/changeemail", {email:$('#email').val(),uid:<?php echo $this->loginname['id'];?>},
+			function(returnedData, status) {
+				var result = returnedData;
+				if (result != null)
+				{
+					if(result==1)
+					{alert('修改成功');}
+					else{alert('修改失败');}
+				}
+		});}
+		else{alert('email有误');}
+	});
+	$('#change_cellphone').click(function(){
+		if($('#cellphone').val()!=''&&(/^1(3|4|5|7|8)\d{9}$/.test($('#cellphone').val().trim()))){
+		$.post("/exp/user/changecellphone", {cellphone:$('#cellphone').val(),uid:<?php echo $this->loginname['id'];?>},
+			function(returnedData, status) {
+				var result = returnedData;
+				if (result != null)
+				{
+					if(result==1)
+					{alert('修改成功');}
+					else{alert('修改失败');}
+				}
+		});}
+		else{alert('号码有误');}
+	});
+	//关
+	$('#s0').click(function(){
+		$.post("/exp/user/notification", {notification:0,uid:<?php echo $this->loginname['id'];?>},
+				function(returnedData, status) {
+					var result = returnedData;
+					if (result != null)
+					{
+						if(result==1)
+						{
+							$("#option0").attr("checked","checked");
+							$("#option1").removeAttr("checked");
+							$('#msg_att').removeClass();
+							$('#msg_att').addClass('label label-default');
+							$('#stat').html("关");
+						}
+						else{alert('修改失败');}
+					}
+			});	
+	});
+	//开
+	$('#s1').click(function(){
+		$.post("/exp/user/notification", {notification:1,uid:<?php echo $this->loginname['id'];?>},
+				function(returnedData, status) {
+					var result = returnedData;
+					if (result != null)
+					{
+						if(result==1)
+						{
+							$("#option1").attr("checked","checked");
+							$("#option0").removeAttr("checked");
+							$('#msg_att').removeClass();
+							$('#msg_att').addClass('label label-success');
+							$('#stat').html("开");
+						}
+						else{alert('修改失败');}
+					}
+			});	
+		
+	});
+});
+
+$('#ppp').change(function(){
+	$.post("/exp/user/usernode", {uid:<?php echo $this->loginname['id'];?>,code:$('#ppp').val()},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+				$("#usernode").html(result);
+			}
+	});
+});
+
+$('#typ1').click(function(){
+	$.post("/exp/user/changetype", {type:"建筑类"},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+			$("#ppp").html("");
+				$("#ppp").html(result);
+			}
+	});
+});
+$('#typ2').click(function(){
+	$.post("/exp/user/changetype", {type:"道路类"},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+			$("#ppp").html("");
+				$("#ppp").html(result);
+			}
+	});
+});
+$('#typ3').click(function(){
+	$.post("/exp/user/changetype", {type:"独立绿化类"},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+			$("#ppp").html("");
+				$("#ppp").html(result);
+			}
+	});
+});
+$('#typ4').click(function(){
+	$.post("/exp/user/changetype", {type:"土地储备类"},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+			$("#ppp").html("");
+				$("#ppp").html(result);
+			}
+	});
+});
+$('#typ5').click(function(){
+	$.post("/exp/user/changetype", {type:"河道（自筹）类"},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+			$("#ppp").html("");
+				$("#ppp").html(result);
+			}
+	});
+});
+$('#typ6').click(function(){
+	$.post("/exp/user/changetype", {type:"河道（争取市级资金）类"},
+		function(returnedData, status) {
+			var result = returnedData;
+			if (result != null)
+			{
+			$("#ppp").html("");
+				$("#ppp").html(result);
+			}
+	});
+});
+</script>
+</html>
