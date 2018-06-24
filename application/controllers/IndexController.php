@@ -1,5 +1,6 @@
 <?php
 require_once 'BaseController.php';
+require_once APPLICATION_PATH.'/models/validate.php';
 class IndexController extends BaseController
 {
  /*
@@ -16,6 +17,9 @@ class IndexController extends BaseController
 
     	if (!isset($_SESSION['loginuser']))
     	{
+            $valimg=new validate();
+            $url=$valimg->imgAction();
+            $this->view->img=$url;
             $this->render('index');
             $t2 = microtime(true);
     	}

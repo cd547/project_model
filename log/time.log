@@ -17,3 +17,15 @@
 18-06-24 16:37:53--::1--IndexController/indexAction耗时:0秒
 18-06-24 16:38:16--admin--::1--LoginController/logoutAction耗时:0秒
 18-06-24 16:38:16--::1--IndexController/indexAction耗时:0秒
+18-06-24 20:11:34--::1--IndexController/indexAction耗时:0.1秒
+18-06-24 20:11:39--::1--IndexController/indexAction耗时:0.024秒
+18-06-24 20:15:43--::1--IndexController/indexAction耗时:0.027秒
+18-06-24 20:17:06--::1--IndexController/indexAction耗时:0.028秒
+18-06-24 20:25:42--::1--IndexController/indexAction耗时:0.049秒
+18-06-24 20:26:15--::1--IndexController/indexAction耗时:0.025秒
+18-06-24 20:34:40--::1--IndexController/indexAction耗时:0.033秒
+18-06-24 20:35:07--::1--IndexController/indexAction耗时:0.042秒
+18-06-24 20:35:14--::1--IndexController/indexAction耗时:0.033秒
+18-06-24 20:35:31--::1--IndexController/indexAction耗时:0.033秒
+18-06-24 20:42:18--::1--IndexController/indexAction耗时:0.031秒
+18-06-24 20:44:49--::1--IndexController/indexAction耗时:0.038秒

@@ -24,8 +24,7 @@ class LoginController extends BaseController
    {
        $valimg=new validate();
        $url=$valimg->imgAction();
-       $info=$url;
-       $this->view->info=$info;
+       $this->view->info=$url;
        $this->render('ajax');
    }
    //ajax login
