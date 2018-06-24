@@ -331,4 +331,3 @@ class users extends Zend_Db_Table
         }
     }
 }
-?>
