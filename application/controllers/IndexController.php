@@ -9,7 +9,7 @@ class IndexController extends BaseController
     public function indexAction()
     {
 		$t1 = microtime(true);
-		$t2;
+		$t2=null;
     	date_default_timezone_set('PRC'); //设置中国时区
     	$time = time();
     	$start_time = date("y-m-d H:i:s",$time);

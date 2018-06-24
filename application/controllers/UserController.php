@@ -4,6 +4,23 @@ require_once APPLICATION_PATH.'/models/users.php';
 require_once APPLICATION_PATH.'/models/mail.php';
 class UserController extends BaseController
 {
+    //用户信息界面
+    public function indexAction()
+    {
+        if (!session_id())session_start();
+        if (!isset($_SESSION['loginuser']))
+        {
+
+            $this->redirect('/index/index');
+            exit();
+        }
+        $userid=$this->getRequest()->getParam("userid","");//userid
+        $user=new users();
+        $info=$user->getUserbyId($userid);
+        //用户信息
+        $this->view->loginuser=$_SESSION['loginuser'];
+        $this->render();
+    }
     //注册
     public function registerAction()
     {
@@ -146,263 +163,6 @@ class UserController extends BaseController
         $this->view->info=$res;
         $this->render('ajax');
     }
-    //用户信息界面
-    public function userinfoAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-        
-            $this->redirect('/index/index');
-            exit();
-        }
-        $userid=$this->getRequest()->getParam("userid","");//userid
-        $user=new users();
-        $info=$user->getUserbyId($userid);
-        $nodeuser=new nodeusers();
-        $nodeuserinfo=$nodeuser->getUser($userid);
-        $this->view->loginname=$_SESSION['loginuser'];
-        $this->view->info=$info;
-        $code=$this->getRequest()->getParam("code","");//code
-        $this->view->code=$code;
-        $this->view->nodeinfo=$nodeuserinfo;
-        $t1=new t1();
-        $this->view->totaldata=$t1->getdata();
-		$t2=new t2();
-        $row=$t2->getpname();
-        $this->view->pname=$row;
-		$this->render('user');
-    }
-	
-	public function usernodeAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-        
-            $this->redirect('/index/index');
-            exit();
-        }
-        $userid=$this->getRequest()->getParam("uid","");//userid
-        $code=$this->getRequest()->getParam("code","");//code
-        $user=new users();
-        $info=$user->getUserbyId($userid);
-        $nodeuser=new nodeusers();
-        $nodeuserinfo=$nodeuser->getUser($userid);
-        if($code!="")
-        {$nodeuserinfo=$nodeuser->getUserbyCode($userid,$code);}
-        
-        $this->view->info=$info;
-        $this->view->nodeinfo=$nodeuserinfo;
-        $t1=new t1();
-        $this->view->totaldata=$t1->getdatabycode($code);
-      
-        $this->render('usernode');
-    } 
-	
 
-
-    //选择成员
-    public function chosememberAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-    
-            $this->redirect('/index/index');
-            exit();
-        }
-        $code=$this->getRequest()->getParam("code","");//code
-        $node=$this->getRequest()->getParam("node","");//node
-        //获取节点信息
-        $t1=new t1();
-        $nodeinfo=$t1->getdata_by_node($node, $code);
-        //获取所有用户
-        $users=new users();
-        $allusers=$users->getUsers();
-        //获取节点成员
-        $nodeusers=new nodeusers();
-        $members=$nodeusers->getMemberByProjectNode($code, $node);
-        
-        $this->view->loginname=$_SESSION['loginuser'];
-        $this->view->members=$members;
-        $this->view->count=count($members);
-        $this->view->code=$code;
-        $this->view->node=$node;
-        $this->view->allusers=$allusers;
-        $this->view->nodeinfo=$nodeinfo;
-        $this->render('chosemember');
-    }
-    //选择成员和主管
-    public function chosemanagerAction()
-    {
-    	if (!session_id())session_start();
-    	if (!isset($_SESSION['loginuser']))
-    	{
-    
-    		$this->redirect('/index/index');
-    		exit();
-    	}
-    	
-    	$code=$this->getRequest()->getParam("code","");//code
-    	$node=$this->getRequest()->getParam("node","");//node
-    	//获取节点信息
-    	$t1=new t1();
-    	$nodeinfo=$t1->getdata_by_node($node, $code);
-    	//获取所有用户
-    	$users=new users();
-    	$allusers=$users->getUsers();
-    	//获取节点成员
-    	$nodeusers=new nodeusers();
-    	$members=$nodeusers->getMemberByProjectNode($code, $node);
-    
-    	$this->view->loginname=$_SESSION['loginuser'];
-    	$this->view->members=$members;
-    	$this->view->count=count($members);
-    	$this->view->code=$code;
-    	$this->view->node=$node;
-    	$this->view->allusers=$allusers;
-    	$this->view->nodeinfo=$nodeinfo;
-    	$this->render('chosemanager');
-    }
-    //显示成员
-    public function showmemberAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-    
-            $this->redirect('/index/index');
-            exit();
-        }
-        $code=$this->getRequest()->getParam("code","");//code
-        $node=$this->getRequest()->getParam("node","");//node
-        //获取所有用户
-        $users=new users();
-        $allusers=$users->getUsers();
-        //获取节点成员
-        $nodeusers=new nodeusers();
-        $members=$nodeusers->getMemberByProjectNode($code, $node);
-    
-        $this->view->loginname=$_SESSION['loginuser'];
-        $this->view->members=$members;
-        $this->view->count=count($members);
-        $this->view->code=$code;
-        $this->view->node=$node;
-        $this->view->allusers=$allusers;
-
-        $this->render('ajaxmembers');
-    }
-    
-
-    //add成员
-    public function addmemberAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-    
-            $this->redirect('/index/index');
-            exit();
-        }
-        $info=null;
-        $code=$this->getRequest()->getParam("code","");//code
-        $node=$this->getRequest()->getParam("node","");//node
-        $userid=$this->getRequest()->getParam("userid","");//userid
-        $username=$this->getRequest()->getParam("username","");//username
-        $position=$this->getRequest()->getParam("position","0");//username;
-        //获取所有用户
-        $users=new users();
-        $allusers=$users->getUsers();
-        $userid=$users->getUseridbycode($userid);
-        //判断是否存在
-        $nodeusers=new nodeusers();
-        $isexist=$nodeusers->isMemberByProjectNode($code, $node, $userid);
-        if(!$isexist)
-        {
-            //add
-            $add=$nodeusers->add($code, $node, $userid, $username, $position);
-            if($add>0)
-            {
-                $info=1;
-            }
-            else 
-            {$info=0;}
-        }
-    
-        $this->view->loginname=$_SESSION['loginuser'];
-        $this->view->code=$code;
-        $this->view->node=$node;
-        $this->view->info=$info;
-    
-        $this->render('ajax');
-    }
-    
-    //del成员
-    public function delmemberAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-    
-            $this->redirect('/index/index');
-            exit();
-        }
-        $info=null;
-        $code=$this->getRequest()->getParam("code","");//code
-        $node=$this->getRequest()->getParam("node","");//node
-        $userid=$this->getRequest()->getParam("id","");//userid
-        
-        //获取所有用户
-        $users=new users();
-        $allusers=$users->getUsers();
-        //判断是否存在
-        $nodeusers=new nodeusers();
-        $isexist=$nodeusers->isMemberByProjectNode($code, $node, $userid);
-        if($isexist)
-        {
-            //del
-            $del=$nodeusers->del($code, $node, $userid);
-            if($del>0)
-            {
-                $info=1;
-            }
-            else
-            {$info=0;}
-        }
-    
-        $this->view->loginname=$_SESSION['loginuser'];
-        $this->view->code=$code;
-        $this->view->node=$node;
-        $this->view->info=$info;
-    
-        $this->render('ajax');
-    }
-
-
-	    //改变项目类别
-    public function changetypeAction()
-    {
-        if (!session_id())session_start();
-        if (!isset($_SESSION['loginuser']))
-        {
-    
-            $this->redirect('/index/index');
-            exit();
-        }
-        $info="<option></option>";
-        $type=$this->getRequest()->getParam("type","");//type
-                file_put_contents("c:/type.log", $type."\r\n",FILE_APPEND);
-        $t2=new t2();
-        $row=$t2->getpname_type($type);
-		if(count($row)>0)
-		for($i=0;$i<count($row);$i++)
-		{
-			$info.="<option>". $row[$i]['项目']."</option>";
-		}
-        $this->view->info=$info;
-    
-        $this->render('ajax');
-    }
 }
 

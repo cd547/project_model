@@ -2,10 +2,10 @@
 require_once 'BaseController.php';
 require_once APPLICATION_PATH.'/models/users.php';//model table
 
-/*控制器用于响应登录推出*/
+/*控制器用于响应登录*/
 class MainController extends BaseController
 {
-    //项目大厅入口
+    //主页
 	public function indexAction()
     {
         if (!session_id())session_start();
@@ -14,6 +14,7 @@ class MainController extends BaseController
             $this->redirect('/index/index');
             exit();
         }
+        //用户信息
         $this->view->loginuser=$_SESSION['loginuser'];
         $this->render();
           }

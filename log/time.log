@@ -1,2 +1,11 @@
 18-06-23 11:13:16--::1--IndexController/indexAction耗时:0.001秒
 18-06-23 11:14:22--::1--IndexController/indexAction耗时:0.001秒
+18-06-24 09:57:55--::1--IndexController/indexAction耗时:0.004秒
+18-06-24 10:51:47--admin--::1--LoginController/logoutAction耗时:0秒
+18-06-24 10:51:47--::1--IndexController/indexAction耗时:0.002秒
+18-06-24 11:01:13--admin--::1--LoginController/logoutAction耗时:0秒
+18-06-24 11:01:13--::1--IndexController/indexAction耗时:0.001秒
+18-06-24 14:26:07--admin--::1--LoginController/logoutAction耗时:0.003秒
+18-06-24 14:26:08--::1--IndexController/indexAction耗时:0.003秒
+18-06-24 14:26:51--admin--::1--LoginController/logoutAction耗时:0秒
+18-06-24 14:26:51--::1--IndexController/indexAction耗时:0.001秒

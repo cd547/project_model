@@ -1,7 +1,7 @@
 <?php
 class users extends Zend_Db_Table
 {
-	protected $_name='users';//table name
+	protected $_name='users';//表名
 	/*
 	 * 创建用户
 	 * 接收用户提交的表单，将其入录数据表
@@ -36,13 +36,13 @@ class users extends Zend_Db_Table
 		}
 	}
 	//更新密码
-	function update_pwd($userid,$pwd)
+	function update_pwd($id,$pwd)
 	{
 	    $data=array('password'=>md5($pwd));
 	    //try
 	    {
 	        //更新
-	        $where=" id='".$userid."'";
+	        $where=" id='".$id."'";
 	        $num=$this->update($data, $where);
 	        if($num>0)
 	        {
@@ -51,14 +51,14 @@ class users extends Zend_Db_Table
 	        else {return 0;}
 	    }
 	}
-	//更新密码
-	function update_email($userid,$email)
+	//更新email
+	function update_email($id,$email)
 	{
 	    $data=array('email'=>$email);
 	    //try
 	    {
 	        //更新
-	        $where=" id='".$userid."'";
+	        $where=" id='".$id."'";
 	        $num=$this->update($data, $where);
 	        if($num>0)
 	        {
@@ -68,13 +68,13 @@ class users extends Zend_Db_Table
 	    }
 	}
 	//更新手机号码
-	function update_cellphone($userid,$cellphone)
+	function update_cellphone($id,$cellphone)
 	{
 	    $data=array('cellphone'=>$cellphone);
 	    //try
 	    {
 	        //更新
-	        $where=" id='".$userid."'";
+	        $where=" id='".$id."'";
 	        $num=$this->update($data, $where);
 	        if($num>0)
 	        {
@@ -84,13 +84,13 @@ class users extends Zend_Db_Table
 	    }
 	}
 	//更新通知
-	function update_notification($userid,$notification)
+	function update_notification($id,$notification)
 	{
 	    $data=array('短信提醒'=>$notification);
 	    //try
 	    {
 	        //更新
-	        $where=" id='".$userid."'";
+	        $where=" id='".$id."'";
 	        $num=$this->update($data, $where);
 	        if($num>0)
 	        {
