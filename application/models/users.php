@@ -36,13 +36,13 @@ class users extends Zend_Db_Table
 		}
 	}
 	//更新密码
-	function update_pwd($id,$pwd)
+	function update_pwd($username,$pwd)
 	{
 	    $data=array('password'=>md5($pwd));
 	    //try
 	    {
 	        //更新
-	        $where=" id='".$id."'";
+	        $where=" username='".$username."'";
 	        $num=$this->update($data, $where);
 	        if($num>0)
 	        {
@@ -51,6 +51,23 @@ class users extends Zend_Db_Table
 	        else {return 0;}
 	    }
 	}
+    //更新显示名
+    function update_showname($username, $showname)
+    {
+        $data=array('showname'=>$showname);
+        //try
+        {
+            //更新
+            $where=" username='".$username."'";
+            $num=$this->update($data, $where);
+            if($num>0)
+            {
+                return 1;
+            }
+            else {return 0;}
+        }
+    }
+
 	//更新email
 	function update_email($id,$email)
 	{

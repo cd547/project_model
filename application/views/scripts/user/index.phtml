@@ -227,9 +227,9 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名：</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="<?php echo $this->loginuser['showname'];?>">
+                                            <input id="showname" type="text" class="form-control" placeholder="<?php echo $this->loginuser['showname'];?>">
                                             <span class="input-group-btn">
-                              <a class="btn btn-success">修改</a>
+                              <a id="çhange_showname_btn" class="btn btn-success">修改</a>
                           </span>
                                         </div>
                                     </div>
@@ -237,22 +237,19 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">登录名：</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="<?php echo $this->loginuser['username'];?>">
-                                            <span class="input-group-btn">
-                              <a class="btn btn-success">修改</a>
-                          </span>
+                                            <input type="text" class="form-control" placeholder="<?php echo $this->loginuser['username'];?>" readonly="readonly">
                                         </div>
                                     </div>
 
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">密码：</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="input-group">
-                                            <input type="password" class="form-control" placeholder="******">
+                                            <input id="pwd" type="password" class="form-control" placeholder="******">
                                             <span class="input-group-btn">
-                              <a class="btn btn-success">修改</a>
+                              <a class="btn btn-success" id="change_pwd_btn">修改</a>
                           </span>
                                             <span class="input-group-btn">
-                              <a class="btn btn-warning">重置</a>
+                              <a class="btn btn-warning" id="reset_pwd_btn">重置</a>
                           </span>
                                         </div>
                                     </div>
@@ -415,6 +412,59 @@
       + '<form class="form-inline">分析： <br/><div class="form-group form-group-sm"><textarea class="form-control" style="width:450px;font-size: 12px;" rows="6"></textarea></div></form>'
     $('#content').html(htmltext)
   }
+  //修改密码
+  $('#change_pwd_btn').click(function(){
+      if($('#pwd').val()!=''){
+          $.post("/project/user/changepwd", {pwd:$('#pwd').val(),username:'<?php echo $this->loginuser['username'];?>'},
+              function(returnedData, status) {
+                  var result = returnedData;
+                  if (result != null)
+                  {
+                      if(result==1)
+                      {
+                          alert('修改成功');
+                          $('#pwd').val('');
+                      }
+                      else{alert('修改失败');}
+                  }
+              });}
+      else{alert('密码不能为空');}
+  });
+  //重置密码
+  $('#reset_pwd_btn').click(function(){
+      $.post("/project/user/resetpwd", {username:'<?php echo $this->loginuser['username'];?>'},
+          function(returnedData, status) {
+              var result = returnedData;
+              if (result != null)
+              {
+                  if(result==1)
+                  {alert('重置成功');}
+                  else{alert('重置失败');}
+              }
+          });
+  });
+  //修改显示名
+  $('#çhange_showname_btn').click(function(){
+      if($('#showname').val()!=''){
+          $.post("/project/user/changeshowname", {username:'<?php echo $this->loginuser['username'];?>',showname:$('#showname').val()},
+              function(returnedData, status) {
+                  var result = returnedData;
+                  if (result != null)
+                  {
+                      if(result==1)
+                      {
+                          alert('修改成功');
+                          //页面有关显示信息更新
+                          $('#showname').attr('placeholder',$('#showname').val());
+                          $('body > div.container.body > div > div.col-md-3.left_col > div > div.profile.clearfix > div.profile_info > h2').text($('#showname').val());
+                          $('body > div.container.body > div > div.top_nav > div > nav > ul > li:nth-child(1) > a').text($('#showname').val());
+                          $('#showname').val('');
+                      }
+                      else{alert('修改失败');}
+                  }
+              });}
+      else{alert('密码不能为空');}
+  });
   //这里的checkbox设置和一般的不一样，用了Icheck
   //icheck选中事件
   $("#msg_notify").on('ifChecked', function(event){

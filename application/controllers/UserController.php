@@ -97,16 +97,55 @@ class UserController extends BaseController
         $this->view->info=$info;
         $this->render('ajax'); 
     }
+    //显示名修改
+    public function changeshownameAction()
+    {
+        if (!session_id())session_start();
+        if (!isset($_SESSION['loginuser']))
+        {
+            $this->redirect('/index/index');
+            exit();
+        }
+        $showname=$this->getRequest()->getParam("showname","");//
+        $username=$this->getRequest()->getParam("username","");//
+        $res=0;
+        if($showname!=''&&$username!='')
+        {
+            $users=new users();
+            $res=$users->update_showname($username, $showname);
+            if($res==1)//更新成功
+            {
+                //session更新
+                $loginuser=$users->getUserbyusername($username);
+                $_SESSION['loginuser']=$loginuser[0];
+            }
+        }
+        $this->view->info=$res;
+        $this->render('ajax');
+    }
     //pwd修改
     public function changepwdAction()
     {
+        if (!session_id())session_start();
+        if (!isset($_SESSION['loginuser']))
+        {
+            $this->redirect('/index/index');
+            exit();
+        }
         $pwd=$this->getRequest()->getParam("pwd","");//
-        $uid=$this->getRequest()->getParam("uid","");//
+        $username=$this->getRequest()->getParam("username","");//
         $res=0;
-        if($pwd!=''&&$uid!='')
+        if($pwd!=''&&$username!='')
         {
             $users=new users();
-            $res=$users->update_pwd($uid, $pwd);
+            $res=$users->update_pwd($username, $pwd);
+            if($res==1)//更新成功
+            {
+                //session更新
+                $loginuser=$users->getUserbyusername($username);
+                $_SESSION['loginuser']=$loginuser[0];
+            }
+
         }
         $this->view->info=$res;
         $this->render('ajax');
@@ -114,12 +153,25 @@ class UserController extends BaseController
     //pwd重置
     public function resetpwdAction()
     {
-        $uid=$this->getRequest()->getParam("uid","");//
+        if (!session_id())session_start();
+        if (!isset($_SESSION['loginuser']))
+        {
+
+            $this->redirect('/index/index');
+            exit();
+        }
+        $username=$this->getRequest()->getParam("username","");//
         $res=0;
-        if($uid!='')
+        if($username!='')
         {
             $users=new users();
-            $res=$users->update_pwd($uid, 1);
+            $res=$users->update_pwd($username, 1);
+            if($res==1)//更新成功
+            {
+                //session更新
+                $loginuser=$users->getUserbyusername($username);
+                $_SESSION['loginuser']=$loginuser[0];
+            }
         }
         $this->view->info=$res;
         $this->render('ajax');
