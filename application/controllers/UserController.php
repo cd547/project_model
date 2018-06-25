@@ -174,6 +174,32 @@ class UserController extends BaseController
         $this->view->info=$res;
         $this->render('ajax');
     }
+    //手机修改
+    public function changecellphoneAction()
+    {
+        if (!session_id())session_start();
+        if (!isset($_SESSION['loginuser']))
+        {
+            $this->redirect('/index/index');
+            exit();
+        }
+        $cellphone=$this->getRequest()->getParam("cellphone","");//
+        $username=$this->getRequest()->getParam("username","");//
+        $res=0;
+        if(preg_match("/^1[34578]{1}\d{9}$/",$cellphone)&&$username!='')
+        {
+            $users=new users();
+            $res=$users->update_cellphone($username, $cellphone);
+            if($res==1)//更新成功
+            {
+                //session更新
+                $loginuser=$users->getUserbyusername($username);
+                $_SESSION['loginuser']=$loginuser[0];
+            }
+        }
+        $this->view->info=$res;
+        $this->render('ajax');
+    }
     //email修改
     public function changeemailAction()
     {
@@ -188,20 +214,7 @@ class UserController extends BaseController
         $this->view->info=$res;
         $this->render('ajax');
     }
-    //手机号码修改
-    public function changecellphoneAction()
-    {
-        $cellphone=$this->getRequest()->getParam("cellphone","");//
-        $uid=$this->getRequest()->getParam("uid","");//
-        $res=0;
-        if(preg_match("/^1[34578]{1}\d{9}$/",$cellphone)&&$uid!='')
-        {
-            $users=new users();
-            $res=$users->update_cellphone($uid, $cellphone);
-        }
-        $this->view->info=$res;
-        $this->render('ajax');
-    }
+
     //短信通知
     public function notificationAction()
     {

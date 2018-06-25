@@ -109,8 +109,8 @@
       var userid="<?php echo $this->img?>";
       function userlogin()
      {
-	  var username =  $("#loginname").val(),
-	 	 password =  $("#loginpassword").val();
+	  var username =  $("#loginname").val().trim(),
+	 	 password =  $("#loginpassword").val().trim();
 		$.post("/project/login/ajaxlogin",{ 
 			username:username,
 			password:password
@@ -125,14 +125,14 @@
 	 }, "json");
 	}
 	function registuser(){
-		var username =  $("#username").val(),
-		    showname=$("#showname").val(),
-		    password =  $("#password").val(),
-		    password2 =  $("#password2").val(),
-		    email =  $("#email").val(),
-		    cellphone=$("#cellphone").val(),
-		    wechart=$("#wechart").val(),
-            validCode=$("#validCode").val();
+		var username =  $("#username").val().trim(),
+		    showname=$("#showname").val().trim(),
+		    password =  $("#password").val().trim(),
+		    password2 =  $("#password2").val().trim(),
+		    email =  $("#email").val().trim(),
+		    cellphone=$("#cellphone").val().trim(),
+		    wechart=$("#wechart").val().trim(),
+            validCode=$("#validCode").val().trim();
 
 		if(username == "" ){
 		alert("用户名不能为空");

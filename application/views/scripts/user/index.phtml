@@ -257,9 +257,9 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">手机：</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="<?php echo $this->loginuser['cellphone'];?>">
+                                            <input id="cellphone" type="text" class="form-control" placeholder="<?php echo $this->loginuser['cellphone'];?>">
                                             <span class="input-group-btn">
-                              <a class="btn btn-success">修改</a>
+                              <a class="btn btn-success" id="change_cellphone_btn">修改</a>
                           </span>
                                         </div>
                                     </div>
@@ -414,7 +414,7 @@
   }
   //修改密码
   $('#change_pwd_btn').click(function(){
-      if($('#pwd').val()!=''){
+      if($('#pwd').val().trim()!=''){
           $.post("/project/user/changepwd", {pwd:$('#pwd').val(),username:'<?php echo $this->loginuser['username'];?>'},
               function(returnedData, status) {
                   var result = returnedData;
@@ -445,7 +445,7 @@
   });
   //修改显示名
   $('#çhange_showname_btn').click(function(){
-      if($('#showname').val()!=''){
+      if($('#showname').val().trim()!=''){
           $.post("/project/user/changeshowname", {username:'<?php echo $this->loginuser['username'];?>',showname:$('#showname').val()},
               function(returnedData, status) {
                   var result = returnedData;
@@ -463,8 +463,36 @@
                       else{alert('修改失败');}
                   }
               });}
-      else{alert('密码不能为空');}
+      else{alert('显示名不能为空');}
   });
+  //修改手机
+  $('#change_cellphone_btn').click(function(){
+      if($('#cellphone').val().trim()!=''){
+          if(!(/^1(3|4|5|7|8)\d{9}$/.test($('#cellphone').val().trim())) ){
+              alert("手机号不正确");
+              $("#cellphone").focus();
+              return;
+          }
+          else{
+              $.post("/project/user/changecellphone", {cellphone:$('#cellphone').val().trim(),username:'<?php echo $this->loginuser['username'];?>'},
+                  function(returnedData, status) {
+                      var result = returnedData;
+                      if (result != null)
+                      {
+                          if(result==1)
+                          {
+                              alert('修改成功');
+                              $('#cellphone').attr('placeholder',$('#cellphone').val());
+                              $('#cellphone').val('');
+                          }
+                          else{alert('修改失败');}
+                      }
+                  });
+          }
+    }
+      else{alert('手机号不能为空');}
+    });
+
   //这里的checkbox设置和一般的不一样，用了Icheck
   //icheck选中事件
   $("#msg_notify").on('ifChecked', function(event){

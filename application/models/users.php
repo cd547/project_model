@@ -85,13 +85,13 @@ class users extends Zend_Db_Table
 	    }
 	}
 	//更新手机号码
-	function update_cellphone($id,$cellphone)
+	function update_cellphone($username,$cellphone)
 	{
 	    $data=array('cellphone'=>$cellphone);
 	    //try
 	    {
 	        //更新
-	        $where=" id='".$id."'";
+	        $where=" username='".$username."'";
 	        $num=$this->update($data, $where);
 	        if($num>0)
 	        {

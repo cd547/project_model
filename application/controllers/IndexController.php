@@ -17,6 +17,7 @@ class IndexController extends BaseController
 
     	if (!isset($_SESSION['loginuser']))
     	{
+    	    //没有登录信息生成验证码
             $valimg=new validate();
             $url=$valimg->imgAction();
             $this->view->img=$url;
