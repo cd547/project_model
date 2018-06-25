@@ -35,46 +35,44 @@ class UserController extends BaseController
         $userData['cellphone']=$this->getRequest()->getParam("cellphone","");
         $userData['email']=$this->getRequest()->getParam("email","");
         $userData['wechart']=$this->getRequest()->getParam("wechart","");
+        $user_id=$this->getRequest()->getParam("userid","");
         $userData['time_reg']=$time;
-       
-        //$validCode=$this->getRequest()->getParam("validCode","");//验证码
+        $validCode=$this->getRequest()->getParam("validCode","");//输入的验证码
        // file_put_contents("c:/user_id.log", "userid:".$user_id." validCode:".$validCode."\r\n",FILE_APPEND);
         $info="";
         $arr=array();
         $arr[0]['username']="用户 OK";
-        $arr[0]['email']="Email OK";
-        $arr[0]['cellphone']="cellphone OK";
-        //$arr[0]['vali']="验证码 OK";
+        $arr[0]['email']="邮箱 OK";
+        $arr[0]['cellphone']="手机 OK";
+        $arr[0]['code']="验证码 OK";
         //判断用户名是否注册过
            $user=new users();
            if($user->checkusername($userData['username']))//如果存在
            {
                $arr[0]['username']="用户已存在！";
-           //    file_put_contents("c:/ajax.log", $arr['a']."\r\n",FILE_APPEND);
            }
         //判断邮箱是否注册过
            if($user->checkemail($userData['email'])&&$userData['email']!='')//如果存在
            {
-               $arr[0]['email']="email已存在！";
+               $arr[0]['email']="邮箱已存在！";
            }
            //判断手机是否注册过
            if($user->checkcellphone($userData['cellphone'])&&$userData['cellphone']!='')//如果存在
            {
-               $arr[0]['cellphone']="cellphone已存在！";
+               $arr[0]['cellphone']="手机已存在！";
            }
         //验证session
-        /*
         $codeSession = new Zend_Session_Namespace('captcha_code_'.$user_id);
-        file_put_contents("c:/user_id.log", " validCode:".$codeSession->code."\r\n",FILE_APPEND);
+        file_put_contents("../log/user_id.log", " validCode:".$codeSession->code."\r\n",FILE_APPEND);
         if ($codeSession != null && strtolower($codeSession->code) == strtolower($validCode)) {
             //验证码通过，入录数据库
-            $arr[0]['vali']="验证码 OK";
+            $arr[0]['code']="验证码 OK";
         }
         else{
-            $arr[0]['vali']="验证码错误";
+            $arr[0]['code']="验证码错误";
         }
-        */
-           if($arr[0]['username']=="用户 OK"&&$arr[0]['email']=="Email OK"&&$arr[0]['cellphone']=="cellphone OK")
+
+           if($arr[0]['username']=="用户 OK"&&$arr[0]['email']=="邮箱 OK"&&$arr[0]['cellphone']=="手机 OK"&&$arr[0]['code']=="验证码 OK")
         {
             //入录数据库
             $users=new users();

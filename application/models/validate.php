@@ -6,11 +6,11 @@ class validate
     
         //$this->codeSession = new Zend_Session_Namespace('code'); //在默认构造函数里实例化
         $captcha = new Zend_Captcha_Image(array('font'=>'vendors/arial.ttf', //字体文件路径
-            'fontsize'=>16, //字号
+            'fontsize'=>18, //字号
             'imgdir'=>'captcha/', //验证码图片存放位置
             // 'session'=>  $this->codeSession, //验证码session值
             'width'=>120, //图片宽
-            'height'=>35,   //图片高
+            'height'=>32,   //图片高
             'wordlen'=>5 )); //字母数
         $captcha->setLineNoiseLevel(1);//设置线干扰级别(默认5)
         $captcha->setDotNoiseLevel(10);//设置点干扰级别(默认100)

@@ -54,16 +54,16 @@
             <form>
               <h1>创建账号</h1>
               <div>
-                <input id="username" type="text" class="form-control" placeholder="用户名（必填）：登录网站的用户名" />
+                <input id="username" type="text" class="form-control" style="border-color: #F44336" placeholder="用户名（必填）：登录网站的用户名" />
               </div>
                 <div>
-                <input  id="password" type="password" class="form-control" placeholder="密码（必填）：登录网站的密码"  />
+                <input  id="password" type="password" class="form-control" style="border-color: #F44336" placeholder="密码（必填）：登录网站的密码"  />
               </div>
                <div>
-                <input  id="password2" type="password" class="form-control" placeholder="请再次输入密码（必填）：核对密码"  />
+                <input  id="password2" type="password" class="form-control" style="border-color: #F44336" placeholder="请再次输入密码（必填）：核对密码"  />
               </div>
               <div>
-                <input id="showname" type="text" class="form-control" placeholder="显示名（必填）：登录网站后显示的名称" />
+                <input id="showname" type="text" class="form-control" style="border-color: #F44336" placeholder="显示名（必填）：登录网站后显示的名称" />
               </div>
               <div>
                 <input id="email" type="email" class="form-control" placeholder="邮箱" />
@@ -74,9 +74,18 @@
               <div>
                 <input id="wechart" type="text" class="form-control" placeholder="微信号" />
               </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td><input id="validCode" type="text" class="form-control" style="border-color: #F44336" placeholder="验证码（必填）" /></td>
+                            <td><img id="validImg" style="margin-left: 10px;margin-top: 0px;margin-bottom:20px;border:solid 1px;" src="/project/captcha/<?php echo $this->img;?>.png" onclick="reload()"></td>
+                            <td><a class="btn btn-default submit"  style="margin-left: 10px;margin-top: 0px;margin-bottom:20px;" href="javascript:void(0);" onclick="registuser()">提 交</a></td>
+                        </tr>
+                    </table>
+
+                </div>
               <div>
-                <a class="btn btn-default submit" href="javascript:void(0);" onclick="registuser()">提 交</a>
-                  <img id="validImg" src="/project/captcha/<?php echo $this->img;?>.png" onclick="reload()">
+
               </div>
               <div class="clearfix"></div>
               <div class="separator">
@@ -97,8 +106,9 @@
   <!-- jQuery -->
   <script src="/project/vendors/jquery/dist/jquery.min.js"></script>
   <script>
-  function userlogin()
-  {
+      var userid="<?php echo $this->img?>";
+      function userlogin()
+     {
 	  var username =  $("#loginname").val(),
 	 	 password =  $("#loginpassword").val();
 		$.post("/project/login/ajaxlogin",{ 
@@ -116,12 +126,13 @@
 	}
 	function registuser(){
 		var username =  $("#username").val(),
-		showname=$("#showname").val(),
-		password =  $("#password").val(),
-		password2 =  $("#password2").val(),
-		email =  $("#email").val(),
-		cellphone=$("#cellphone").val(),
-		wechart=$("#wechart").val();
+		    showname=$("#showname").val(),
+		    password =  $("#password").val(),
+		    password2 =  $("#password2").val(),
+		    email =  $("#email").val(),
+		    cellphone=$("#cellphone").val(),
+		    wechart=$("#wechart").val(),
+            validCode=$("#validCode").val();
 
 		if(username == "" ){
 		alert("用户名不能为空");
@@ -158,23 +169,40 @@
 				return;
 			}
 		}
+        if(validCode == "" ){
+            alert("验证码不能为空");
+            $("#validCode").focus();
+            return;
+        }
 		$.post("/project/user/register",{ 
-			username:username,
-			password:password,
-			email:email,
-			cellphone:cellphone,
-			showname:showname,
-			wechart:wechart
+			    username:username,
+			    password:password,
+			    email:email,
+			    cellphone:cellphone,
+			    showname:showname,
+			    wechart:wechart,
+                userid:userid,
+                validCode:validCode
 		},
   		 function(data){	
-			if(data[0].username=="用户 OK"&&data[0].cellphone=="cellphone OK"&&data[0].email=="Email OK"){
+			if(data[0].username=="用户 OK"&&data[0].cellphone=="手机 OK"&&data[0].email=="邮箱 OK"&&data[0].code=="验证码 OK"){
 				//验证通过
 				alert("注册成功!\n");
 				//js模拟点击a标签，触发href.
 				//因为a标签的href属性是在他dom中的0里面，需要点击那个0才能实现，而数字型的属性名不能用“.”来获取，故写成[0]。
 				$('#login2')[0].click();
+				//清空数据
+                $("#username").val('');
+                $("#password").val('');
+                $("#password2").val('');
+                $("#showname").val('');
+                $("#cellphone").val('');
+                $("#wechart").val('');
+                $("#email").val('');
+                reload();
 		}else{
-			alert("注册失败!\n"+data[0].username+'\n'+data[0].cellphone+'\n'+data[0].email+'\n');
+			alert("注册失败!\n"+data[0].username+'\n'+data[0].cellphone+'\n'+data[0].email+'\n'+data[0].code+'\n');
+			reload();
 		}
 	 }, "json");
 	}
@@ -189,6 +217,7 @@
                 else//网络错误
                 {ans= "err";}
             },'html');
+        $("#validCode").val('');
     }
 
   </script>
