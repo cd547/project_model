@@ -224,7 +224,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="x_panel">
-              <div class="x_content">
+              <div id="project_list" class="x_content">
                   <ul class="list-unstyled msg_list">
                       <?php if(count($this->paginator)): ?>
                           <?php foreach($this->paginator as $item): ?>
@@ -260,7 +260,7 @@
 
                   </ul>
                   <nav aria-label="Page navigation">
-                      <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->code));?>
+                      <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams));?>
                   </nav>
 
               </div>

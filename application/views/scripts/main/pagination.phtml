@@ -38,18 +38,18 @@
 </ul>
 <?php endif; ?>
 <script type="text/javascript">
-function showpage(obj){
+function showpage(page){
 
 	$.ajaxSetup({async: true});
-	$.post("/project/main/showpage",{project:'<?php echo $this->requestParams;?>',page:obj},
+	$.post("/project/main/ajaxpage",{query:'<?php echo $this->requestParams;?>',page:page},
 	function(returnedData,status){
 		var result=returnedData;
 		if(result!=null){
-			$('#projectnode').empty();
-			$('#projectnode').html(result);
+			$('#project_list').empty();
+			$('#project_list').html(result);
 		}
 		else//网络错误
-		{alert("err");}
+		{alert("失败");}
 	});
 
 }

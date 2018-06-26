@@ -15,6 +15,7 @@ class MainController extends BaseController
             $this->redirect('/index/index');
             exit();
         }
+        $query=$this->getRequest()->getParam("query","");
         //获取项目信息
         $pro_level1=new pro_level1();
         $db=$pro_level1->getAdapter();
@@ -24,6 +25,7 @@ class MainController extends BaseController
         $paginator->setPageRange(10);
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $this->view->paginator = $paginator;
+        $this->view->requestParams=$query;
         //用户信息
         $this->view->loginuser=$_SESSION['loginuser'];
         $this->render();
@@ -39,6 +41,29 @@ class MainController extends BaseController
             exit();
         }
 
+    }
+    //ajax分页
+    public function ajaxpageAction()
+    {
+        if (!session_id())session_start();
+        if (!isset($_SESSION['loginuser']))
+        {
+            $this->redirect('/index/index');
+            exit();
+        }
+        //获取前台查询数据和页码
+        $page=$this->getRequest()->getParam("page","");
+        $query=$this->getRequest()->getParam("query","");
+        $pro_level1=new pro_level1();
+        $db=$pro_level1->getAdapter();
+        $sql=$db->select()->from('pro_level1','*')->order('Sys_id ASC');
+        $paginator = Zend_Paginator::factory($sql);
+        $paginator->setItemCountPerPage(5);//每页行数
+        $paginator->setPageRange(10);
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $this->view->paginator = $paginator;
+        $this->view->requestParams=$query;
+        $this->render('ajaxpage');
     }
 
     //ajax显示模态框
