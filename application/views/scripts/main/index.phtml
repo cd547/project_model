@@ -226,128 +226,41 @@
             <div class="x_panel">
               <div class="x_content">
                   <ul class="list-unstyled msg_list">
-                      <li>
-                          <a>
+                      <?php if(count($this->paginator)): ?>
+                          <?php foreach($this->paginator as $item): ?>
+
+                              <li>
+                                  <a>
                               <span class="message">
-                                  <strong>项目编号：</strong>fx2018-02-019
-                                  <strong style="padding-left: 10px;">项目名称：</strong>奉贤区睦邻点”四间房“运营管理技术支持项目
+                                  <strong>项目编号：</strong><?php echo $item['pro_num'];?>
+                                  <strong style="padding-left: 10px;">项目名称：</strong><?php echo $item['pro_name'];?>
                               </span>
-                              <span class="message">
-                                  <strong>项目状态：</strong><span class="label label-success">已完成</span>
+                                      <span class="message" style="padding-top: 5px;padding-bottom: 5px;">
+                                  <strong>项目状态：</strong><?php if( $item['pro_status']=='2'):?>
+                                              <span class="label label-success">已完成</span>
+                                          <?php elseif( $item['pro_status']=='1'):?>
+                                              <span class="label label-primary">进行中</span>
+                                          <?php else:?>
+                                              <span class="label label-default">未启动</span>
+                                          <?php endif;?>
                               </span>
-                              <span class="message">
+                                      <span class="message">
                                   <strong>项目内容：</strong>
-                                Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                          <?php echo $item['pro_sub_content'];?>
                               </span>
-                          </a>
-                          <span class="message"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                          <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                          <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
-                      </li>
-                      <li>
-                          <a>
-                              <span class="message">
-                                  <strong>项目编号：</strong>fx2018-02-019
-                                  <strong style="padding-left: 10px;">项目名称：</strong>奉贤区睦邻点”四间房“运营管理技术支持项目
-                              </span>
-                              <span class="message">
-                                  <strong>项目状态：</strong><span class="label label-success">已完成</span>
-                              </span>
-                              <span class="message">
-                                  <strong>项目内容：</strong>
-                                Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                              </span>
-                          </a>
-                          <span class="message"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                          <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                          <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
-                      </li>
-                      <li>
-                          <a>
-                              <span class="message">
-                                  <strong>项目编号：</strong>fx2018-02-019
-                                  <strong style="padding-left: 10px;">项目名称：</strong>奉贤区睦邻点”四间房“运营管理技术支持项目
-                              </span>
-                              <span class="message">
-                                  <strong>项目状态：</strong><span class="label label-success">已完成</span>
-                              </span>
-                              <span class="message">
-                                  <strong>项目内容：</strong>
-                                Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                              </span>
-                          </a>
-                          <span class="message"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                          <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                          <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
-                      </li>
-                      <li>
-                          <a>
-                              <span class="message">
-                                  <strong>项目编号：</strong>fx2018-02-019
-                                  <strong style="padding-left: 10px;">项目名称：</strong>奉贤区睦邻点”四间房“运营管理技术支持项目
-                              </span>
-                              <span class="message">
-                                  <strong>项目状态：</strong><span class="label label-success">已完成</span>
-                              </span>
-                              <span class="message">
-                                  <strong>项目内容：</strong>
-                                Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                              </span>
-                          </a>
-                          <span class="message"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                          <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                          <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
-                      </li>
-                      <li>
-                          <a>
-                              <span class="message">
-                                  <strong>项目编号：</strong>fx2018-02-019
-                                  <strong style="padding-left: 10px;">项目名称：</strong>奉贤区睦邻点”四间房“运营管理技术支持项目
-                              </span>
-                              <span class="message">
-                                  <strong>项目状态：</strong><span class="label label-success">已完成</span>
-                              </span>
-                              <span class="message">
-                                  <strong>项目内容：</strong>
-                                Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                              </span>
-                          </a>
-                          <span class="message"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                          <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                          <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
-                      </li>
+
+                                  </a>
+                                  <span class="message" style="padding-left: 15px;"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
+                                  <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
+                                  <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
+                              </li>
+
+                      <?php endforeach;?>
+                      <?php endif;?>
 
                   </ul>
                   <nav aria-label="Page navigation">
-                      <ul class="pagination">
-                          <li class="disabled">
-                              <a>首页</a>
-                          </li>
-                          <li class="disabled">
-                              <a>上一页</a>
-                          </li>
-                          <li>
-                              <a href="#">1</a>
-                          </li>
-                          <li>
-                              <a href="#">2</a>
-                          </li>
-                          <li>
-                              <a href="#">3</a>
-                          </li>
-                          <li>
-                              <a href="#">4</a>
-                          </li>
-                          <li>
-                              <a href="#">5</a>
-                          </li>
-                          <li class="disabled">
-                              <a>下一页</a>
-                          </li>
-                          <li class="disabled">
-                              <a>尾页</a>
-                          </li>
-                      </ul>
+                      <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->code));?>
                   </nav>
 
               </div>

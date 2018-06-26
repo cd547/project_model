@@ -1,6 +1,7 @@
 <?php
 require_once 'BaseController.php';
 require_once APPLICATION_PATH.'/models/users.php';//model table
+require_once APPLICATION_PATH.'/models/pro_level1.php';//pro_level1表
 
 /*控制器用于响应登录*/
 class MainController extends BaseController
@@ -14,6 +15,15 @@ class MainController extends BaseController
             $this->redirect('/index/index');
             exit();
         }
+        //获取项目信息
+        $pro_level1=new pro_level1();
+        $db=$pro_level1->getAdapter();
+        $sql=$db->select()->from('pro_level1','*')->order('Sys_id ASC');
+        $paginator = Zend_Paginator::factory($sql);
+        $paginator->setItemCountPerPage(5);//每页行数
+        $paginator->setPageRange(10);
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $this->view->paginator = $paginator;
         //用户信息
         $this->view->loginuser=$_SESSION['loginuser'];
         $this->render();
