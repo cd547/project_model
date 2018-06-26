@@ -1,6 +1,6 @@
 <?php
 require_once 'BaseController.php';
-require_once APPLICATION_PATH.'/models/validate.php';
+require_once APPLICATION_PATH . '/models/validata.php';
 require_once APPLICATION_PATH.'/models/users.php';//model table
 require_once APPLICATION_PATH.'/models/message.php';//model table
 class MessageController extends BaseController

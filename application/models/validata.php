@@ -1,5 +1,5 @@
 <?php
-class validate
+class validata
 {
     public function imgAction()
     {

@@ -1,6 +1,6 @@
 <?php
 require_once 'BaseController.php';
-require_once APPLICATION_PATH.'/models/validate.php';
+require_once APPLICATION_PATH.'/models/validata.php';
 class IndexController extends BaseController
 {
  /*
