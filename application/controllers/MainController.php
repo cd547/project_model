@@ -52,11 +52,16 @@ class MainController extends BaseController
             exit();
         }
         //获取前台查询数据和页码
-        $page=$this->getRequest()->getParam("page","");
+        $page=$this->getRequest()->getParam("page","1");
         $query=$this->getRequest()->getParam("query","");
         $pro_level1=new pro_level1();
         $db=$pro_level1->getAdapter();
-        $sql=$db->select()->from('pro_level1','*')->order('Sys_id ASC');
+        $sql=$db->select()->from('pro_level1','*')->where('pro_name LIKE ?',"%".$query."%")->orWhere('pro_num LIKE ?',"%".$query."%")->order('Sys_id ASC');
+        if($query=="")
+        {
+            $sql=$db->select()->from('pro_level1','*')->order('Sys_id ASC');
+        }
+
         $paginator = Zend_Paginator::factory($sql);
         $paginator->setItemCountPerPage(5);//每页行数
         $paginator->setPageRange(10);
