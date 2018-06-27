@@ -1,0 +1,56 @@
+<?php if ($this->pageCount): ?>
+<ul class="pagination">
+<li class="disabled">
+<a><?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?> of <?php echo $this->totalItemCount; ?></a>
+</li>
+<!-- First page link -->
+<?php if (isset($this->previous)): ?>
+<li ><a href="javascript:void(0);" onclick="showpage('<?php echo $this->first; ?>')">首页</a> </li>
+<?php else: ?>
+<li class="disabled"><a>首页</a> </li>
+<?php endif; ?>
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+<li ><a href="javascript:void(0);" onclick="showpage('<?php echo $this->previous; ?>')">上一页</a> </li>
+<?php else: ?>
+<li class="disabled"><a>上一页</a></li>
+<?php endif; ?>
+<!-- Numbered page link -->
+<?php foreach ($this->pagesInRange as $page):?>
+<?php if ($page!=$this->current):?>
+<li ><a href="javascript:void(0);" onclick="showpage('<?php echo $page; ?>')"><?=$page?></a></li>
+<?php else:?>
+<li class="disabled"><a style="background: #499EF3;color:#FFFFFF"><?=$page?></a></li>
+<?php endif;?>
+<?php endforeach;?>
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+<li ><a href="javascript:void(0);" onclick="showpage('<?php echo $this->next; ?>')">下一页 </a></li>
+<?php else: ?>
+<li class="disabled"><a>下一页</a> </li>
+<?php endif; ?>
+<!-- Last page link -->
+<?php if (isset($this->next)): ?>
+<li ><a href="javascript:void(0);" onclick="showpage('<?php echo $this->last; ?>')">尾页</a></li>
+<?php else: ?>
+<li class="disabled"><a>尾页</a></li>
+<?php endif; ?>
+</ul>
+<?php endif; ?>
+<script type="text/javascript">
+function showpage(page){
+
+	$.ajaxSetup({async: true});
+	$.post("/project/main/ajaxpage",{query:'<?php echo $this->requestParams;?>',page:page},
+	function(returnedData,status){
+		var result=returnedData;
+		if(result!=null){
+			$('#project_list').empty();
+			$('#project_list').html(result);
+		}
+		else//网络错误
+		{alert("失败");}
+	});
+
+}
+</script>

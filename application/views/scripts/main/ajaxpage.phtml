@@ -1,33 +1,43 @@
 <ul class="list-unstyled msg_list">
-    <?php if(count($this->paginator)): ?>
-        <?php foreach($this->paginator as $item): ?>
+    <?php if (count($this->paginator)): ?>
+        <?php foreach ($this->paginator as $item): ?>
             <li>
                 <a>
                     <span class="message">
-                        <strong>项目编号：</strong><?php echo $item['pro_num'];?>
-                        <strong style="padding-left: 10px;">项目名称：</strong><?php echo $item['pro_name'];?>
+                        <strong>项目编号：</strong><?php echo $item['pro_num']; ?>
+                        <strong style="padding-left: 10px;">项目名称：</strong><?php echo $item['pro_name']; ?>
                     </span>
                     <span class="message" style="padding-top: 5px;padding-bottom: 5px;">
-                                  <strong>项目状态：</strong><?php if( $item['pro_status']=='2'):?>
+                        <strong>项目状态：</strong><?php if ($item['pro_status'] == '2'): ?>
                             <span class="label label-success">已完成</span>
-                        <?php elseif( $item['pro_status']=='1'):?>
+                        <?php elseif ($item['pro_status'] == '1'): ?>
                             <span class="label label-primary">进行中</span>
-                        <?php else:?>
+                        <?php else: ?>
                             <span class="label label-default">未启动</span>
-                        <?php endif;?>
-                              </span>
+                        <?php endif; ?>
+                    </span>
                     <span class="message">
-                                  <strong>项目内容：</strong>
-                        <?php echo $item['pro_sub_content'];?>
-                              </span>
+                        <strong>项目内容：</strong>
+                        <?php echo $item['pro_sub_content']; ?>
+                    </span>
                 </a>
-                <span class="message" style="padding-left: 15px;"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
+                <span class="message" style="padding-left: 15px;"><a href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
+                <?php if ($this->loginuser['role'] == 'admin'): ?>
+                    <span class="message">
+                                        <a href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-info btn-xs">
+                                            <i class="fa fa-pencil"></i> 编辑
+                                        </a>
+                                      </span>
+                    <span class="message">
+                                        <a href="/project/project/pro_level1_d?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                         </a>
+                                      </span>
+                <?php endif; ?>
             </li>
-        <?php endforeach;?>
-    <?php endif;?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </ul>
 <nav aria-label="Page navigation">
-    <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams));?>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams)); ?>
 </nav>
