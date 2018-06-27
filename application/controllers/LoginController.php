@@ -7,7 +7,7 @@ class LoginController extends BaseController
    //动态获取验证码
    public function ajaximgAction()
    {
-       $valimg=new validate();
+       $valimg=new validata();
        $url=$valimg->imgAction();
        $this->view->info=$url;
        $this->render('ajax');
