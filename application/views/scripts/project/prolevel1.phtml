@@ -236,7 +236,7 @@
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">最高限价:</label>
-                    <input type="text" class="form-control" id="4" placeholder="">
+                    <input type="text" class="form-control" id="4" placeholder="<?php echo $this->project_data[0]['pro_endMoney']?>">
                     <strong>元</strong>
                   </div>
                 </form>
@@ -244,7 +244,7 @@
                 <form class="form-inline" style="padding-bottom: 10px;">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">服务对象:</label>
-                    <input type="text" class="form-control" id="5" placeholder="">
+                    <input type="text" class="form-control" id="5" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">项目实施地点:</label>
@@ -255,11 +255,11 @@
                 <form class="form-inline" style="padding-bottom: 10px;">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">项目开始日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="7" placeholder="">
+                    <input type="text" class="form-control" style="width:130px;" id="7" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">项目结束日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="8" placeholder="">
+                    <input type="text" class="form-control" style="width:130px;" id="8" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
                   </div>
                 </form>
 
@@ -272,7 +272,7 @@
 
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">申报金额:</label>
-                    <input type="text" class="form-control" id="10" placeholder="">&nbsp;
+                    <input type="text" class="form-control" id="10" placeholder="<?php echo $this->project_data[0]['pro_reportMoney']?>">&nbsp;
                     <strong>元</strong>
                   </div>
 
@@ -287,7 +287,7 @@
 
                 <form class="form-inline" style="padding-bottom: 10px;">
                   <div class="form-group col-md-12">
-                    <textarea class="form-control" style="width: 100%" rows="4"></textarea>
+                    <textarea class="form-control" style="width: 100%" rows="4"  placeholder="<?php echo $this->project_data[0]['pro_content']?>" ></textarea>
                   </div>
                 </form>
 
