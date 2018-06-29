@@ -255,18 +255,26 @@
                 <form class="form-inline" style="padding-bottom: 10px;">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">项目开始日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="7" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
+                    <input type="text" class="form-control" style="width:130px;" id="7" placeholder="<?php echo $this->project_data[0]['pro_startTime']?>">
                   </div>
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">项目结束日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="8" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
+                    <input type="text" class="form-control" style="width:130px;" id="8" placeholder="<?php echo $this->project_data[0]['pro_endTime']?>">
                   </div>
                 </form>
 
                 <form class="form-inline" style="padding-bottom: 10px;">
                   <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label class="control-label">总周期:</label>
-                    <input type="text" class="form-control" id="9" placeholder="" style="width:60px">&nbsp;
+                    <input type="text" class="form-control" id="9" placeholder="<?php function getMonthNum($date1,$date2){
+                        $date1_stamp=strtotime($date1);
+                        $date2_stamp=strtotime($date2);
+                        list($date_1['y'],$date_1['m'])=explode("-",date('Y-m',$date1_stamp));
+                        list($date_2['y'],$date_2['m'])=explode("-",date('Y-m',$date2_stamp));
+                        return abs(($date_2['y']-$date_1['y'])*12 +$date_2['m']-$date_1['m']);
+                    }
+                    echo getMonthNum($this->project_data[0]['pro_endTime'],$this->project_data[0]['pro_startTime']);
+                    ?>" style="width:60px">&nbsp;
                     <strong>月</strong>
                   </div>
 

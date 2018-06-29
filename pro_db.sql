@@ -1,18 +1,30 @@
+-- auto-generated definition
 create table pro_level1
 (
   id                  int auto_increment
-  comment '自增id'
     primary key,
   Sys_id              int                 not null
   comment '一级项目明细序号',
   pro_num             varchar(32)         not null
   comment '项目编号',
+  pro_startTime       date                null
+  comment '项目开始时间',
+  pro_endTime         date                null
+  comment '项目结束时间',
   pro_name            varchar(64)         not null
   comment '项目名称',
+  pro_content         text                null
+  comment '项目内容',
   pro_address01       varchar(32)         null
   comment '项目归属',
   pro_address02       varchar(32)         null
   comment '项目实施地点',
+  pro_serviceObj      varchar(64)         null
+  comment '服务对象',
+  pro_endMoney        decimal(13, 2)      null
+  comment '最高限价',
+  pro_reportMoney     decimal(13, 2)      not null
+  comment '申报金额',
   pro_payMethod       varchar(128)        null
   comment '付款方式',
   pro_condition       varchar(128)        null
