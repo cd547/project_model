@@ -204,7 +204,7 @@
         <div class="page-title">
           <div class="title_left">
             <h3>
-              <strong><?php echo $this->project_data[0]['pro_name']?></strong>
+                项目主表
             </h3>
           </div>
         </div>
@@ -214,6 +214,13 @@
         <div class="row">
           <div class="col-md-12">
             <div class="x_panel">
+                <div class="x_title">
+                    <h2><strong><?php echo $this->project_data[0]['pro_name']?></strong></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
               <div class="x_content">
                 <br/>
                 <form class="form-inline" style="padding-bottom: 10px;">
@@ -309,11 +316,11 @@
           <div class="col-md-12">
             <div class="x_panel">
               <div class="x_title">
-                <h5>
-                  <strong>对项目内容的思考与分析: </strong>
+                  <strong>对项目内容的思考与分析:&nbsp;</strong>
                   <a class="btn btn-primary btn-xs" onclick="showdet()">增加</a>
-                </h5>
-
+                  <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                  </ul>
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
