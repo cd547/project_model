@@ -21,6 +21,7 @@
   <body class="login">
     <div>
       <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="forgot"></a>
       <a class="hiddenanchor" id="signin"></a>
       <div class="login_wrapper">
         <div class="animate form login_form">
@@ -35,7 +36,7 @@
               </div>
               <div>
                 <a class="btn btn-default submit" href="javascript:void(0);" onclick="userlogin()">确 认</a>
-                <a class="reset_pass" href="#">忘记密码?</a>
+                <a class="reset_pass" href="#forgot">忘记密码?</a>
               </div>
               <div class="clearfix"></div>
               <div class="separator">
@@ -49,6 +50,28 @@
             </form>
           </section>
         </div>
+          <div id="forgot" class="animate form forgot_form">
+              <section class="login_content">
+                  <form>
+                      <div>
+                          <input id="loginname_try" type="text" class="form-control" placeholder="输入用户名，系统会发送验证码给您" required="" />
+                      </div>
+                      <div>
+                          <input id="code" type="text" class="form-control" placeholder="输入收到的验证码" required="" />
+                      </div>
+                      <a class="btn btn-default submit" href="javascript:void(0);" onclick="sendcode()">发送验证码</a>
+                      <a class="btn btn-default submit" href="javascript:void(0);" onclick="login()">登录</a>
+                  </form>
+                  <div class="separator">
+                      <p class="change_link">账号想起来了？
+                          <a href="#signin" class="to_register"> 登录 </a>
+                      </p>
+                      <div class="clearfix"></div>
+                      <br />
+                      <div>
+
+              </section>
+          </div>
         <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form>

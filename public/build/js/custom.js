@@ -477,7 +477,6 @@ if (typeof NProgress != 'undefined') {
 			 
 			if( typeof (select2) === 'undefined'){ return; }
 			console.log('init_toolbox');
-			 
 			$(".select2_single").select2({
 			  placeholder: "Select a state",
 			  allowClear: true
