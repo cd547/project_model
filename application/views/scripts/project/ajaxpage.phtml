@@ -1,33 +1,31 @@
-<ul class="list-unstyled msg_list">
-    <?php if(count($this->paginator)): ?>
+<?php if(count($this->paginator)): ?>
+    <table class="table table-striped table-bordered" id="datatable-buttons">
+        <thead>
+        <tr>
+            <th style="width:30px">操作</th>
+            <th style="width:200px">思考</th>
+            <th style="width:400px">分析</th>
+        </tr>
+        </thead>
+        <tbody style="font-size:12px;">
         <?php foreach($this->paginator as $item): ?>
-            <li>
-                <a>
-                    <span class="message">
-                        <strong>项目编号：</strong><?php echo $item['pro_num'];?>
-                        <strong style="padding-left: 10px;">项目名称：</strong><?php echo $item['pro_name'];?>
-                    </span>
-                    <span class="message" style="padding-top: 5px;padding-bottom: 5px;">
-                                  <strong>项目状态：</strong><?php if( $item['pro_status']=='2'):?>
-                            <span class="label label-success">已完成</span>
-                        <?php elseif( $item['pro_status']=='1'):?>
-                            <span class="label label-primary">进行中</span>
-                        <?php else:?>
-                            <span class="label label-default">未启动</span>
-                        <?php endif;?>
-                              </span>
-                    <span class="message">
-                                  <strong>项目内容：</strong>
-                        <?php echo $item['pro_sub_content'];?>
-                              </span>
-                </a>
-                <span class="message" style="padding-left: 15px;"><a href="/project/main/" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
-                <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
-            </li>
+            <tr>
+                <td>
+                    <?php if ($this->loginuser['role'] == 'admin'): ?>
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-xs btn-primary" type="button" onclick="editanalysis(<?php echo $this->page;?>,<?php echo $item['id'];?>)">编辑</button>
+                            <button class="btn btn-xs btn-danger" type="button" onclick="deltanalysis(<?php echo $this->page;?>,<?php echo $item['id'];?>)">删除</button>
+                        </div>
+                    <?php endif;?>
+
+                </td>
+                <td><?php echo $item['pro_problem'];?></td>
+                <td><?php echo $item['pro_solve'];?></td>
+            </tr>
         <?php endforeach;?>
-    <?php endif;?>
-</ul>
+        </tbody>
+    </table>
+<?php endif;?>
 <nav aria-label="Page navigation">
-    <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams));?>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', '/project/pagination.phtml', array('requestParams' => $this->requestParams));?>
 </nav>

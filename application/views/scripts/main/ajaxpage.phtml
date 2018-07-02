@@ -2,6 +2,13 @@
     <?php if (count($this->paginator)): ?>
         <?php foreach ($this->paginator as $item): ?>
             <li>
+                <div class="btn-group-vertical">
+                    <a class="btn btn-primary btn-xs" href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" ><i class="fa fa-folder"></i> 查看 </a>
+                    <?php if ($this->loginuser['role'] == 'admin'): ?>
+                        <a class="btn btn-xs btn-info" href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>"><i class="fa fa-pencil"></i> 编辑</a>
+                        <a class="btn btn-xs btn-danger" onclick="deltalert('<?php echo $item['pro_num'];?>')"><i class="fa fa-trash-o"></i> 删除</a>
+                    <?php endif; ?>
+                </div>
                 <a>
                     <span class="message">
                         <strong>项目编号：</strong><?php echo $item['pro_num']; ?>
@@ -21,19 +28,6 @@
                         <?php echo $item['pro_sub_content']; ?>
                     </span>
                 </a>
-                <span class="message" style="padding-left: 15px;"><a href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                <?php if ($this->loginuser['role'] == 'admin'): ?>
-                    <span class="message">
-                                        <a href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-info btn-xs">
-                                            <i class="fa fa-pencil"></i> 编辑
-                                        </a>
-                                      </span>
-                    <span class="message">
-                                        <a href="/project/project/pro_level1_d?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-danger btn-xs">
-                                            <i class="fa fa-trash-o"></i> 删除
-                                         </a>
-                                      </span>
-                <?php endif; ?>
             </li>
         <?php endforeach; ?>
     <?php endif; ?>

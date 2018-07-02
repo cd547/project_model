@@ -41,12 +41,12 @@
 function showpage(page){
 
 	$.ajaxSetup({async: true});
-	$.post("/project/main/ajaxpage",{query:'<?php echo $this->requestParams;?>',page:page},
+	$.post("/project/project/ajaxpage",{query:'<?php echo $this->requestParams;?>',page:page},
 	function(returnedData,status){
 		var result=returnedData;
 		if(result!=null){
-			$('#project_list').empty();
-			$('#project_list').html(result);
+			$('#pro_analysis_list').empty();
+			$('#pro_analysis_list').html(result);
 		}
 		else//网络错误
 		{alert("失败");}

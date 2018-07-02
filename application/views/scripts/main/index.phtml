@@ -61,7 +61,7 @@
           </button>
           <h4 class="modal-title">弹出框</h4>
         </div>
-        <div class="modal-body" style="height: 700px;">
+        <div class="modal-body">
           <div id="content">sssssss</div>
         </div>
       </div>
@@ -243,7 +243,15 @@
                   <ul class="list-unstyled msg_list">
                       <?php if(count($this->paginator)): ?>
                           <?php foreach($this->paginator as $item): ?>
+
                               <li>
+                                  <div class="btn-group-vertical">
+                                      <a class="btn btn-primary btn-xs" href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" ><i class="fa fa-folder"></i> 查看 </a>
+                                      <?php if ($this->loginuser['role'] == 'admin'): ?>
+                                      <a class="btn btn-xs btn-info" href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>"><i class="fa fa-pencil"></i> 编辑</a>
+                                      <a class="btn btn-xs btn-danger" onclick="deltalert('<?php echo $item['pro_num'];?>')"><i class="fa fa-trash-o"></i> 删除</a>
+                                      <?php endif; ?>
+                                  </div>
                                   <a>
                               <span class="message">
                                   <strong>项目编号：</strong><?php echo $item['pro_num'];?>
@@ -264,19 +272,6 @@
                               </span>
 
                                   </a>
-                                  <span class="message" style="padding-left: 15px;"><a href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
-                                  <?php if ($this->loginuser['role'] == 'admin'): ?>
-                                      <span class="message">
-                                        <a href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-info btn-xs">
-                                            <i class="fa fa-pencil"></i> 编辑
-                                        </a>
-                                      </span>
-                                      <span class="message">
-                                        <a href="/project/project/pro_level1_d?pro_num=<?php echo $item['pro_num'];?>" class="btn btn-danger btn-xs">
-                                            <i class="fa fa-trash-o"></i> 删除
-                                         </a>
-                                      </span>
-                                  <?php endif; ?>
                               </li>
 
                       <?php endforeach;?>
@@ -361,12 +356,32 @@
   <script src="/project/build/js/custom.min.js"></script>
 </body>
 <script type="text/javascript">
-  function showdet() {
-    $('#myModal1').modal('show');
-    $('#content').empty();
-    var htmltext = '<form class="form-inline">思考： <br/><div class="form-group form-group-sm"><textarea class="form-control" style="width:450px;font-size: 12px;" rows="6"></textarea></div></form>'
-      + '<form class="form-inline">分析： <br/><div class="form-group form-group-sm"><textarea class="form-control" style="width:450px;font-size: 12px;" rows="6"></textarea></div></form>'
-    $('#content').html(htmltext)
+  function showdet() {;}
+  //删除项目弹出框
+  function deltalert(pro_num)
+  {
+      $('#myModal1').modal('show');
+      $('#content').empty();
+      htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
+          " <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button>" +
+          " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-success\" data-dismiss=\"modal\">确定</a> ";
+      $('#content').html(htmltext);
+  }
+  //删除项目
+  function deltpro(pro_num)
+  {
+      $.ajaxSetup({async: true});
+      $.post("/project/project/ajaxdeletepro",{pro_num:pro_num},
+          function(returnedData,status){
+              var result=returnedData;
+              if(result==1){
+                  alert("删除项目"+pro_num+"成功！");
+                  search_projectlist($('#project_search').val());
+              }
+              else//网络错误
+              {alert("删除项目"+pro_num+"失败");}
+          });
+
   }
 //搜索项目
   function search_projectlist(query)
