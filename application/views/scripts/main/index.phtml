@@ -361,9 +361,11 @@
   function deltalert(pro_num)
   {
       $('#myModal1').modal('show');
+      $('.modal-title').empty();
+      $('.modal-title').html('删除确认');
       $('#content').empty();
       htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
-          " <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button>" +
+          " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
           " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-success\" data-dismiss=\"modal\">确定</a> ";
       $('#content').html(htmltext);
   }

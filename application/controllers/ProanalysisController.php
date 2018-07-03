@@ -5,7 +5,7 @@ require_once APPLICATION_PATH.'/models/pro_level1.php';//pro_level1表
 require_once APPLICATION_PATH.'/models/pro_analysis.php';//pro_analysis表
 
 /*控制器用于响应登录*/
-class ProjectController extends BaseController
+class ProanalysisController extends BaseController
 {
     //项目主页
 	public function prolevel1Action()
@@ -80,7 +80,7 @@ class ProjectController extends BaseController
     }
 
     //ajax 删除项目
-    public function ajaxdeleteproAction()
+    public function ajaxdeleteAction()
     {
         if (!session_id()) session_start();
         if (!isset($_SESSION['loginuser'])) {
@@ -96,7 +96,27 @@ class ProjectController extends BaseController
         $this->view->info=$rows_affected;
         $this->render('ajax');
     }
-   
+
+    //ajax 增加项目分析
+    public function ajaxaddAction()
+    {
+        if (!session_id()) session_start();
+        if (!isset($_SESSION['loginuser'])) {
+            $this->redirect('/index/index');
+            exit();
+        }
+        $pro_num=$this->getRequest()->getParam("pro_num","");
+        $addproblem=$this->getRequest()->getParam("addproblem","");
+        $addsolve=$this->getRequest()->getParam("addsolve","");
+        $pro_analysis=new pro_analysis();
+        $data=array('pro_num'=>$pro_num,'pro_problem'=>$addproblem,'pro_solve'=>$addsolve,'createPeople'=>$_SESSION['loginuser']['username']);
+        $rows_affected =$pro_analysis->addAnalysis($data);
+
+        //日志输出
+        file_put_contents("../log/db.log", $rows_affected."\r\n",FILE_APPEND);
+        $this->view->info=$rows_affected;
+        $this->render('ajax');
+    }
 
 }
 

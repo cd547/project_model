@@ -18,4 +18,26 @@ class pro_analysis extends Zend_Db_Table
         }
     }
 
+    //创建项目分析
+    function addAnalysis($data)
+    {
+        $row=$this->createRow();
+        if(count($data)>0){
+            foreach($data as $key=>$value)
+            {
+                switch($key)
+                {
+                    default:
+                        $row->$key=$value;
+                }
+            }
+            $time=time();
+            $row->createTime=date("y-m-d H:i:s",$time);;
+            $row->save();
+            return $row->id;
+        }
+        else {
+            return null;
+        }
+    }
 }

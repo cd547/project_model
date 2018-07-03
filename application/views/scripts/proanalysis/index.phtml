@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
-  <title>我们的系统p1</title>
+  <title>我们的系统</title>
   <!-- Bootstrap -->
   <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome 图标和字体库css框架-->
@@ -33,7 +33,21 @@
   <link href="/project/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
   <link href="/project/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
   <link href="/project/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
+    <style>
+        /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+        ::-webkit-scrollbar
+        {
+            width: 5px;
+            height: 12px;
+            background-color: #a5a5a5;
+        }
+        /*定义滚动条轨道 内阴影+圆角*/
+        ::-webkit-scrollbar-track
+        {background-color: #a5a5a5;}
+        /*定义滑块 内阴影+圆角*/
+        ::-webkit-scrollbar-thumb
+        {background-color: #666;}
+    </style>
 </head>
 
 <body class="nav-md">
@@ -47,7 +61,7 @@
           </button>
           <h4 class="modal-title">弹出框</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="height: 700px;">
           <div id="content">sssssss</div>
         </div>
       </div>
@@ -85,14 +99,14 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
               <ul class="nav side-menu">
-                <li>
+                <li class="active">
                   <a>
-                    <i class="fa fa-home"></i> 主页
+                    <i class="fa fa-home"></i> 功能
                     <span class="fa fa-chevron-down"></span>
                   </a>
-                  <ul class="nav child_menu">
-                    <li>
-                        <a href="/project/main/index">项目管理</a>
+                  <ul class="nav child_menu" style="display: block;">
+                    <li class="current-page">
+                      <a href="/project/main/index">项目管理</a>
                     </li>
                     <li>
                       <a href="index2.html">p2</a>
@@ -200,13 +214,24 @@
 
       <!-- 页面内容 -->
       <div class="right_col" role="main" style="min-height: 1600px;">
-        <!-- 页面标题 -->
+          <ul class="dropdown-menu" id="searchresult" style="font-size: 12px;height:300px;overflow:auto;"></ul>
+          <!-- 页面标题 -->
         <div class="page-title">
-          <div class="title_left">
+            <div class="title_left">
             <h3>
-                项目主表
+              <strong>项目管理</strong>
             </h3>
           </div>
+            <div class="title_right">
+                <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" id="project_search" class="form-control" placeholder="请输入项目名称、编号" autocomplete="off" onkeyup="search_projectlist(this.value);">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="search_projectlist($('#project_search').val())">搜索</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="clearfix"></div>
         <!-- /页面标题 -->
@@ -214,156 +239,49 @@
         <div class="row">
           <div class="col-md-12">
             <div class="x_panel">
-                <div class="x_title">
-                    <h2><strong><?php echo $this->project_data[0]['pro_name']?></strong></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-              <div class="x_content">
-                <br/>
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目编号:</label>
-                    <input type="text" class="form-control" id="1" placeholder="<?php echo $this->project_data[0]['pro_num']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目归属:</label>
-                    <input type="text" class="form-control" id="2" placeholder="<?php echo $this->project_data[0]['pro_address01']?>">
-                    <button type="button" class="btn btn-dark btn-sm">32</button>
-                  </div>
+              <div id="project_list" class="x_content">
+                  <ul class="list-unstyled msg_list">
+                      <?php if(count($this->paginator)): ?>
+                          <?php foreach($this->paginator as $item): ?>
+                              <li>
+                                  <a>
+                              <span class="message">
+                                  <strong>项目编号：</strong><?php echo $item['pro_num'];?>
+                                  <strong style="padding-left: 10px;">项目名称：</strong><?php echo $item['pro_name'];?>
+                              </span>
+                                      <span class="message" style="padding-top: 5px;padding-bottom: 5px;">
+                                  <strong>项目状态：</strong><?php if( $item['pro_status']=='2'):?>
+                                              <span class="label label-success">已完成</span>
+                                          <?php elseif( $item['pro_status']=='1'):?>
+                                              <span class="label label-primary">进行中</span>
+                                          <?php else:?>
+                                              <span class="label label-default">未启动</span>
+                                          <?php endif;?>
+                              </span>
+                                      <span class="message">
+                                  <strong>项目内容：</strong>
+                                          <?php echo $item['pro_sub_content'];?>
+                              </span>
 
-                </form>
+                                  </a>
+                                  <span class="message" style="padding-left: 15px;"><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> 查看 </a></span>
+                                  <span class="message"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑 </a></span>
+                                  <span class="message"><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a></span>
+                              </li>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目名称:</label>
-                    <input type="text" class="form-control" style="width:350px;" id="3" placeholder="<?php echo $this->project_data[0]['pro_name']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">最高限价:</label>
-                    <input type="text" class="form-control" id="4" placeholder="<?php echo $this->project_data[0]['pro_endMoney']?>">
-                    <strong>元</strong>
-                  </div>
-                </form>
+                      <?php endforeach;?>
+                      <?php endif;?>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">服务对象:</label>
-                    <input type="text" class="form-control" id="5" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目实施地点:</label>
-                    <input type="text" class="form-control" id="6" placeholder="<?php echo $this->project_data[0]['pro_address02']?>">
-                  </div>
-                </form>
-
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目开始日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="7" placeholder="<?php echo $this->project_data[0]['pro_startTime']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目结束日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="8" placeholder="<?php echo $this->project_data[0]['pro_endTime']?>">
-                  </div>
-                </form>
-
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">总周期:</label>
-                    <input type="text" class="form-control" id="9" placeholder="<?php function getMonthNum($date1,$date2){
-                        $date1_stamp=strtotime($date1);
-                        $date2_stamp=strtotime($date2);
-                        list($date_1['y'],$date_1['m'])=explode("-",date('Y-m',$date1_stamp));
-                        list($date_2['y'],$date_2['m'])=explode("-",date('Y-m',$date2_stamp));
-                        return abs(($date_2['y']-$date_1['y'])*12 +$date_2['m']-$date_1['m']);
-                    }
-                    echo getMonthNum($this->project_data[0]['pro_endTime'],$this->project_data[0]['pro_startTime']);
-                    ?>" style="width:60px">&nbsp;
-                    <strong>月</strong>
-                  </div>
-
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">申报金额:</label>
-                    <input type="text" class="form-control" id="10" placeholder="<?php echo $this->project_data[0]['pro_reportMoney']?>">&nbsp;
-                    <strong>元</strong>
-                  </div>
-
-                </form>
-
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="form-group">
-                    <label class="control-label">项目内容:</label>
-                    <button class="btn btn-primary btn-sm">二级目录</button>
-                  </div>
-                </form>
-
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="form-group col-md-12">
-                    <textarea class="form-control" style="width: 100%" rows="4"  placeholder="<?php echo $this->project_data[0]['pro_content']?>" ></textarea>
-                  </div>
-                </form>
+                  </ul>
+                  <nav aria-label="Page navigation">
+                      <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams));?>
+                  </nav>
 
               </div>
             </div>
           </div>
         </div>
         <!-- /板块1 -->
-        <!-- 板块2 -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="x_panel">
-              <div class="x_title">
-                  <strong>对项目内容的思考与分析:&nbsp;</strong>
-                  <a class="btn btn-primary btn-xs" onclick="createalert('<?php echo $this->project_data[0]['pro_num']?>')">增加</a>
-                  <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                  </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <div class="col-md-12" id="pro_analysis_list">
-                    <?php if(count($this->paginator)): ?>
-                  <table class="table table-striped table-bordered" id="datatable-buttons">
-                    <thead>
-                      <tr>
-                        <th style="width:30px">操作</th>
-                        <th style="width:200px">思考</th>
-                        <th style="width:400px">分析</th>
-                      </tr>
-                    </thead>
-                    <tbody style="font-size:12px;">
-                    <?php foreach($this->paginator as $item): ?>
-                      <tr>
-                        <td>
-                            <?php if ($this->loginuser['role'] == 'admin'): ?>
-                            <div class="btn-group-vertical">
-                                <a class="btn btn-xs btn-primary" type="button" onclick="editanalysis(1,<?php echo $item['id'];?>)">编辑</a>
-                                <a class="btn btn-xs btn-danger" type="button" onclick="deltanalysis(1,<?php echo $item['id'];?>)">删除</a>
-                            </div>
-                            <?php endif;?>
-
-                        </td>
-                        <td data-placement="top" data-toggle="tooltip" data-original-title="问题于<?php echo $item['createTime'].'由'.$item['createPeople'];?>提出"><?php echo $item['pro_problem'];?></td>
-                        <td><?php echo $item['pro_solve'];?></td>
-                      </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                  </table>
-                    <?php endif;?>
-                    <nav aria-label="Page navigation">
-                        <?php echo $this->paginationControl($this->paginator, 'Sliding', '/proanalysis/pagination.phtml', array('requestParams' => $this->requestParams));?>
-                    </nav>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /板块2 -->
       </div>
       <!-- /页面内容 -->
 
@@ -433,88 +351,63 @@
   <script src="/project/build/js/custom.min.js"></script>
 </body>
 <script type="text/javascript">
-  //创建项目分析
-  function createalert(pro_num)
-  {
-      $('#myModal1').modal('show');
-      $('.modal-title').empty();
-      $('.modal-title').html('添加'+'<strong><?php echo $this->project_data[0]['pro_name']?></strong>'+'项目分析');
-      $('#content').empty();
-      htmltext="<form id=\"demo-form2\" data-parsley-validate=\"\" class=\"form-horizontal form-label-left\" novalidate=\"\">\n" +
-          "<div class=\"form-group\">\n" +
-          "     <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">思考</label>\n" +
-          "     <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
-          "         <textarea class=\"form-control\" rows=\"4\" id=\"addproblem\"></textarea>\n" +
-          "     </div>\n" +
-          "</div>\n" +
-          "<div class=\"form-group\">\n" +
-          "      <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">分析</label>\n" +
-          "      <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
-          "         <textarea class=\"form-control\" rows=\"4\" id=\"addsolve\"></textarea>\n" +
-          "      </div>\n" +
-          "</div>\n" +
-          "<div class=\"ln_solid\"></div>\n" +
-          "<div class=\"form-group\">\n" +
-          "      <div class=\"col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n" +
-          "         <a class=\"btn btn-primary\" type=\"button\" data-dismiss=\"modal\">取消</a>\n" +
-          "         <a type=\"submit\" class=\"btn btn-success\" data-dismiss=\"modal\" onclick=\"createanalysis()\">提交</a>\n" +
-          "      </div>\n" +
-          "</div>\n" +
-          "</form>";
-      $('#content').html(htmltext);
+  function showdet() {
+    $('#myModal1').modal('show');
+    $('#content').empty();
+    var htmltext = '<form class="form-inline">思考： <br/><div class="form-group form-group-sm"><textarea class="form-control" style="width:450px;font-size: 12px;" rows="6"></textarea></div></form>'
+      + '<form class="form-inline">分析： <br/><div class="form-group form-group-sm"><textarea class="form-control" style="width:450px;font-size: 12px;" rows="6"></textarea></div></form>'
+    $('#content').html(htmltext)
   }
-  //增加项目分析
-  function createanalysis()
+//搜索项目
+  function search_projectlist(query)
   {
-
-      var addproblem=$('#addproblem').val().trim(), addsolve=$('#addsolve').val().trim();
-      if(addproblem==''||addsolve=='')
-      {
-          alert("创建项目分析<?php echo $this->project_data[0]['pro_name']?>失败！\n思考或分析不能为空！");
-          return;
-      }
       $.ajaxSetup({async: true});
-      $.post("/project/proanalysis/ajaxadd",{pro_num:'<?php echo $this->project_data[0]['pro_num']?>',addproblem:addproblem,addsolve:addsolve},
-          function(returnedData,status){
-              var result=returnedData;
-              if(result>0){
-                  alert("创建项目分析<?php echo $this->project_data[0]['pro_name']?>成功！");
-                  updatepage(1);
-              }
-              else//网络错误
-              {alert("创建项目分析失败");}
-          });
-  }
-
-  //刷新分页
-  function updatepage(page){
-
-      $.ajaxSetup({async: true});
-      $.post("/project/proanalysis/ajaxpage",{query:'<?php echo $this->project_data[0]['pro_num']?>',page:page},
+      $.post("/project/main/ajaxpage",{query:query},
           function(returnedData,status){
               var result=returnedData;
               if(result!=null){
-                  $('#pro_analysis_list').empty();
-                  $('#pro_analysis_list').html(result);
-                  init_DataTables();//必须重新初始化表，不然没有打印功能
-                  $('[data-toggle="tooltip"]').tooltip({
-                      container: 'body'
-                  });
+                  $('#project_list').empty();
+                  $('#project_list').html(result);
               }
               else//网络错误
               {alert("失败");}
           });
   }
-  //编辑
-  function editanalysis(page,id)
-  {
-      alert('edit '+page+'_'+id)
-  }
-  //删除
-  function deltanalysis(page,id)
-  {
-      alert('delt '+page+'_'+id)
-  }
+  //搜索框展现
+  /*
+  $(function(){
+//input获取焦点时在其旁边显示div输入
+      $('#project_search').keyup(function(){
+          var input = $(this);
+          var offset = input.offset();
+          //先后设置div的内容、位置，最后显示出来（渐进效果）
+          $('#searchresult')
+              .css('left', offset.left-100 + 'px')
+              .css('top', offset.top + input.height() + 10 + 'px')
+              .css('width', input.width() + 200 + 'px')
+              .fadeIn();
+      });
+      //input获取焦点时在其旁边显示div
+      $('#project_search').next().click(function() {
+          var input = $(this).prev('input');
+          var offset = input.offset();
+          //先后设置div的内容、位置，最后显示出来（渐进效果）
+          $('#searchresult')
+              .css('left', offset.left-100 + 'px')
+              .css('top', offset.top + input.height() + 10 + 'px')
+              .css('width', input.width() + 200 + 'px')
+              .fadeIn();
+      });
+      $('#searchresult').click(function() {
+          $('#searchresult').css('display', 'none');
+          $('#searchresult').html("");
+      });
+      $("#searchresult").mouseleave(function() {
+          $('#searchresult').css('display', 'none');
+          $('#searchresult').html("");
+      });
+  });
+  */
 </script>
 
 </html>
