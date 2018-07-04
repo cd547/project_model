@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
-  <title>我们的系统p1</title>
+  <title><?php echo $this->project_data[0]['pro_name']?></title>
   <!-- Bootstrap -->
   <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome 图标和字体库css框架-->
@@ -341,7 +341,7 @@
                             <?php if ($this->loginuser['role'] == 'admin'): ?>
                             <div class="btn-group-vertical">
                                 <a class="btn btn-xs btn-primary" type="button" onclick="editanalysis(1,<?php echo $item['id'];?>)">编辑</a>
-                                <a class="btn btn-xs btn-danger" type="button" onclick="deltanalysis(1,<?php echo $item['id'];?>)">删除</a>
+                                <a class="btn btn-xs btn-danger" type="button" onclick="deltanalysisalert(1,<?php echo $item['id'];?>)">删除</a>
                             </div>
                             <?php endif;?>
 
@@ -510,11 +510,33 @@
   {
       alert('edit '+page+'_'+id)
   }
-  //删除
-  function deltanalysis(page,id)
+  //删除项目分析弹出框
+  function deltanalysisalert(page,id)
   {
-      alert('delt '+page+'_'+id)
+      $('#myModal1').modal('show');
+      $('.modal-title').empty();
+      $('.modal-title').html('删除确认');
+      $('#content').empty();
+      htmltext="<p>您确认要删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"吗？</p>" +
+          " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
+          " <a onclick=\"deltanalysis('<?php echo $this->project_data[0]['pro_num']?>','"+id+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
+      $('#content').html(htmltext);
   }
+  //删除项目分析
+    function deltanalysis(pro_num,id)
+    {
+        $.ajaxSetup({async: true});
+        $.post("/project/proanalysis/ajaxdelete",{pro_num:pro_num,id:id},
+            function(returnedData,status){
+                var result=returnedData;
+                if(result>0){
+                    alert("删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"成功！");
+                    updatepage(1);
+                }
+                else//网络错误
+                {alert("删除项目分析失败");}
+            });
+    }
 </script>
 
 </html>

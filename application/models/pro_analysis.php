@@ -40,4 +40,13 @@ class pro_analysis extends Zend_Db_Table
             return null;
         }
     }
+
+    //删除项目分析
+    function deleteproanalysis($id)
+    {
+        $db = $this->getAdapter();
+        $where = $db->quoteInto('id = ?', $id);// 删除数据的where条件语句
+        return $rows_affected = $this->delete($where);// 删除数据并得到影响的行数
+
+    }
 }

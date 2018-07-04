@@ -14,7 +14,7 @@
                     <?php if ($this->loginuser['role'] == 'admin'): ?>
                         <div class="btn-group-vertical">
                             <a class="btn btn-xs btn-primary" type="button" onclick="editanalysis(<?php echo $this->page;?>,<?php echo $item['id'];?>)">编辑</a>
-                            <a class="btn btn-xs btn-danger" type="button" onclick="deltanalysis(<?php echo $this->page;?>,<?php echo $item['id'];?>)">删除</a>
+                            <a class="btn btn-xs btn-danger" type="button" onclick="deltanalysisalert(<?php echo $this->page;?>,<?php echo $item['id'];?>)">删除</a>
                         </div>
                     <?php endif;?>
 

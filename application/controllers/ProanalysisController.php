@@ -88,8 +88,9 @@ class ProanalysisController extends BaseController
             exit();
         }
         $pro_num=$this->getRequest()->getParam("pro_num","");
-        $pro_level1=new pro_level1();
-        $rows_affected =$pro_level1->deletepro($pro_num);
+        $id=$this->getRequest()->getParam("id","");
+        $pro_analysis=new pro_analysis();
+        $rows_affected =$pro_analysis->deleteproanalysis($id);
 
         //日志输出
         file_put_contents("../log/db.log", $rows_affected."\r\n",FILE_APPEND);

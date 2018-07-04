@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
-  <title>我们的系统</title>
+  <title>项目管理</title>
   <!-- Bootstrap -->
   <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome 图标和字体库css框架-->
@@ -366,7 +366,7 @@
       $('#content').empty();
       htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
           " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
-          " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-success\" data-dismiss=\"modal\">确定</a> ";
+          " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
       $('#content').html(htmltext);
   }
   //删除项目
