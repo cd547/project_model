@@ -2,37 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
-  <title>项目管理</title>
-  <!-- Bootstrap -->
-  <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome 图标和字体库css框架-->
-  <link href="/project/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- NProgress 前端必备进度条样式-->
-  <link href="/project/vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- iCheck 一款对checkbox的美化样式-->
-  <link href="/project/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-  <!-- bootstrap-progressbar 实现大文件上传的进度条样式-->
-  <link href="/project/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-  <!-- JQVMap 地图样式
-  <!--<link href="/project/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />-->
-  <!-- bootstrap-daterangepicker 日历样式-->
-  <link href="/project/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
+    <title>项目管理</title>
+    <!-- Bootstrap -->
+    <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 图标和字体库css框架-->
+    <link href="/project/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress 前端必备进度条样式-->
+    <link href="/project/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck 一款对checkbox的美化样式-->
+    <link href="/project/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar 实现大文件上传的进度条样式-->
+    <link href="/project/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap 地图样式
+    <!--<link href="/project/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />-->
+    <!-- bootstrap-daterangepicker 日历样式-->
+    <link href="/project/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-  <!-- Custom Theme Style 基础风格模板样式-->
-  <link href="/project/build/css/custom.min.css" rel="stylesheet">
+    <!-- Custom Theme Style 基础风格模板样式-->
+    <link href="/project/build/css/custom.min.css" rel="stylesheet">
 
-  <!-- Datatables 表格的一些美化样式-->
-  <link href="/project/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- Datatables 表格的一些美化样式-->
+    <link href="/project/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- PNotify 消息提醒样式-->
+    <link href="/project/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="/project/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="/project/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
     <style>
         /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
         ::-webkit-scrollbar
@@ -51,390 +56,405 @@
 </head>
 
 <body class="nav-md">
-  <!-- 模态框 -->
-  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- 模态框 -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">弹出框</h4>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">弹出框</h4>
+            </div>
+            <div class="modal-body">
+                <div id="content">sssssss</div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div id="content">sssssss</div>
-        </div>
-      </div>
     </div>
-  </div>
-  <!--/模态框 -->
-  <div class="container body">
+</div>
+<!--/模态框 -->
+<div class="container body">
     <div class="main_container">
-      <!--侧边栏-->
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <!--系统标题-->
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="/project/main/index" class="site_title">
-              <span>我们的系统</span>
-            </a>
-          </div>
-          <!--/系统标题-->
-          <div class="clearfix"></div>
-          <!-- 账户快捷信息 -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="/project/images/user.png" alt="..." class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-              <span>欢迎,</span>
-              <h2>
-                <?php echo $this->loginuser['showname'];?>
-              </h2>
-            </div>
-          </div>
-          <!-- /账户快捷信息 -->
-          <br />
-          <!-- 左侧目录菜单 -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <ul class="nav side-menu">
-                <li class="active">
-                  <a>
-                    <i class="fa fa-home"></i> 功能
-                    <span class="fa fa-chevron-down"></span>
-                  </a>
-                  <ul class="nav child_menu" style="display: block;">
-                    <li class="current-page">
-                      <a href="/project/main/index">项目管理</a>
-                    </li>
-                    <li>
-                      <a href="index2.html">p2</a>
-                    </li>
-                    <li>
-                      <a href="index3.html">p3</a>
-                    </li>
-                    <li>
-                      <a href="index4.html">p4</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="menu_section">
-              <h3>设 置</h3>
-              <ul class="nav side-menu">
-                <li>
-                  <a>
-                    <i class="fa fa-sitemap"></i> 权限管理
-                    <span class="fa fa-chevron-down"></span>
-                  </a>
-                  <ul class="nav child_menu">
-                    <li>
-                      <a href="tables_dynamic.html">空空荡荡</a>
-                      <li>
-                        <a>能展示三级菜单
-                          <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                          <li class="sub_menu">
-                            <a href="#">哈哈1</a>
-                          </li>
-                          <li>
-                            <a href="#">哈哈2</a>
-                          </li>
-                          <li>
-                            <a href="#">哈哈3</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#level1_2">空空荡荡</a>
-                      </li>
-                  </ul>
-                  </li>
-              </ul>
-            </div>
-
-          </div>
-          <!-- /左侧目录菜单 -->
-        </div>
-      </div>
-      <!--/侧边栏-->
-      <!-- 顶部导航栏 -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle">
-                <i class="fa fa-bars"></i>
-              </a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="/project/images/user.png" alt="">
-                 	<?php echo $this->loginuser['showname'];?>
-                    <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li>
-                    <a href="/project/user/index">
-                      <span> 设 置 </span>
+        <!--侧边栏-->
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <!--系统标题-->
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="/project/main/index" class="site_title">
+                        <span>我们的系统</span>
                     </a>
-                  </li>
-                  <li>
-                      <a href="/project/login/logout">
-                          <i class="fa fa-sign-out pull-right"></i> 退 出 </a>
-                  </li>
-                </ul>
-              </li>
-
-              <li role="presentation" class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-envelope-o"></i>
-                </a>
-                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                  <li>
-                    <div class="text-center">
-                      <a>
-                        <strong>所有消息</strong>
-                        <i class="fa fa-angle-right"></i>
-                      </a>
+                </div>
+                <!--/系统标题-->
+                <div class="clearfix"></div>
+                <!-- 账户快捷信息 -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/project/images/user.png" alt="..." class="img-circle profile_img">
                     </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- /顶部导航栏 -->
+                    <div class="profile_info">
+                        <span>欢迎,</span>
+                        <h2>
+                            <?php echo $this->loginuser['showname'];?>
+                        </h2>
+                    </div>
+                </div>
+                <!-- /账户快捷信息 -->
+                <br />
+                <!-- 左侧目录菜单 -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu">
+                            <li class="active">
+                                <a>
+                                    <i class="fa fa-home"></i> 功能
+                                    <span class="fa fa-chevron-down"></span>
+                                </a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    <li class="current-page">
+                                        <a href="/project/main/index">项目管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="index2.html">p2</a>
+                                    </li>
+                                    <li>
+                                        <a href="index3.html">p3</a>
+                                    </li>
+                                    <li>
+                                        <a href="index4.html">p4</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_section">
+                        <h3>设 置</h3>
+                        <ul class="nav side-menu">
+                            <li>
+                                <a>
+                                    <i class="fa fa-sitemap"></i> 权限管理
+                                    <span class="fa fa-chevron-down"></span>
+                                </a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="tables_dynamic.html">空空荡荡</a>
+                                    <li>
+                                        <a>能展示三级菜单
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li class="sub_menu">
+                                                <a href="#">哈哈1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">哈哈2</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">哈哈3</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#level1_2">空空荡荡</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
 
-      <!-- 页面内容 -->
-      <div class="right_col" role="main" style="min-height: 1600px;">
-          <ul class="dropdown-menu" id="searchresult" style="font-size: 12px;height:300px;overflow:auto;"></ul>
-          <!-- 页面标题 -->
-        <div class="page-title">
-            <div class="title_left">
-            <h3>
-              <strong>项目管理</strong>
-            </h3>
-          </div>
-            <div class="title_right">
-                <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" id="project_search" class="form-control" placeholder="请输入项目名称、编号" autocomplete="off" onkeyup="search_projectlist(this.value);">
-                        <span class="input-group-btn">
+                </div>
+                <!-- /左侧目录菜单 -->
+            </div>
+        </div>
+        <!--/侧边栏-->
+        <!-- 顶部导航栏 -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/project/images/user.png" alt="">
+                                <?php echo $this->loginuser['showname'];?>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li>
+                                    <a href="/project/user/index">
+                                        <span> 设 置 </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/project/login/logout">
+                                        <i class="fa fa-sign-out pull-right"></i> 退 出 </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>所有消息</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /顶部导航栏 -->
+
+        <!-- 页面内容 -->
+        <div class="right_col" role="main" style="min-height: 1600px;">
+            <ul class="dropdown-menu" id="searchresult" style="font-size: 12px;height:300px;overflow:auto;"></ul>
+            <!-- 页面标题 -->
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>
+                        <strong>项目管理</strong>
+                    </h3>
+                </div>
+                <div class="title_right">
+                    <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" id="project_search" class="form-control" placeholder="请输入项目名称、编号" autocomplete="off" onkeyup="search_projectlist(this.value);">
+                            <span class="input-group-btn">
                             <button class="btn btn-default" type="button" onclick="search_projectlist($('#project_search').val())">搜索</button>
                         </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <!-- /页面标题 -->
-        <!-- 板块1 -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="x_panel">
-              <div id="project_list" class="x_content">
-                  <ul class="list-unstyled msg_list">
-                      <?php if(count($this->paginator)): ?>
-                          <?php foreach($this->paginator as $item): ?>
+            <div class="clearfix"></div>
+            <!-- /页面标题 -->
+            <!-- 板块1 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4>项目列表&nbsp;
+                                <a type="button" class="btn btn-success" href="/project/project/goaddlv1"><i class="fa fa-plus"></i>创建项目</a>
+                            </h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div id="project_list" class="x_content">
+                            <ul class="list-unstyled msg_list">
+                                <?php if(count($this->paginator)): ?>
+                                    <?php foreach($this->paginator as $item): ?>
 
-                              <li>
-                                  <div class="btn-group-vertical">
-                                      <a class="btn btn-primary btn-xs" href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" ><i class="fa fa-folder"></i> 查看 </a>
-                                      <?php if ($this->loginuser['role'] == 'admin'): ?>
-                                      <a class="btn btn-xs btn-info" href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>"><i class="fa fa-pencil"></i> 编辑</a>
-                                      <a class="btn btn-xs btn-danger" onclick="deltalert('<?php echo $item['pro_num'];?>')"><i class="fa fa-trash-o"></i> 删除</a>
-                                      <?php endif; ?>
-                                  </div>
-                                  <a>
+                                        <li>
+                                            <div class="btn-group-vertical">
+                                                <a class="btn btn-primary btn-xs" href="/project/project/pro_level1?pro_num=<?php echo $item['pro_num'];?>" ><i class="fa fa-folder"></i> 查看 </a>
+                                                <?php if ($this->loginuser['role'] == 'admin'): ?>
+                                                    <a class="btn btn-xs btn-info" href="/project/project/pro_level1_e?pro_num=<?php echo $item['pro_num'];?>"><i class="fa fa-pencil"></i> 编辑</a>
+                                                    <a class="btn btn-xs btn-danger" onclick="deltalert('<?php echo $item['pro_num'];?>')"><i class="fa fa-trash-o"></i> 删除</a>
+                                                <?php endif; ?>
+                                            </div>
+                                            <a>
                               <span class="message">
                                   <strong>项目编号：</strong><?php echo $item['pro_num'];?>
                                   <strong style="padding-left: 10px;">项目名称：</strong><?php echo $item['pro_name'];?>
                               </span>
-                                      <span class="message" style="padding-top: 5px;padding-bottom: 5px;">
+                                                <span class="message" style="padding-top: 5px;padding-bottom: 5px;">
                                   <strong>项目状态：</strong><?php if( $item['pro_status']=='2'):?>
-                                              <span class="label label-success">已完成</span>
-                                          <?php elseif( $item['pro_status']=='1'):?>
-                                              <span class="label label-primary">进行中</span>
-                                          <?php else:?>
-                                              <span class="label label-default">未启动</span>
-                                          <?php endif;?>
+                                                        <span class="label label-success">已完成</span>
+                                                    <?php elseif( $item['pro_status']=='1'):?>
+                                                        <span class="label label-primary">进行中</span>
+                                                    <?php else:?>
+                                                        <span class="label label-default">未启动</span>
+                                                    <?php endif;?>
                               </span>
-                                      <span class="message">
+                                                <span class="message">
                                   <strong>项目内容：</strong>
-                                          <?php echo $item['pro_sub_content'];?>
+                                                    <?php echo $item['pro_sub_content'];?>
                               </span>
 
-                                  </a>
-                              </li>
+                                            </a>
+                                        </li>
 
-                      <?php endforeach;?>
-                      <?php endif;?>
+                                    <?php endforeach;?>
+                                <?php endif;?>
 
-                  </ul>
-                  <nav aria-label="Page navigation">
-                      <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams));?>
-                  </nav>
+                            </ul>
+                            <nav aria-label="Page navigation">
+                                <?php echo $this->paginationControl($this->paginator, 'Sliding', '/main/pagination.phtml', array('requestParams' => $this->requestParams));?>
+                            </nav>
 
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <!-- /板块1 -->
         </div>
-        <!-- /板块1 -->
-      </div>
-      <!-- /页面内容 -->
+        <!-- /页面内容 -->
 
-      <!-- 页脚 -->
-      <footer>
-        <div class="pull-right"></div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /页脚 -->
+        <!-- 页脚 -->
+        <footer>
+            <div class="pull-right"></div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /页脚 -->
     </div>
-  </div>
+</div>
 
-  <!-- jQuery -->
-  <script src="/project/vendors/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="/project/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- FastClick 消除点击延时提高程序的运行效率-->
-  <script src="/project/vendors/fastclick/lib/fastclick.js"></script>
-  <!-- NProgress 进度条插件-->
-  <script src="/project/vendors/nprogress/nprogress.js"></script>
-  <!-- Chart.js 图表工具-->
-  <script src="/project/vendors/Chart.js/dist/Chart.min.js"></script>
-  <!-- gauge.js 动态仪表盘插件-->
-  <script src="/project/vendors/gauge.js/dist/gauge.min.js"></script>
-  <!-- bootstrap-progressbar 大文件上传进度条-->
-  <script src="/project/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- iCheck 一款对checkbox的美化插件-->
-  <script src="/project/vendors/iCheck/icheck.min.js"></script>
-  <!-- Skycons 天气插件-->
-  <!-- <script src="/project/vendors/skycons/skycons.js"></script>-->
-  <!-- Flot 绘图工具-->
-  <!-- <script src="/project/vendors/Flot/jquery.flot.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.pie.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.time.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.stack.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.resize.js"></script>-->
-  <!-- Flot plugins 图表插件-->
-  <!-- <script src="/project/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-  <script src="/project/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-  <script src="/project/vendors/flot.curvedlines/curvedLines.js"></script>-->
-  <!-- DateJS 日期插件-->
-  <script src="/project/vendors/DateJS/build/date.js"></script>
-  <!-- JQVMap 地图插件-->
-  <!-- <script src="/project/vendors/jqvmap/dist/jquery.vmap.js"></script>
-  <script src="/project/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-  <script src="/project/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>-->
-  <!-- bootstrap-daterangepicker 双日历日期选择器插件-->
-  <script src="/project/vendors/moment/min/moment.min.js"></script>
-  <script src="/project/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <!-- Datatables 表格插件-->
-  <script src="/project/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/project/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="/project/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/project/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/project/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/project/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/project/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  <script src="/project/vendors/jszip/dist/jszip.min.js"></script>
-  <script src="/project/vendors/pdfmake/build/pdfmake.min.js"></script>
-  <script src="/project/vendors/pdfmake/build/vfs_fonts.js"></script>
-  <!-- Custom Theme Scripts -->
-  <script src="/project/build/js/custom.min.js"></script>
+<!-- jQuery -->
+<script src="/project/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/project/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick 消除点击延时提高程序的运行效率-->
+<script src="/project/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress 进度条插件-->
+<script src="/project/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js 图表工具-->
+<script src="/project/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js 动态仪表盘插件-->
+<script src="/project/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar 大文件上传进度条-->
+<script src="/project/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck 一款对checkbox的美化插件-->
+<script src="/project/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons 天气插件-->
+<!-- <script src="/project/vendors/skycons/skycons.js"></script>-->
+<!-- Flot 绘图工具-->
+<!-- <script src="/project/vendors/Flot/jquery.flot.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.time.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.resize.js"></script>-->
+<!-- Flot plugins 图表插件-->
+<!-- <script src="/project/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="/project/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="/project/vendors/flot.curvedlines/curvedLines.js"></script>-->
+<!-- DateJS 日期插件-->
+<script src="/project/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap 地图插件-->
+<!-- <script src="/project/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="/project/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="/project/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>-->
+<!-- bootstrap-daterangepicker 双日历日期选择器插件-->
+<script src="/project/vendors/moment/min/moment.min.js"></script>
+<script src="/project/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Datatables 表格插件-->
+<script src="/project/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/project/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/project/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="/project/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="/project/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/project/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="/project/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="/project/vendors/jszip/dist/jszip.min.js"></script>
+<script src="/project/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="/project/vendors/pdfmake/build/vfs_fonts.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/project/build/js/custom.min.js"></script>
+<!-- PNotify 消息提醒插件 -->
+<script src="/project/vendors/pnotify/dist/pnotify.js"></script>
+<script src="/project/vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="/project/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 </body>
 <script type="text/javascript">
-  function showdet() {;}
-  //删除项目弹出框
-  function deltalert(pro_num)
-  {
-      $('#myModal1').modal('show');
-      $('.modal-title').empty();
-      $('.modal-title').html('删除确认');
-      $('#content').empty();
-      htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
-          " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
-          " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
-      $('#content').html(htmltext);
-  }
-  //删除项目
-  function deltpro(pro_num)
-  {
-      $.ajaxSetup({async: true});
-      $.post("/project/project/ajaxdeletepro",{pro_num:pro_num},
-          function(returnedData,status){
-              var result=returnedData;
-              if(result==1){
-                  alert("删除项目"+pro_num+"成功！");
-                  search_projectlist($('#project_search').val());
-              }
-              else//网络错误
-              {alert("删除项目"+pro_num+"失败");}
-          });
+    function showdet() {;}
+    //删除项目弹出框
+    function deltalert(pro_num)
+    {
+        $('#myModal1').modal('show');
+        $('.modal-title').empty();
+        $('.modal-title').html('删除确认');
+        $('#content').empty();
+        htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
+            " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
+            " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
+        $('#content').html(htmltext);
+    }
+    //删除项目
+    function deltpro(pro_num)
+    {
+        $.ajaxSetup({async: true});
+        $.post("/project/project/ajaxdeletepro",{pro_num:pro_num},
+            function(returnedData,status){
+                var result=returnedData;
+                if(result==1){
+                    new PNotify({
+                        title: '删除成功！',
+                        text: "删除项目"+pro_num+"成功！",
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
+                    search_projectlist($('#project_search').val());
+                }
+                else//网络错误
+                {alert("删除项目"+pro_num+"失败");}
+            });
 
-  }
-//搜索项目
-  function search_projectlist(query)
-  {
-      $.ajaxSetup({async: true});
-      $.post("/project/main/ajaxpage",{query:query},
-          function(returnedData,status){
-              var result=returnedData;
-              if(result!=null){
-                  $('#project_list').empty();
-                  $('#project_list').html(result);
-              }
-              else//网络错误
-              {alert("失败");}
-          });
-  }
-  //搜索框展现
-  /*
-  $(function(){
-//input获取焦点时在其旁边显示div输入
-      $('#project_search').keyup(function(){
-          var input = $(this);
-          var offset = input.offset();
-          //先后设置div的内容、位置，最后显示出来（渐进效果）
-          $('#searchresult')
-              .css('left', offset.left-100 + 'px')
-              .css('top', offset.top + input.height() + 10 + 'px')
-              .css('width', input.width() + 200 + 'px')
-              .fadeIn();
-      });
-      //input获取焦点时在其旁边显示div
-      $('#project_search').next().click(function() {
-          var input = $(this).prev('input');
-          var offset = input.offset();
-          //先后设置div的内容、位置，最后显示出来（渐进效果）
-          $('#searchresult')
-              .css('left', offset.left-100 + 'px')
-              .css('top', offset.top + input.height() + 10 + 'px')
-              .css('width', input.width() + 200 + 'px')
-              .fadeIn();
-      });
-      $('#searchresult').click(function() {
-          $('#searchresult').css('display', 'none');
-          $('#searchresult').html("");
-      });
-      $("#searchresult").mouseleave(function() {
-          $('#searchresult').css('display', 'none');
-          $('#searchresult').html("");
-      });
-  });
-  */
+    }
+    //搜索项目
+    function search_projectlist(query)
+    {
+        $.ajaxSetup({async: true});
+        $.post("/project/main/ajaxpage",{query:query},
+            function(returnedData,status){
+                var result=returnedData;
+                if(result!=null){
+                    $('#project_list').empty();
+                    $('#project_list').html(result);
+                }
+                else//网络错误
+                {alert("失败");}
+            });
+    }
+    //搜索框展现
+    /*
+    $(function(){
+  //input获取焦点时在其旁边显示div输入
+        $('#project_search').keyup(function(){
+            var input = $(this);
+            var offset = input.offset();
+            //先后设置div的内容、位置，最后显示出来（渐进效果）
+            $('#searchresult')
+                .css('left', offset.left-100 + 'px')
+                .css('top', offset.top + input.height() + 10 + 'px')
+                .css('width', input.width() + 200 + 'px')
+                .fadeIn();
+        });
+        //input获取焦点时在其旁边显示div
+        $('#project_search').next().click(function() {
+            var input = $(this).prev('input');
+            var offset = input.offset();
+            //先后设置div的内容、位置，最后显示出来（渐进效果）
+            $('#searchresult')
+                .css('left', offset.left-100 + 'px')
+                .css('top', offset.top + input.height() + 10 + 'px')
+                .css('width', input.width() + 200 + 'px')
+                .fadeIn();
+        });
+        $('#searchresult').click(function() {
+            $('#searchresult').css('display', 'none');
+            $('#searchresult').html("");
+        });
+        $("#searchresult").mouseleave(function() {
+            $('#searchresult').css('display', 'none');
+            $('#searchresult').html("");
+        });
+    });
+    */
 </script>
 
 </html>

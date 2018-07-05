@@ -854,14 +854,27 @@ if (typeof NProgress != 'undefined') {
 	  
 	  };
 	   
-	  	/* PNotify */
-			
-		function init_PNotify() {
-			
-			if( typeof (PNotify) === 'undefined'){ return; }
-			console.log('init_PNotify');
-		}; 
-	   
+	  	/* PNotify
+
+function init_PNotify() {
+    "undefined" != typeof PNotify && (console.log("init_PNotify"), new PNotify({
+        title: "PNotify",
+        type: "info",
+        text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
+        nonblock: {
+            nonblock: !0
+        },
+        addclass: "dark",
+        styling: "bootstrap3",
+        hide: !1,
+        before_close: function(a) {
+            return a.update({
+                title: a.options.title + " - Enjoy your Stay",
+                before_close: null
+            }), a.queueRemove(), !1
+        }
+    }))
+}*/
 	   
 	   /* CUSTOM NOTIFICATION */
 			
@@ -1049,6 +1062,10 @@ if (typeof NProgress != 'undefined') {
 				  if ($("#datatable-buttons").length) {
 					$("#datatable-buttons").DataTable({
 					  dom: "Blfrtip",
+						info: false,
+                        paging: false,
+						searching:false,
+                        autoWidth: false,
 					  buttons: [
 						{
 						  extend: "copy",
@@ -1138,7 +1155,7 @@ if (typeof NProgress != 'undefined') {
 		init_select2();
 		init_validator();
 		init_DataTables();
-		init_PNotify();
+		//init_PNotify();
 		init_starrr();
 		init_calendar();
 		init_compose();

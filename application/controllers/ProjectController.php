@@ -40,8 +40,8 @@ class ProjectController extends BaseController
         $this->render('prolevel1');
     }
 
-//跳转主页
-    public function mainAction()
+//跳转添加项目页面
+    public function goaddlv1Action()
     {
         if (!session_id())session_start();
         if (!isset($_SESSION['loginuser']))
@@ -49,7 +49,9 @@ class ProjectController extends BaseController
             $this->redirect('/index/index');
             exit();
         }
-
+        //用户信息
+        $this->view->loginuser=$_SESSION['loginuser'];
+        $this->render('addlv1');
     }
     //ajax项目分析分页
     public function ajaxpageAction()
