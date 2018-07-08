@@ -2,37 +2,37 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
-  <title>创建项目</title>
-  <!-- Bootstrap -->
-  <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome 图标和字体库css框架-->
-  <link href="/project/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- NProgress 前端必备进度条样式-->
-  <link href="/project/vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- iCheck 一款对checkbox的美化样式-->
-  <link href="/project/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-  <!-- bootstrap-progressbar 实现大文件上传的进度条样式-->
-  <link href="/project/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-  <!-- JQVMap 地图样式
-  <!--<link href="/project/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />-->
-  <!-- bootstrap-daterangepicker 日历样式-->
-  <link href="/project/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/project/images/favicon.ico" type="image/ico" />
+    <title>创建项目</title>
+    <!-- Bootstrap -->
+    <link href="/project/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 图标和字体库css框架-->
+    <link href="/project/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress 前端必备进度条样式-->
+    <link href="/project/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck 一款对checkbox的美化样式-->
+    <link href="/project/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar 实现大文件上传的进度条样式-->
+    <link href="/project/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap 地图样式
+    <!--<link href="/project/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />-->
+    <!-- bootstrap-daterangepicker 日历样式-->
+    <link href="/project/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-  <!-- Custom Theme Style 基础风格模板样式-->
-  <link href="/project/build/css/custom.min.css" rel="stylesheet">
+    <!-- Custom Theme Style 基础风格模板样式-->
+    <link href="/project/build/css/custom.min.css" rel="stylesheet">
 
-  <!-- Datatables 表格的一些美化样式-->
-  <link href="/project/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-  <link href="/project/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- Datatables 表格的一些美化样式-->
+    <link href="/project/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/project/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <!-- PNotify 消息提醒样式-->
     <link href="/project/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
     <link href="/project/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
@@ -55,461 +55,507 @@
 </head>
 
 <body class="nav-md">
-  <!-- 模态框 -->
-  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- 模态框 -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">弹出框</h4>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">弹出框</h4>
+            </div>
+            <div class="modal-body">
+                <div id="content">sssssss</div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div id="content">sssssss</div>
-        </div>
-      </div>
     </div>
-  </div>
-  <!--/模态框 -->
-  <div class="container body">
+</div>
+<!--/模态框 -->
+<div class="container body">
     <div class="main_container">
-      <!--侧边栏-->
-      <div class="col-md-3 left_col">
-        <div class="left_col scroll-view">
-          <!--系统标题-->
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="/project/main/index" class="site_title">
-              <span>我们的系统</span>
-            </a>
-          </div>
-          <!--/系统标题-->
-          <div class="clearfix"></div>
-          <!-- 账户快捷信息 -->
-          <div class="profile clearfix">
-            <div class="profile_pic">
-              <img src="/project/images/user.png" alt="..." class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-              <span>欢迎,</span>
-              <h2>
-                <?php echo $this->loginuser['showname'];?>
-              </h2>
-            </div>
-          </div>
-          <!-- /账户快捷信息 -->
-          <br />
-          <!-- 左侧目录菜单 -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-              <ul class="nav side-menu">
-                <li  class="active">
-                  <a>
-                    <i class="fa fa-home"></i> 功能
-                    <span class="fa fa-chevron-down"></span>
-                  </a>
-                    <ul class="nav child_menu" style="display: block;">
-                    <li class="current-page">
-                        <a href="/project/main/index">项目管理</a>
-                    </li>
-                    <li>
-                      <a href="index2.html">p2</a>
-                    </li>
-                    <li>
-                      <a href="index3.html">p3</a>
-                    </li>
-                    <li>
-                      <a href="index4.html">p4</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="menu_section">
-              <h3>设 置</h3>
-              <ul class="nav side-menu">
-                <li>
-                  <a>
-                    <i class="fa fa-sitemap"></i> 权限管理
-                    <span class="fa fa-chevron-down"></span>
-                  </a>
-                  <ul class="nav child_menu">
-                    <li>
-                      <a href="tables_dynamic.html">空空荡荡</a>
-                      <li>
-                        <a>能展示三级菜单
-                          <span class="fa fa-chevron-down"></span>
-                        </a>
-                        <ul class="nav child_menu">
-                          <li class="sub_menu">
-                            <a href="#">哈哈1</a>
-                          </li>
-                          <li>
-                            <a href="#">哈哈2</a>
-                          </li>
-                          <li>
-                            <a href="#">哈哈3</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#level1_2">空空荡荡</a>
-                      </li>
-                  </ul>
-                  </li>
-              </ul>
-            </div>
-
-          </div>
-          <!-- /左侧目录菜单 -->
-        </div>
-      </div>
-      <!--/侧边栏-->
-      <!-- 顶部导航栏 -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle">
-                <i class="fa fa-bars"></i>
-              </a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="/project/images/user.png" alt="">
-                 	<?php echo $this->loginuser['showname'];?>
-                    <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li>
-                    <a href="/project/user/index">
-                      <span> 设 置 </span>
+        <!--侧边栏-->
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <!--系统标题-->
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="/project/main/index" class="site_title">
+                        <span>我们的系统</span>
                     </a>
-                  </li>
-                  <li>
-                      <a href="/project/login/logout">
-                          <i class="fa fa-sign-out pull-right"></i> 退 出 </a>
-                  </li>
-                </ul>
-              </li>
-
-              <li role="presentation" class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-envelope-o"></i>
-                </a>
-                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                  <li>
-                    <div class="text-center">
-                      <a>
-                        <strong>所有消息</strong>
-                        <i class="fa fa-angle-right"></i>
-                      </a>
+                </div>
+                <!--/系统标题-->
+                <div class="clearfix"></div>
+                <!-- 账户快捷信息 -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/project/images/user.png" alt="..." class="img-circle profile_img">
                     </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+                    <div class="profile_info">
+                        <span>欢迎,</span>
+                        <h2>
+                            <?php echo $this->loginuser['showname'];?>
+                        </h2>
+                    </div>
+                </div>
+                <!-- /账户快捷信息 -->
+                <br />
+                <!-- 左侧目录菜单 -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu">
+                            <li  class="active">
+                                <a>
+                                    <i class="fa fa-home"></i> 功能
+                                    <span class="fa fa-chevron-down"></span>
+                                </a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    <li class="current-page">
+                                        <a href="/project/main/index">项目管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="index2.html">p2</a>
+                                    </li>
+                                    <li>
+                                        <a href="index3.html">p3</a>
+                                    </li>
+                                    <li>
+                                        <a href="index4.html">p4</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_section">
+                        <h3>设 置</h3>
+                        <ul class="nav side-menu">
+                            <li>
+                                <a>
+                                    <i class="fa fa-sitemap"></i> 权限管理
+                                    <span class="fa fa-chevron-down"></span>
+                                </a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="tables_dynamic.html">空空荡荡</a>
+                                    <li>
+                                        <a>能展示三级菜单
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li class="sub_menu">
+                                                <a href="#">哈哈1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">哈哈2</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">哈哈3</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#level1_2">空空荡荡</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /左侧目录菜单 -->
+            </div>
         </div>
-      </div>
-      <!-- /顶部导航栏 -->
+        <!--/侧边栏-->
+        <!-- 顶部导航栏 -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
 
-      <!-- 页面内容 -->
-      <div class="right_col" role="main" style="min-height: 1600px;">
-        <!-- 页面标题 -->
-        <div class="page-title">
-          <div class="title_left">
-            <h3>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/project/images/user.png" alt="">
+                                <?php echo $this->loginuser['showname'];?>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li>
+                                    <a href="/project/user/index">
+                                        <span> 设 置 </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/project/login/logout">
+                                        <i class="fa fa-sign-out pull-right"></i> 退 出 </a>
+                                </li>
+                            </ul>
+                        </li>
 
-            </h3>
-          </div>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>所有消息</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <div class="clearfix"></div>
-        <!-- /页面标题 -->
-        <!-- 板块1 -->
-        <div class="row">
-          <div class="col-md-12">
+        <!-- /顶部导航栏 -->
 
-              <div class="x_panel">
-                  <div class="x_title">
-                      <h2>创建项目</h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                          </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <form class="form-horizontal form-label-left" novalidate="">
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pro_num">项目编号 <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="pro_num" class="form-control col-md-7 col-xs-12" name="pro_num" placeholder="" required="required" type="text">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pro_name">项目名称 <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="pro_name" class="form-control col-md-7 col-xs-12"  name="pro_name" placeholder="" required="required" type="text">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pro_address01">项目归属 <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="pro_address01" name="pro_address01" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Confirm Email <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="email" id="email2" name="confirm_email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Number <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website URL <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Occupation <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label for="password" class="control-label col-md-3">Password</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat Password</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input id="password2" type="password" name="password2" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
-                              </div>
-                          </div>
-                          <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Textarea <span class="required">*</span>
-                              </label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
-                              </div>
-                          </div>
-                          <div class="ln_solid"></div>
-                          <div class="form-group">
-                              <div class="col-md-6 col-md-offset-3">
-                                  <button type="submit" class="btn btn-primary">取消</button>
-                                  <button id="send" type="submit" class="btn btn-success">添加</button>
-                              </div>
-                          </div>
-                      </form>
+        <!-- 页面内容 -->
+        <div class="right_col" role="main" style="min-height: 1600px;">
+            <!-- 页面标题 -->
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>
 
-                  </div>
-              </div>
+                    </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- /页面标题 -->
+            <!-- 板块1 -->
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>创建项目</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="form-horizontal form-label-left" novalidate="">
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_num">项目编号 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_num" class="form-control col-md-7 col-xs-12" placeholder="" required="required" type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_name">项目名称 <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_name" class="form-control col-md-7 col-xs-12"   placeholder="" required="required" type="text">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address01">项目归属 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_address01"  required="required" class="form-control col-md-7 col-xs-12">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address02">项目实施地点 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input type="number" id="pro_address02"  required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_startTime">项目开始时间 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+
+                                        <fieldset>
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_startTime" placeholder="" aria-describedby="inputSuccess2Status3">
+                                                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                                        <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endTime">项目结束时间<span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+
+                                        <fieldset>
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_endTime" placeholder="" aria-describedby="inputSuccess2Status3">
+                                                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                                        <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_serviceObj">服务对象 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_serviceObj" class="form-control col-md-7 col-xs-12" placeholder="" required="required" type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endMoney">最高限价 <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="input-group">
+                                            <input id="pro_endMoney" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                            <span class="input-group-addon">元</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="input-group">
+                                            <input id="pro_reportMoney" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                            <span class="input-group-addon">元</span>
+                                        </div>
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_payMethod">付款方式 <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_payMethod" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">所属项目类型 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_type" class="form-control col-md-7 col-xs-12" placeholder="" required="required" type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目入录人 <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_enterPeople" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                    </div>
+
+                                </div>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目内容 <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <textarea id="pro_content" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-5">
+                                        <button type="submit" class="btn btn-primary">取消</button>
+                                        <button id="send" type="submit" class="btn btn-success">添加</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
 
 
 
-          </div>
+                </div>
+            </div>
+            <!-- /板块1 -->
+            <!-- 板块2 -->
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <!-- /板块2 -->
         </div>
-        <!-- /板块1 -->
-        <!-- 板块2 -->
-        <div class="row">
-          <div class="col-md-12">
+        <!-- /页面内容 -->
 
-          </div>
-        </div>
-        <!-- /板块2 -->
-      </div>
-      <!-- /页面内容 -->
-
-      <!-- 页脚 -->
-      <footer>
-        <div class="pull-right"></div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /页脚 -->
+        <!-- 页脚 -->
+        <footer>
+            <div class="pull-right"></div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /页脚 -->
     </div>
-  </div>
+</div>
 
-  <!-- jQuery -->
-  <script src="/project/vendors/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="/project/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- FastClick 消除点击延时提高程序的运行效率-->
-  <script src="/project/vendors/fastclick/lib/fastclick.js"></script>
-  <!-- NProgress 进度条插件-->
-  <script src="/project/vendors/nprogress/nprogress.js"></script>
-  <!-- Chart.js 图表工具-->
-  <script src="/project/vendors/Chart.js/dist/Chart.min.js"></script>
-  <!-- gauge.js 动态仪表盘插件-->
-  <script src="/project/vendors/gauge.js/dist/gauge.min.js"></script>
-  <!-- bootstrap-progressbar 大文件上传进度条-->
-  <script src="/project/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-  <!-- iCheck 一款对checkbox的美化插件-->
-  <script src="/project/vendors/iCheck/icheck.min.js"></script>
-  <!-- Skycons 天气插件-->
-  <!-- <script src="/project/vendors/skycons/skycons.js"></script>-->
-  <!-- Flot 绘图工具-->
-  <!-- <script src="/project/vendors/Flot/jquery.flot.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.pie.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.time.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.stack.js"></script>
-  <script src="/project/vendors/Flot/jquery.flot.resize.js"></script>-->
-  <!-- Flot plugins 图表插件-->
-  <!-- <script src="/project/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-  <script src="/project/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-  <script src="/project/vendors/flot.curvedlines/curvedLines.js"></script>-->
-  <!-- DateJS 日期插件-->
-  <script src="/project/vendors/DateJS/build/date.js"></script>
-  <!-- JQVMap 地图插件-->
-  <!-- <script src="/project/vendors/jqvmap/dist/jquery.vmap.js"></script>
-  <script src="/project/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-  <script src="/project/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>-->
-  <!-- bootstrap-daterangepicker 双日历日期选择器插件-->
-  <script src="/project/vendors/moment/min/moment.min.js"></script>
-  <script src="/project/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <!-- Datatables 表格插件-->
-  <script src="/project/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="/project/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="/project/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="/project/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-  <script src="/project/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-  <script src="/project/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/project/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-  <script src="/project/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  <script src="/project/vendors/jszip/dist/jszip.min.js"></script>
-  <script src="/project/vendors/pdfmake/build/pdfmake.min.js"></script>
-  <script src="/project/vendors/pdfmake/build/vfs_fonts.js"></script>
-  <!-- Custom Theme Scripts -->
-  <script src="/project/build/js/custom.min.js"></script>
-  <!-- PNotify 消息提醒插件 -->
-  <script src="/project/vendors/pnotify/dist/pnotify.js"></script>
-  <script src="/project/vendors/pnotify/dist/pnotify.buttons.js"></script>
-  <script src="/project/vendors/pnotify/dist/pnotify.nonblock.js"></script>
-  <!-- validator -->
-  <script src="/project/vendors/validator/validator.min.js"></script>
+<!-- jQuery -->
+<script src="/project/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/project/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick 消除点击延时提高程序的运行效率-->
+<script src="/project/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress 进度条插件-->
+<script src="/project/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js 图表工具-->
+<script src="/project/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js 动态仪表盘插件-->
+<script src="/project/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar 大文件上传进度条-->
+<script src="/project/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck 一款对checkbox的美化插件-->
+<script src="/project/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons 天气插件-->
+<!-- <script src="/project/vendors/skycons/skycons.js"></script>-->
+<!-- Flot 绘图工具-->
+<!-- <script src="/project/vendors/Flot/jquery.flot.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.time.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="/project/vendors/Flot/jquery.flot.resize.js"></script>-->
+<!-- Flot plugins 图表插件-->
+<!-- <script src="/project/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="/project/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="/project/vendors/flot.curvedlines/curvedLines.js"></script>-->
+<!-- DateJS 日期插件-->
+<script src="/project/vendors/DateJS/build/date-zh-CN.js"></script>
+<!-- JQVMap 地图插件-->
+<!-- <script src="/project/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="/project/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="/project/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>-->
+<!-- bootstrap-daterangepicker 双日历日期选择器插件-->
+<script src="/project/vendors/moment/min/moment.min.js"></script>
+<script src="/project/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Datatables 表格插件-->
+<script src="/project/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/project/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/project/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/project/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="/project/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="/project/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/project/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="/project/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="/project/vendors/jszip/dist/jszip.min.js"></script>
+<script src="/project/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="/project/vendors/pdfmake/build/vfs_fonts.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/project/build/js/custom.min.js"></script>
+<!-- PNotify 消息提醒插件 -->
+<script src="/project/vendors/pnotify/dist/pnotify.js"></script>
+<script src="/project/vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="/project/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+<!-- validator -->
+<script src="/project/vendors/validator/validator.min.js"></script>
 </body>
 <script type="text/javascript">
-  //创建项目分析
-  function createalert(pro_num) {
-      $('#myModal1').modal('show');
-      $('.modal-title').empty();
-      $('.modal-title').html('添加'+'<strong><?php echo $this->project_data[0]['pro_name']?></strong>'+'项目分析');
-      $('#content').empty();
-      htmltext="<form id=\"demo-form2\" data-parsley-validate=\"\" class=\"form-horizontal form-label-left\" novalidate=\"\">\n" +
-          "<div class=\"form-group\">\n" +
-          "     <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">思考</label>\n" +
-          "     <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
-          "         <textarea class=\"form-control\" rows=\"4\" id=\"addproblem\"></textarea>\n" +
-          "     </div>\n" +
-          "</div>\n" +
-          "<div class=\"form-group\">\n" +
-          "      <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">分析</label>\n" +
-          "      <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
-          "         <textarea class=\"form-control\" rows=\"4\" id=\"addsolve\"></textarea>\n" +
-          "      </div>\n" +
-          "</div>\n" +
-          "<div class=\"ln_solid\"></div>\n" +
-          "<div class=\"form-group\">\n" +
-          "      <div class=\"col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n" +
-          "         <a class=\"btn btn-primary\" type=\"button\" data-dismiss=\"modal\">取消</a>\n" +
-          "         <a type=\"submit\" class=\"btn btn-success\" data-dismiss=\"modal\" onclick=\"createanalysis()\">提交</a>\n" +
-          "      </div>\n" +
-          "</div>\n" +
-          "</form>";
-      $('#content').html(htmltext);
-  }
-  //增加项目分析
-  function createanalysis()
-  {
+    //创建项目分析
+    function createalert(pro_num) {
+        $('#myModal1').modal('show');
+        $('.modal-title').empty();
+        $('.modal-title').html('添加'+'<strong><?php echo $this->project_data[0]['pro_name']?></strong>'+'项目分析');
+        $('#content').empty();
+        htmltext="<form id=\"demo-form2\" data-parsley-validate=\"\" class=\"form-horizontal form-label-left\" novalidate=\"\">\n" +
+            "<div class=\"form-group\">\n" +
+            "     <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">思考</label>\n" +
+            "     <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
+            "         <textarea class=\"form-control\" rows=\"4\" id=\"addproblem\"></textarea>\n" +
+            "     </div>\n" +
+            "</div>\n" +
+            "<div class=\"form-group\">\n" +
+            "      <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">分析</label>\n" +
+            "      <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
+            "         <textarea class=\"form-control\" rows=\"4\" id=\"addsolve\"></textarea>\n" +
+            "      </div>\n" +
+            "</div>\n" +
+            "<div class=\"ln_solid\"></div>\n" +
+            "<div class=\"form-group\">\n" +
+            "      <div class=\"col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n" +
+            "         <a class=\"btn btn-primary\" type=\"button\" data-dismiss=\"modal\">取消</a>\n" +
+            "         <a type=\"submit\" class=\"btn btn-success\" data-dismiss=\"modal\" onclick=\"createanalysis()\">提交</a>\n" +
+            "      </div>\n" +
+            "</div>\n" +
+            "</form>";
+        $('#content').html(htmltext);
+    }
+    //增加项目分析
+    function createanalysis()
+    {
 
-      var addproblem=$('#addproblem').val().trim(), addsolve=$('#addsolve').val().trim();
-      if(addproblem==''||addsolve=='')
-      {
-          alert("创建项目分析<?php echo $this->project_data[0]['pro_name']?>失败！\n思考或分析不能为空！");
-          return;
-      }
-      $.ajaxSetup({async: true});
-      $.post("/project/proanalysis/ajaxadd",{pro_num:'<?php echo $this->project_data[0]['pro_num']?>',addproblem:addproblem,addsolve:addsolve},
-          function(returnedData,status){
-              var result=returnedData;
-              if(result>0){
-                  updatepage(1);
-                  new PNotify({
-                      title: '创建成功！',
-                      text: "创建项目分析<?php echo $this->project_data[0]['pro_name']?>成功！",
-                      type: 'success',
-                      styling: 'bootstrap3'
-                  });
+        var addproblem=$('#addproblem').val().trim(), addsolve=$('#addsolve').val().trim();
+        if(addproblem==''||addsolve=='')
+        {
+            alert("创建项目分析<?php echo $this->project_data[0]['pro_name']?>失败！\n思考或分析不能为空！");
+            return;
+        }
+        $.ajaxSetup({async: true});
+        $.post("/project/proanalysis/ajaxadd",{pro_num:'<?php echo $this->project_data[0]['pro_num']?>',addproblem:addproblem,addsolve:addsolve},
+            function(returnedData,status){
+                var result=returnedData;
+                if(result>0){
+                    updatepage(1);
+                    new PNotify({
+                        title: '创建成功！',
+                        text: "创建项目分析<?php echo $this->project_data[0]['pro_name']?>成功！",
+                        type: 'success',
+                        styling: 'bootstrap3'
+                    });
 
-              }
-              else//网络错误
-              {alert("创建项目分析失败");}
-          });
-  }
+                }
+                else//网络错误
+                {alert("创建项目分析失败");}
+            });
+    }
 
-  //刷新分页
-  function updatepage(page){
-      $.ajaxSetup({async: true});
-      $.post("/project/proanalysis/ajaxpage",{query:'<?php echo $this->project_data[0]['pro_num']?>',page:page},
-          function(returnedData,status){
-              var result=returnedData;
-              if(result!=null){
-                  $('#pro_analysis_list').empty();
-                  $('#pro_analysis_list').html(result);
-                  init_DataTables();//必须重新初始化表，不然没有打印功能
-                  $('[data-toggle="tooltip"]').tooltip({
-                      container: 'body'
-                  });
-              }
-              else//网络错误
-              {alert("失败");}
-          });
-  }
-  //编辑
-  function editanalysis(page,id)
-  {
-      alert('edit '+page+'_'+id)
-  }
-  //删除项目分析弹出框
-  function deltanalysisalert(page,id) {
-      $('#myModal1').modal('show');
-      $('.modal-title').empty();
-      $('.modal-title').html('删除确认');
-      $('#content').empty();
-      htmltext="<p>您确认要删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"吗？</p>" +
-          " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
-          " <a onclick=\"deltanalysis('<?php echo $this->project_data[0]['pro_num']?>','"+id+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
-      $('#content').html(htmltext);
-  }
-  //删除项目分析
+    //刷新分页
+    function updatepage(page){
+        $.ajaxSetup({async: true});
+        $.post("/project/proanalysis/ajaxpage",{query:'<?php echo $this->project_data[0]['pro_num']?>',page:page},
+            function(returnedData,status){
+                var result=returnedData;
+                if(result!=null){
+                    $('#pro_analysis_list').empty();
+                    $('#pro_analysis_list').html(result);
+                    init_DataTables();//必须重新初始化表，不然没有打印功能
+                    $('[data-toggle="tooltip"]').tooltip({
+                        container: 'body'
+                    });
+                }
+                else//网络错误
+                {alert("失败");}
+            });
+    }
+    //编辑
+    function editanalysis(page,id)
+    {
+        alert('edit '+page+'_'+id)
+    }
+    //删除项目分析弹出框
+    function deltanalysisalert(page,id) {
+        $('#myModal1').modal('show');
+        $('.modal-title').empty();
+        $('.modal-title').html('删除确认');
+        $('#content').empty();
+        htmltext="<p>您确认要删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"吗？</p>" +
+            " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
+            " <a onclick=\"deltanalysis('<?php echo $this->project_data[0]['pro_num']?>','"+id+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
+        $('#content').html(htmltext);
+    }
+    //删除项目分析
     function deltanalysis(pro_num,id) {
         $.ajaxSetup({async: true});
         $.post("/project/proanalysis/ajaxdelete",{pro_num:pro_num,id:id},

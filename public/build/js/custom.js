@@ -1,8 +1,8 @@
 /**
  * Resize function without multiple trigger
- * 
+ *
  * Usage:
- * $(window).smartresize(function(){  
+ * $(window).smartresize(function(){
  *     // code here
  * });
  */
@@ -10,14 +10,14 @@
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
     var debounce = function (func, threshold, execAsap) {
-      var timeout;
+        var timeout;
 
         return function debounced () {
             var obj = this, args = arguments;
             function delayed () {
                 if (!execAsap)
-                    func.apply(obj, args); 
-                timeout = null; 
+                    func.apply(obj, args);
+                timeout = null;
             }
 
             if (timeout)
@@ -25,11 +25,11 @@
             else if (execAsap)
                 func.apply(obj, args);
 
-            timeout = setTimeout(delayed, threshold || 100); 
+            timeout = setTimeout(delayed, threshold || 100);
         };
     };
 
-    // smartresize 
+    // smartresize
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
@@ -49,28 +49,28 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
     $NAV_MENU = $('.nav_menu'),
     $FOOTER = $('footer');
 
-	
-	
+
+
 // Sidebar
 function init_sidebar() {
 // TODO: This is some kind of easy fix, maybe we can improve this
-var setContentHeight = function () {
-	// reset height
-	$RIGHT_COL.css('min-height', $(window).height());
+    var setContentHeight = function () {
+        // reset height
+        $RIGHT_COL.css('min-height', $(window).height());
 
-	var bodyHeight = $BODY.outerHeight(),
-		footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
-		leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
-		contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
+        var bodyHeight = $BODY.outerHeight(),
+            footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
+            leftColHeight = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
+            contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
 
-	// normalize content
-	contentHeight -= $NAV_MENU.height() + footerHeight;
+        // normalize content
+        contentHeight -= $NAV_MENU.height() + footerHeight;
 
-	$RIGHT_COL.css('min-height', contentHeight);
-};
+        $RIGHT_COL.css('min-height', contentHeight);
+    };
 
-  $SIDEBAR_MENU.find('a').on('click', function(ev) {
-	  console.log('clicked - sidebar_menu');
+    $SIDEBAR_MENU.find('a').on('click', function(ev) {
+        console.log('clicked - sidebar_menu');
         var $li = $(this).parent();
 
         if ($li.is('.active')) {
@@ -85,12 +85,12 @@ var setContentHeight = function () {
                 $SIDEBAR_MENU.find('li ul').slideUp();
             }else
             {
-				if ( $BODY.is( ".nav-sm" ) )
-				{
-					$SIDEBAR_MENU.find( "li" ).removeClass( "active active-sm" );
-					$SIDEBAR_MENU.find( "li ul" ).slideUp();
-				}
-			}
+                if ( $BODY.is( ".nav-sm" ) )
+                {
+                    $SIDEBAR_MENU.find( "li" ).removeClass( "active active-sm" );
+                    $SIDEBAR_MENU.find( "li ul" ).slideUp();
+                }
+            }
             $li.addClass('active');
 
             $('ul:first', $li).slideDown(function() {
@@ -99,55 +99,55 @@ var setContentHeight = function () {
         }
     });
 
-// toggle small or large menu 
-$MENU_TOGGLE.on('click', function() {
-		console.log('clicked - menu toggle');
-		
-		if ($BODY.hasClass('nav-md')) {
-			$SIDEBAR_MENU.find('li.active ul').hide();
-			$SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
-		} else {
-			$SIDEBAR_MENU.find('li.active-sm ul').show();
-			$SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
-		}
+// toggle small or large menu
+    $MENU_TOGGLE.on('click', function() {
+        console.log('clicked - menu toggle');
 
-	$BODY.toggleClass('nav-md nav-sm');
+        if ($BODY.hasClass('nav-md')) {
+            $SIDEBAR_MENU.find('li.active ul').hide();
+            $SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
+        } else {
+            $SIDEBAR_MENU.find('li.active-sm ul').show();
+            $SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
+        }
 
-	setContentHeight();
+        $BODY.toggleClass('nav-md nav-sm');
 
-	$('.dataTable').each ( function () { $(this).dataTable().fnDraw(); });
-});
+        setContentHeight();
 
-	// check active menu
-	$SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
+        $('.dataTable').each ( function () { $(this).dataTable().fnDraw(); });
+    });
 
-	$SIDEBAR_MENU.find('a').filter(function () {
-		return this.href == CURRENT_URL;
-	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
-		setContentHeight();
-	}).parent().addClass('active');
+    // check active menu
+    $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
 
-	// recompute content when resizing
-	$(window).smartresize(function(){  
-		setContentHeight();
-	});
+    $SIDEBAR_MENU.find('a').filter(function () {
+        return this.href == CURRENT_URL;
+    }).parent('li').addClass('current-page').parents('ul').slideDown(function() {
+        setContentHeight();
+    }).parent().addClass('active');
 
-	setContentHeight();
+    // recompute content when resizing
+    $(window).smartresize(function(){
+        setContentHeight();
+    });
 
-	// fixed sidebar
-	if ($.fn.mCustomScrollbar) {
-		$('.menu_fixed').mCustomScrollbar({
-			autoHideScrollbar: true,
-			theme: 'minimal',
-			mouseWheel:{ preventDefault: true }
-		});
-	}
+    setContentHeight();
+
+    // fixed sidebar
+    if ($.fn.mCustomScrollbar) {
+        $('.menu_fixed').mCustomScrollbar({
+            autoHideScrollbar: true,
+            theme: 'minimal',
+            mouseWheel:{ preventDefault: true }
+        });
+    }
 };
 // /Sidebar
 
-	var randNum = function() {
-	  return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
-	};
+var randNum = function() {
+    return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
+};
 
 
 // Panel toolbox
@@ -156,15 +156,15 @@ $(document).ready(function() {
         var $BOX_PANEL = $(this).closest('.x_panel'),
             $ICON = $(this).find('i'),
             $BOX_CONTENT = $BOX_PANEL.find('.x_content');
-        
+
         // fix for some div with hardcoded fix class
         if ($BOX_PANEL.attr('style')) {
             $BOX_CONTENT.slideToggle(200, function(){
                 $BOX_PANEL.removeAttr('style');
             });
         } else {
-            $BOX_CONTENT.slideToggle(200); 
-            $BOX_PANEL.css('height', 'auto');  
+            $BOX_CONTENT.slideToggle(200);
+            $BOX_PANEL.css('height', 'auto');
         }
 
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');
@@ -299,870 +299,895 @@ if (typeof NProgress != 'undefined') {
     });
 }
 
-	
-	  //hover and retain popover when on popover content
-        var originalLeave = $.fn.popover.Constructor.prototype.leave;
-        $.fn.popover.Constructor.prototype.leave = function(obj) {
-          var self = obj instanceof this.constructor ?
-            obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type);
-          var container, timeout;
 
-          originalLeave.call(this, obj);
+//hover and retain popover when on popover content
+var originalLeave = $.fn.popover.Constructor.prototype.leave;
+$.fn.popover.Constructor.prototype.leave = function(obj) {
+    var self = obj instanceof this.constructor ?
+        obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type);
+    var container, timeout;
 
-          if (obj.currentTarget) {
-            container = $(obj.currentTarget).siblings('.popover');
-            timeout = self.timeout;
-            container.one('mouseenter', function() {
-              //We entered the actual popover – call off the dogs
-              clearTimeout(timeout);
-              //Let's monitor popover content instead
-              container.one('mouseleave', function() {
+    originalLeave.call(this, obj);
+
+    if (obj.currentTarget) {
+        container = $(obj.currentTarget).siblings('.popover');
+        timeout = self.timeout;
+        container.one('mouseenter', function() {
+            //We entered the actual popover – call off the dogs
+            clearTimeout(timeout);
+            //Let's monitor popover content instead
+            container.one('mouseleave', function() {
                 $.fn.popover.Constructor.prototype.leave.call(self, self);
-              });
             });
-          }
-        };
+        });
+    }
+};
 
-        $('body').popover({
-          selector: '[data-popover]',
-          trigger: 'click hover',
-          delay: {
-            show: 50,
-            hide: 400
-          }
+$('body').popover({
+    selector: '[data-popover]',
+    trigger: 'click hover',
+    delay: {
+        show: 50,
+        hide: 400
+    }
+});
+
+
+function gd(year, month, day) {
+    return new Date(year, month - 1, day).getTime();
+}
+
+
+/* STARRR */
+
+function init_starrr() {
+
+    if( typeof (starrr) === 'undefined'){ return; }
+    console.log('init_starrr');
+
+    $(".stars").starrr();
+
+    $('.stars-existing').starrr({
+        rating: 4
+    });
+
+    $('.stars').on('starrr:change', function (e, value) {
+        $('.stars-count').html(value);
+    });
+
+    $('.stars-existing').on('starrr:change', function (e, value) {
+        $('.stars-count-existing').html(value);
+    });
+
+};
+
+/* AUTOCOMPLETE */
+
+function init_autocomplete() {
+
+    if( typeof ($.fn.autocomplete) === 'undefined'){ return; }
+    console.log('init_autocomplete');
+
+    var countries = { AD:"Andorra",A2:"Andorra Test",AE:"United Arab Emirates",AF:"Afghanistan",AG:"Antigua and Barbuda",AI:"Anguilla",AL:"Albania",AM:"Armenia",AN:"Netherlands Antilles",AO:"Angola",AQ:"Antarctica",AR:"Argentina",AS:"American Samoa",AT:"Austria",AU:"Australia",AW:"Aruba",AX:"Åland Islands",AZ:"Azerbaijan",BA:"Bosnia and Herzegovina",BB:"Barbados",BD:"Bangladesh",BE:"Belgium",BF:"Burkina Faso",BG:"Bulgaria",BH:"Bahrain",BI:"Burundi",BJ:"Benin",BL:"Saint Barthélemy",BM:"Bermuda",BN:"Brunei",BO:"Bolivia",BQ:"British Antarctic Territory",BR:"Brazil",BS:"Bahamas",BT:"Bhutan",BV:"Bouvet Island",BW:"Botswana",BY:"Belarus",BZ:"Belize",CA:"Canada",CC:"Cocos [Keeling] Islands",CD:"Congo - Kinshasa",CF:"Central African Republic",CG:"Congo - Brazzaville",CH:"Switzerland",CI:"Côte d’Ivoire",CK:"Cook Islands",CL:"Chile",CM:"Cameroon",CN:"China",CO:"Colombia",CR:"Costa Rica",CS:"Serbia and Montenegro",CT:"Canton and Enderbury Islands",CU:"Cuba",CV:"Cape Verde",CX:"Christmas Island",CY:"Cyprus",CZ:"Czech Republic",DD:"East Germany",DE:"Germany",DJ:"Djibouti",DK:"Denmark",DM:"Dominica",DO:"Dominican Republic",DZ:"Algeria",EC:"Ecuador",EE:"Estonia",EG:"Egypt",EH:"Western Sahara",ER:"Eritrea",ES:"Spain",ET:"Ethiopia",FI:"Finland",FJ:"Fiji",FK:"Falkland Islands",FM:"Micronesia",FO:"Faroe Islands",FQ:"French Southern and Antarctic Territories",FR:"France",FX:"Metropolitan France",GA:"Gabon",GB:"United Kingdom",GD:"Grenada",GE:"Georgia",GF:"French Guiana",GG:"Guernsey",GH:"Ghana",GI:"Gibraltar",GL:"Greenland",GM:"Gambia",GN:"Guinea",GP:"Guadeloupe",GQ:"Equatorial Guinea",GR:"Greece",GS:"South Georgia and the South Sandwich Islands",GT:"Guatemala",GU:"Guam",GW:"Guinea-Bissau",GY:"Guyana",HK:"Hong Kong SAR China",HM:"Heard Island and McDonald Islands",HN:"Honduras",HR:"Croatia",HT:"Haiti",HU:"Hungary",ID:"Indonesia",IE:"Ireland",IL:"Israel",IM:"Isle of Man",IN:"India",IO:"British Indian Ocean Territory",IQ:"Iraq",IR:"Iran",IS:"Iceland",IT:"Italy",JE:"Jersey",JM:"Jamaica",JO:"Jordan",JP:"Japan",JT:"Johnston Island",KE:"Kenya",KG:"Kyrgyzstan",KH:"Cambodia",KI:"Kiribati",KM:"Comoros",KN:"Saint Kitts and Nevis",KP:"North Korea",KR:"South Korea",KW:"Kuwait",KY:"Cayman Islands",KZ:"Kazakhstan",LA:"Laos",LB:"Lebanon",LC:"Saint Lucia",LI:"Liechtenstein",LK:"Sri Lanka",LR:"Liberia",LS:"Lesotho",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",LY:"Libya",MA:"Morocco",MC:"Monaco",MD:"Moldova",ME:"Montenegro",MF:"Saint Martin",MG:"Madagascar",MH:"Marshall Islands",MI:"Midway Islands",MK:"Macedonia",ML:"Mali",MM:"Myanmar [Burma]",MN:"Mongolia",MO:"Macau SAR China",MP:"Northern Mariana Islands",MQ:"Martinique",MR:"Mauritania",MS:"Montserrat",MT:"Malta",MU:"Mauritius",MV:"Maldives",MW:"Malawi",MX:"Mexico",MY:"Malaysia",MZ:"Mozambique",NA:"Namibia",NC:"New Caledonia",NE:"Niger",NF:"Norfolk Island",NG:"Nigeria",NI:"Nicaragua",NL:"Netherlands",NO:"Norway",NP:"Nepal",NQ:"Dronning Maud Land",NR:"Nauru",NT:"Neutral Zone",NU:"Niue",NZ:"New Zealand",OM:"Oman",PA:"Panama",PC:"Pacific Islands Trust Territory",PE:"Peru",PF:"French Polynesia",PG:"Papua New Guinea",PH:"Philippines",PK:"Pakistan",PL:"Poland",PM:"Saint Pierre and Miquelon",PN:"Pitcairn Islands",PR:"Puerto Rico",PS:"Palestinian Territories",PT:"Portugal",PU:"U.S. Miscellaneous Pacific Islands",PW:"Palau",PY:"Paraguay",PZ:"Panama Canal Zone",QA:"Qatar",RE:"Réunion",RO:"Romania",RS:"Serbia",RU:"Russia",RW:"Rwanda",SA:"Saudi Arabia",SB:"Solomon Islands",SC:"Seychelles",SD:"Sudan",SE:"Sweden",SG:"Singapore",SH:"Saint Helena",SI:"Slovenia",SJ:"Svalbard and Jan Mayen",SK:"Slovakia",SL:"Sierra Leone",SM:"San Marino",SN:"Senegal",SO:"Somalia",SR:"Suriname",ST:"São Tomé and Príncipe",SU:"Union of Soviet Socialist Republics",SV:"El Salvador",SY:"Syria",SZ:"Swaziland",TC:"Turks and Caicos Islands",TD:"Chad",TF:"French Southern Territories",TG:"Togo",TH:"Thailand",TJ:"Tajikistan",TK:"Tokelau",TL:"Timor-Leste",TM:"Turkmenistan",TN:"Tunisia",TO:"Tonga",TR:"Turkey",TT:"Trinidad and Tobago",TV:"Tuvalu",TW:"Taiwan",TZ:"Tanzania",UA:"Ukraine",UG:"Uganda",UM:"U.S. Minor Outlying Islands",US:"United States",UY:"Uruguay",UZ:"Uzbekistan",VA:"Vatican City",VC:"Saint Vincent and the Grenadines",VD:"North Vietnam",VE:"Venezuela",VG:"British Virgin Islands",VI:"U.S. Virgin Islands",VN:"Vietnam",VU:"Vanuatu",WF:"Wallis and Futuna",WK:"Wake Island",WS:"Samoa",YD:"People's Democratic Republic of Yemen",YE:"Yemen",YT:"Mayotte",ZA:"South Africa",ZM:"Zambia",ZW:"Zimbabwe",ZZ:"Unknown or Invalid Region" };
+
+    var countriesArray = $.map(countries, function(value, key) {
+        return {
+            value: value,
+            data: key
+        };
+    });
+
+    // initialize autocomplete with custom appendTo
+    $('#autocomplete-custom-append').autocomplete({
+        lookup: countriesArray
+    });
+
+};
+
+/* AUTOSIZE */
+
+function init_autosize() {
+
+    if(typeof $.fn.autosize !== 'undefined'){
+
+        autosize($('.resizable_textarea'));
+
+    }
+
+};
+
+/* PARSLEY */
+
+function init_parsley() {
+
+    if( typeof (parsley) === 'undefined'){ return; }
+    console.log('init_parsley');
+
+    $/*.listen*/('parsley:field:validate', function() {
+        validateFront();
+    });
+    $('#demo-form .btn').on('click', function() {
+        $('#demo-form').parsley().validate();
+        validateFront();
+    });
+    var validateFront = function() {
+        if (true === $('#demo-form').parsley().isValid()) {
+            $('.bs-callout-info').removeClass('hidden');
+            $('.bs-callout-warning').addClass('hidden');
+        } else {
+            $('.bs-callout-info').addClass('hidden');
+            $('.bs-callout-warning').removeClass('hidden');
+        }
+    };
+
+    $/*.listen*/('parsley:field:validate', function() {
+        validateFront();
+    });
+    $('#demo-form2 .btn').on('click', function() {
+        $('#demo-form2').parsley().validate();
+        validateFront();
+    });
+    var validateFront = function() {
+        if (true === $('#demo-form2').parsley().isValid()) {
+            $('.bs-callout-info').removeClass('hidden');
+            $('.bs-callout-warning').addClass('hidden');
+        } else {
+            $('.bs-callout-info').addClass('hidden');
+            $('.bs-callout-warning').removeClass('hidden');
+        }
+    };
+
+    try {
+        hljs.initHighlightingOnLoad();
+    } catch (err) {}
+
+};
+
+
+/* INPUTS */
+
+function onAddTag(tag) {
+    alert("Added a tag: " + tag);
+}
+
+function onRemoveTag(tag) {
+    alert("Removed a tag: " + tag);
+}
+
+function onChangeTag(input, tag) {
+    alert("Changed a tag: " + tag);
+}
+
+//tags input
+function init_TagsInput() {
+
+    if(typeof $.fn.tagsInput !== 'undefined'){
+
+        $('#tags_1').tagsInput({
+            width: 'auto'
         });
 
+    }
 
-	function gd(year, month, day) {
-		return new Date(year, month - 1, day).getTime();
-	}
-	  
+};
 
-	/* STARRR */
-			
-	function init_starrr() {
-		
-		if( typeof (starrr) === 'undefined'){ return; }
-		console.log('init_starrr');
-		
-		$(".stars").starrr();
+/* SELECT2 */
 
-		$('.stars-existing').starrr({
-		  rating: 4
-		});
+function init_select2() {
 
-		$('.stars').on('starrr:change', function (e, value) {
-		  $('.stars-count').html(value);
-		});
+    if( typeof (select2) === 'undefined'){ return; }
+    console.log('init_toolbox');
+    $(".select2_single").select2({
+        placeholder: "Select a state",
+        allowClear: true
+    });
+    $(".select2_group").select2({});
+    $(".select2_multiple").select2({
+        maximumSelectionLength: 4,
+        placeholder: "With Max Selection limit 4",
+        allowClear: true
+    });
 
-		$('.stars-existing').on('starrr:change', function (e, value) {
-		  $('.stars-count-existing').html(value);
-		});
-		
-	  };
-	   
-	   /* AUTOCOMPLETE */
-			
-		function init_autocomplete() {
-			
-			if( typeof ($.fn.autocomplete) === 'undefined'){ return; }
-			console.log('init_autocomplete');
-			
-			var countries = { AD:"Andorra",A2:"Andorra Test",AE:"United Arab Emirates",AF:"Afghanistan",AG:"Antigua and Barbuda",AI:"Anguilla",AL:"Albania",AM:"Armenia",AN:"Netherlands Antilles",AO:"Angola",AQ:"Antarctica",AR:"Argentina",AS:"American Samoa",AT:"Austria",AU:"Australia",AW:"Aruba",AX:"Åland Islands",AZ:"Azerbaijan",BA:"Bosnia and Herzegovina",BB:"Barbados",BD:"Bangladesh",BE:"Belgium",BF:"Burkina Faso",BG:"Bulgaria",BH:"Bahrain",BI:"Burundi",BJ:"Benin",BL:"Saint Barthélemy",BM:"Bermuda",BN:"Brunei",BO:"Bolivia",BQ:"British Antarctic Territory",BR:"Brazil",BS:"Bahamas",BT:"Bhutan",BV:"Bouvet Island",BW:"Botswana",BY:"Belarus",BZ:"Belize",CA:"Canada",CC:"Cocos [Keeling] Islands",CD:"Congo - Kinshasa",CF:"Central African Republic",CG:"Congo - Brazzaville",CH:"Switzerland",CI:"Côte d’Ivoire",CK:"Cook Islands",CL:"Chile",CM:"Cameroon",CN:"China",CO:"Colombia",CR:"Costa Rica",CS:"Serbia and Montenegro",CT:"Canton and Enderbury Islands",CU:"Cuba",CV:"Cape Verde",CX:"Christmas Island",CY:"Cyprus",CZ:"Czech Republic",DD:"East Germany",DE:"Germany",DJ:"Djibouti",DK:"Denmark",DM:"Dominica",DO:"Dominican Republic",DZ:"Algeria",EC:"Ecuador",EE:"Estonia",EG:"Egypt",EH:"Western Sahara",ER:"Eritrea",ES:"Spain",ET:"Ethiopia",FI:"Finland",FJ:"Fiji",FK:"Falkland Islands",FM:"Micronesia",FO:"Faroe Islands",FQ:"French Southern and Antarctic Territories",FR:"France",FX:"Metropolitan France",GA:"Gabon",GB:"United Kingdom",GD:"Grenada",GE:"Georgia",GF:"French Guiana",GG:"Guernsey",GH:"Ghana",GI:"Gibraltar",GL:"Greenland",GM:"Gambia",GN:"Guinea",GP:"Guadeloupe",GQ:"Equatorial Guinea",GR:"Greece",GS:"South Georgia and the South Sandwich Islands",GT:"Guatemala",GU:"Guam",GW:"Guinea-Bissau",GY:"Guyana",HK:"Hong Kong SAR China",HM:"Heard Island and McDonald Islands",HN:"Honduras",HR:"Croatia",HT:"Haiti",HU:"Hungary",ID:"Indonesia",IE:"Ireland",IL:"Israel",IM:"Isle of Man",IN:"India",IO:"British Indian Ocean Territory",IQ:"Iraq",IR:"Iran",IS:"Iceland",IT:"Italy",JE:"Jersey",JM:"Jamaica",JO:"Jordan",JP:"Japan",JT:"Johnston Island",KE:"Kenya",KG:"Kyrgyzstan",KH:"Cambodia",KI:"Kiribati",KM:"Comoros",KN:"Saint Kitts and Nevis",KP:"North Korea",KR:"South Korea",KW:"Kuwait",KY:"Cayman Islands",KZ:"Kazakhstan",LA:"Laos",LB:"Lebanon",LC:"Saint Lucia",LI:"Liechtenstein",LK:"Sri Lanka",LR:"Liberia",LS:"Lesotho",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",LY:"Libya",MA:"Morocco",MC:"Monaco",MD:"Moldova",ME:"Montenegro",MF:"Saint Martin",MG:"Madagascar",MH:"Marshall Islands",MI:"Midway Islands",MK:"Macedonia",ML:"Mali",MM:"Myanmar [Burma]",MN:"Mongolia",MO:"Macau SAR China",MP:"Northern Mariana Islands",MQ:"Martinique",MR:"Mauritania",MS:"Montserrat",MT:"Malta",MU:"Mauritius",MV:"Maldives",MW:"Malawi",MX:"Mexico",MY:"Malaysia",MZ:"Mozambique",NA:"Namibia",NC:"New Caledonia",NE:"Niger",NF:"Norfolk Island",NG:"Nigeria",NI:"Nicaragua",NL:"Netherlands",NO:"Norway",NP:"Nepal",NQ:"Dronning Maud Land",NR:"Nauru",NT:"Neutral Zone",NU:"Niue",NZ:"New Zealand",OM:"Oman",PA:"Panama",PC:"Pacific Islands Trust Territory",PE:"Peru",PF:"French Polynesia",PG:"Papua New Guinea",PH:"Philippines",PK:"Pakistan",PL:"Poland",PM:"Saint Pierre and Miquelon",PN:"Pitcairn Islands",PR:"Puerto Rico",PS:"Palestinian Territories",PT:"Portugal",PU:"U.S. Miscellaneous Pacific Islands",PW:"Palau",PY:"Paraguay",PZ:"Panama Canal Zone",QA:"Qatar",RE:"Réunion",RO:"Romania",RS:"Serbia",RU:"Russia",RW:"Rwanda",SA:"Saudi Arabia",SB:"Solomon Islands",SC:"Seychelles",SD:"Sudan",SE:"Sweden",SG:"Singapore",SH:"Saint Helena",SI:"Slovenia",SJ:"Svalbard and Jan Mayen",SK:"Slovakia",SL:"Sierra Leone",SM:"San Marino",SN:"Senegal",SO:"Somalia",SR:"Suriname",ST:"São Tomé and Príncipe",SU:"Union of Soviet Socialist Republics",SV:"El Salvador",SY:"Syria",SZ:"Swaziland",TC:"Turks and Caicos Islands",TD:"Chad",TF:"French Southern Territories",TG:"Togo",TH:"Thailand",TJ:"Tajikistan",TK:"Tokelau",TL:"Timor-Leste",TM:"Turkmenistan",TN:"Tunisia",TO:"Tonga",TR:"Turkey",TT:"Trinidad and Tobago",TV:"Tuvalu",TW:"Taiwan",TZ:"Tanzania",UA:"Ukraine",UG:"Uganda",UM:"U.S. Minor Outlying Islands",US:"United States",UY:"Uruguay",UZ:"Uzbekistan",VA:"Vatican City",VC:"Saint Vincent and the Grenadines",VD:"North Vietnam",VE:"Venezuela",VG:"British Virgin Islands",VI:"U.S. Virgin Islands",VN:"Vietnam",VU:"Vanuatu",WF:"Wallis and Futuna",WK:"Wake Island",WS:"Samoa",YD:"People's Democratic Republic of Yemen",YE:"Yemen",YT:"Mayotte",ZA:"South Africa",ZM:"Zambia",ZW:"Zimbabwe",ZZ:"Unknown or Invalid Region" };
+};
 
-			var countriesArray = $.map(countries, function(value, key) {
-			  return {
-				value: value,
-				data: key
-			  };
-			});
+/* KNOB */
 
-			// initialize autocomplete with custom appendTo
-			$('#autocomplete-custom-append').autocomplete({
-			  lookup: countriesArray
-			});
-			
-		};
-	   
-	 /* AUTOSIZE */
-			
-		function init_autosize() {
-			
-			if(typeof $.fn.autosize !== 'undefined'){
-			
-			autosize($('.resizable_textarea'));
-			
-			}
-			
-		};  
-	   
-	   /* PARSLEY */
-			
-		function init_parsley() {
-			
-			if( typeof (parsley) === 'undefined'){ return; }
-			console.log('init_parsley');
-			
-			$/*.listen*/('parsley:field:validate', function() {
-			  validateFront();
-			});
-			$('#demo-form .btn').on('click', function() {
-			  $('#demo-form').parsley().validate();
-			  validateFront();
-			});
-			var validateFront = function() {
-			  if (true === $('#demo-form').parsley().isValid()) {
-				$('.bs-callout-info').removeClass('hidden');
-				$('.bs-callout-warning').addClass('hidden');
-			  } else {
-				$('.bs-callout-info').addClass('hidden');
-				$('.bs-callout-warning').removeClass('hidden');
-			  }
-			};
-		  
-			$/*.listen*/('parsley:field:validate', function() {
-			  validateFront();
-			});
-			$('#demo-form2 .btn').on('click', function() {
-			  $('#demo-form2').parsley().validate();
-			  validateFront();
-			});
-			var validateFront = function() {
-			  if (true === $('#demo-form2').parsley().isValid()) {
-				$('.bs-callout-info').removeClass('hidden');
-				$('.bs-callout-warning').addClass('hidden');
-			  } else {
-				$('.bs-callout-info').addClass('hidden');
-				$('.bs-callout-warning').removeClass('hidden');
-			  }
-			};
-			
-			  try {
-				hljs.initHighlightingOnLoad();
-			  } catch (err) {}
-			
-		};
-	   
-		
-		  /* INPUTS */
-		  
-			function onAddTag(tag) {
-				alert("Added a tag: " + tag);
-			  }
+function init_knob() {
 
-			  function onRemoveTag(tag) {
-				alert("Removed a tag: " + tag);
-			  }
+    if( typeof ($.fn.knob) === 'undefined'){ return; }
+    console.log('init_knob');
 
-			  function onChangeTag(input, tag) {
-				alert("Changed a tag: " + tag);
-			  }
+    $(".knob").knob({
+        change: function(value) {
+            //console.log("change : " + value);
+        },
+        release: function(value) {
+            //console.log(this.$.attr('value'));
+            console.log("release : " + value);
+        },
+        cancel: function() {
+            console.log("cancel : ", this);
+        },
+        /*format : function (value) {
+         return value + '%';
+         },*/
+        draw: function() {
 
-			  //tags input
-			function init_TagsInput() {
-				  
-				if(typeof $.fn.tagsInput !== 'undefined'){	
-				 
-				$('#tags_1').tagsInput({
-				  width: 'auto'
-				});
-				
-				}
-				
-		    };
-	   
-		/* SELECT2 */
-	  
-		function init_select2() {
-			 
-			if( typeof (select2) === 'undefined'){ return; }
-			console.log('init_toolbox');
-			$(".select2_single").select2({
-			  placeholder: "Select a state",
-			  allowClear: true
-			});
-			$(".select2_group").select2({});
-			$(".select2_multiple").select2({
-			  maximumSelectionLength: 4,
-			  placeholder: "With Max Selection limit 4",
-			  allowClear: true
-			});
-			
-		};
+            // "tron" case
+            if (this.$.data('skin') == 'tron') {
 
-		/* KNOB */
-	  
-		function init_knob() {
-		
-				if( typeof ($.fn.knob) === 'undefined'){ return; }
-				console.log('init_knob');
-	
-				$(".knob").knob({
-				  change: function(value) {
-					//console.log("change : " + value);
-				  },
-				  release: function(value) {
-					//console.log(this.$.attr('value'));
-					console.log("release : " + value);
-				  },
-				  cancel: function() {
-					console.log("cancel : ", this);
-				  },
-				  /*format : function (value) {
-				   return value + '%';
-				   },*/
-				  draw: function() {
+                this.cursorExt = 0.3;
 
-					// "tron" case
-					if (this.$.data('skin') == 'tron') {
+                var a = this.arc(this.cv) // Arc
+                    ,
+                    pa // Previous arc
+                    , r = 1;
 
-					  this.cursorExt = 0.3;
+                this.g.lineWidth = this.lineWidth;
 
-					  var a = this.arc(this.cv) // Arc
-						,
-						pa // Previous arc
-						, r = 1;
+                if (this.o.displayPrevious) {
+                    pa = this.arc(this.v);
+                    this.g.beginPath();
+                    this.g.strokeStyle = this.pColor;
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                    this.g.stroke();
+                }
 
-					  this.g.lineWidth = this.lineWidth;
+                this.g.beginPath();
+                this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                this.g.stroke();
 
-					  if (this.o.displayPrevious) {
-						pa = this.arc(this.v);
-						this.g.beginPath();
-						this.g.strokeStyle = this.pColor;
-						this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
-						this.g.stroke();
-					  }
+                this.g.lineWidth = 2;
+                this.g.beginPath();
+                this.g.strokeStyle = this.o.fgColor;
+                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                this.g.stroke();
 
-					  this.g.beginPath();
-					  this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-					  this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
-					  this.g.stroke();
+                return false;
+            }
+        }
 
-					  this.g.lineWidth = 2;
-					  this.g.beginPath();
-					  this.g.strokeStyle = this.o.fgColor;
-					  this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-					  this.g.stroke();
+    });
 
-					  return false;
-					}
-				  }
-				  
-				});
+    // Example of infinite knob, iPod click wheel
+    var v, up = 0,
+        down = 0,
+        i = 0,
+        $idir = $("div.idir"),
+        $ival = $("div.ival"),
+        incr = function() {
+            i++;
+            $idir.show().html("+").fadeOut();
+            $ival.html(i);
+        },
+        decr = function() {
+            i--;
+            $idir.show().html("-").fadeOut();
+            $ival.html(i);
+        };
+    $("input.infinite").knob({
+        min: 0,
+        max: 20,
+        stopper: false,
+        change: function() {
+            if (v > this.cv) {
+                if (up) {
+                    decr();
+                    up = 0;
+                } else {
+                    up = 1;
+                    down = 0;
+                }
+            } else {
+                if (v < this.cv) {
+                    if (down) {
+                        incr();
+                        down = 0;
+                    } else {
+                        down = 1;
+                        up = 0;
+                    }
+                }
+            }
+            v = this.cv;
+        }
+    });
 
-				// Example of infinite knob, iPod click wheel
-				var v, up = 0,
-				  down = 0,
-				  i = 0,
-				  $idir = $("div.idir"),
-				  $ival = $("div.ival"),
-				  incr = function() {
-					i++;
-					$idir.show().html("+").fadeOut();
-					$ival.html(i);
-				  },
-				  decr = function() {
-					i--;
-					$idir.show().html("-").fadeOut();
-					$ival.html(i);
-				  };
-				$("input.infinite").knob({
-				  min: 0,
-				  max: 20,
-				  stopper: false,
-				  change: function() {
-					if (v > this.cv) {
-					  if (up) {
-						decr();
-						up = 0;
-					  } else {
-						up = 1;
-						down = 0;
-					  }
-					} else {
-					  if (v < this.cv) {
-						if (down) {
-						  incr();
-						  down = 0;
-						} else {
-						  down = 1;
-						  up = 0;
-						}
-					  }
-					}
-					v = this.cv;
-				  }
-				});
-				
-		};
-	 
-		/* INPUT MASK */
-			
-		function init_InputMask() {
-			
-			if( typeof ($.fn.inputmask) === 'undefined'){ return; }
-			console.log('init_InputMask');
-			
-				$(":input").inputmask();
-				
-		};
+};
 
-	   
-	   /* DATERANGEPICKER */
-	   
-		function init_daterangepicker() {
+/* INPUT MASK */
 
-			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			console.log('init_daterangepicker');
-		
-			var cb = function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-			};
+function init_InputMask() {
 
-			var optionSet1 = {
-			  startDate: moment().subtract(29, 'days'),
-			  endDate: moment(),
-			  minDate: '01/01/2012',
-			  maxDate: '12/31/2015',
-			  dateLimit: {
-				days: 60
-			  },
-			  showDropdowns: true,
-			  showWeekNumbers: true,
-			  timePicker: false,
-			  timePickerIncrement: 1,
-			  timePicker12Hour: true,
-			  ranges: {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-			  },
-			  opens: 'left',
-			  buttonClasses: ['btn btn-default'],
-			  applyClass: 'btn-small btn-primary',
-			  cancelClass: 'btn-small',
-			  format: 'MM/DD/YYYY',
-			  separator: ' to ',
-			  locale: {
-				applyLabel: 'Submit',
-				cancelLabel: 'Clear',
-				fromLabel: 'From',
-				toLabel: 'To',
-				customRangeLabel: 'Custom',
-				daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-				monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-				firstDay: 1
-			  }
-			};
-			
-			$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-			$('#reportrange').daterangepicker(optionSet1, cb);
-			$('#reportrange').on('show.daterangepicker', function() {
-			  console.log("show event fired");
-			});
-			$('#reportrange').on('hide.daterangepicker', function() {
-			  console.log("hide event fired");
-			});
-			$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-			  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-			});
-			$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-			  console.log("cancel event fired");
-			});
-			$('#options1').click(function() {
-			  $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-			});
-			$('#options2').click(function() {
-			  $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-			});
-			$('#destroy').click(function() {
-			  $('#reportrange').data('daterangepicker').remove();
-			});
-   
-		}
-   	   
-	   function init_daterangepicker_right() {
-	      
-				if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-				console.log('init_daterangepicker_right');
-		  
-				var cb = function(start, end, label) {
-				  console.log(start.toISOString(), end.toISOString(), label);
-				  $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-				};
+    if( typeof ($.fn.inputmask) === 'undefined'){ return; }
+    console.log('init_InputMask');
 
-				var optionSet1 = {
-				  startDate: moment().subtract(29, 'days'),
-				  endDate: moment(),
-				  minDate: '01/01/2012',
-				  maxDate: '12/31/2020',
-				  dateLimit: {
-					days: 60
-				  },
-				  showDropdowns: true,
-				  showWeekNumbers: true,
-				  timePicker: false,
-				  timePickerIncrement: 1,
-				  timePicker12Hour: true,
-				  ranges: {
-					'Today': [moment(), moment()],
-					'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-					'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-					'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-					'This Month': [moment().startOf('month'), moment().endOf('month')],
-					'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-				  },
-				  opens: 'right',
-				  buttonClasses: ['btn btn-default'],
-				  applyClass: 'btn-small btn-primary',
-				  cancelClass: 'btn-small',
-				  format: 'MM/DD/YYYY',
-				  separator: ' to ',
-				  locale: {
-					applyLabel: 'Submit',
-					cancelLabel: 'Clear',
-					fromLabel: 'From',
-					toLabel: 'To',
-					customRangeLabel: 'Custom',
-					daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-					monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-					firstDay: 1
-				  }
-				};
+    $(":input").inputmask();
 
-				$('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+};
 
-				$('#reportrange_right').daterangepicker(optionSet1, cb);
 
-				$('#reportrange_right').on('show.daterangepicker', function() {
-				  console.log("show event fired");
-				});
-				$('#reportrange_right').on('hide.daterangepicker', function() {
-				  console.log("hide event fired");
-				});
-				$('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-				  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-				});
-				$('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-				  console.log("cancel event fired");
-				});
+/* DATERANGEPICKER */
 
-				$('#options1').click(function() {
-				  $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-				});
+function init_daterangepicker() {
 
-				$('#options2').click(function() {
-				  $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-				});
+    if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
+    console.log('init_daterangepicker');
 
-				$('#destroy').click(function() {
-				  $('#reportrange_right').data('daterangepicker').remove();
-				});
+    var cb = function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+        $('#reportrange span').html(start.format('YYYY, MMMM D') + ' - ' + end.format('YYYY, MMMM D'));
+    };
 
-	   }
-	   
-	    function init_daterangepicker_single_call() {
-	      
-			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			console.log('init_daterangepicker_single_call');
-		   
-			$('#single_cal1').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_1"
-			}, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			});
-			$('#single_cal2').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_2"
-			}, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			});
-			$('#single_cal3').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_3"
-			}, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			});
-			$('#single_cal4').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_4"
-			}, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			});
-  
-  
-		}
+    var optionSet1 = {
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment(),
+        minDate: '2012/01/01',
+        maxDate: '2015/12/31',
+        dateLimit: {
+            days: 60
+        },
+        showDropdowns: true,
+        showWeekNumbers: true,
+        timePicker: false,
+        timePickerIncrement: 1,
+        timePicker12Hour: true,
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        opens: 'left',
+        buttonClasses: ['btn btn-default'],
+        applyClass: 'btn-small btn-primary',
+        cancelClass: 'btn-small',
+        format: 'YYYY/MM/DD',
+        separator: ' to ',
+        locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+            monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            firstDay: 1
+        }
+    };
 
-		function init_daterangepicker_reservation() {
-	      
-			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			console.log('init_daterangepicker_reservation');
-		 
-			$('#reservation').daterangepicker(null, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			});
+    $('#reportrange span').html(moment().subtract(29, 'days').format('YYYY, MMMM D') + ' - ' + moment().format('YYYY, MMMM D'));
+    $('#reportrange').daterangepicker(optionSet1, cb);
+    $('#reportrange').on('show.daterangepicker', function() {
+        console.log("show event fired");
+    });
+    $('#reportrange').on('hide.daterangepicker', function() {
+        console.log("hide event fired");
+    });
+    $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+        console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+    });
+    $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+        console.log("cancel event fired");
+    });
+    $('#options1').click(function() {
+        $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+    });
+    $('#options2').click(function() {
+        $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+    });
+    $('#destroy').click(function() {
+        $('#reportrange').data('daterangepicker').remove();
+    });
 
-			$('#reservation-time').daterangepicker({
-			  timePicker: true,
-			  timePickerIncrement: 30,
-			  locale: {
-				format: 'MM/DD/YYYY h:mm A'
-			  }
-			});
-	
-		}
+}
 
-	  /* VALIDATOR */
+function init_daterangepicker_right() {
 
-	  function init_validator () {
-		 
-		if( typeof (validator) === 'undefined'){ return; }
-		console.log('init_validator'); 
-	  
-	  // initialize the validator function
-      validator.message.date = 'not a real date';
+    if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
+    console.log('init_daterangepicker_right');
 
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
+    var cb = function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+        $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    };
+
+    var optionSet1 = {
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment(),
+        minDate: '01/01/2012',
+        maxDate: '12/31/2020',
+        dateLimit: {
+            days: 60
+        },
+        showDropdowns: true,
+        showWeekNumbers: true,
+        timePicker: false,
+        timePickerIncrement: 1,
+        timePicker12Hour: true,
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        opens: 'right',
+        buttonClasses: ['btn btn-default'],
+        applyClass: 'btn-small btn-primary',
+        cancelClass: 'btn-small',
+        format: 'MM/DD/YYYY',
+        separator: ' to ',
+        locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+            monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            firstDay: 1
+        }
+    };
+
+    $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+
+    $('#reportrange_right').daterangepicker(optionSet1, cb);
+
+    $('#reportrange_right').on('show.daterangepicker', function() {
+        console.log("show event fired");
+    });
+    $('#reportrange_right').on('hide.daterangepicker', function() {
+        console.log("hide event fired");
+    });
+    $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
+        console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+    });
+    $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
+        console.log("cancel event fired");
+    });
+
+    $('#options1').click(function() {
+        $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
+    });
+
+    $('#options2').click(function() {
+        $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
+    });
+
+    $('#destroy').click(function() {
+        $('#reportrange_right').data('daterangepicker').remove();
+    });
+
+}
+
+function init_daterangepicker_single_call() {
+
+    if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
+    console.log('init_daterangepicker_single_call');
+
+    $('#single_cal1').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_1"
+    }, function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+    });
+    $('#single_cal2').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_2"
+    }, function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+    });
+    $('#single_cal3').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_3"
+    }, function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+    });
+    $('#single_cal4').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_4"
+    }, function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+    });
+
+
+}
+
+function init_daterangepicker_reservation() {
+
+    if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
+    console.log('init_daterangepicker_reservation');
+
+    $('#reservation').daterangepicker(null, function(start, end, label) {
+        console.log(start.toISOString(), end.toISOString(), label);
+    });
+
+    $('#reservation-time').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+            format: 'MM/DD/YYYY h:mm A'
+        }
+    });
+
+}
+
+/* VALIDATOR */
+
+function init_validator () {
+
+    if( typeof (validator) === 'undefined'){ return; }
+    console.log('init_validator');
+
+    // initialize the validator function
+    validator.message.date = 'not a real date';
+
+    // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+    $('form')
         .on('blur', 'input[required], input.optional, select.required', validator.checkField)
         .on('change', 'select.required', validator.checkField)
         .on('keypress', 'input[required][pattern]', validator.keypress);
 
-      $('.multi.required').on('keyup blur', 'input', function() {
+    $('.multi.required').on('keyup blur', 'input', function() {
         validator.checkField.apply($(this).siblings().last()[0]);
-      });
+    });
 
-      $('form').submit(function(e) {
+    $('form').submit(function(e) {
         e.preventDefault();
         var submit = true;
 
         // evaluate the form using generic validaing
         if (!validator.checkAll($(this))) {
-          submit = false;
+            submit = false;
         }
 
         if (submit)
-          this.submit();
+            this.submit();
 
         return false;
-		});
-	  
-	  };
-	   
-	  	/* PNotify
+    });
+
+};
+
+/* PNotify
 
 function init_PNotify() {
-    "undefined" != typeof PNotify && (console.log("init_PNotify"), new PNotify({
-        title: "PNotify",
-        type: "info",
-        text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
-        nonblock: {
-            nonblock: !0
-        },
-        addclass: "dark",
-        styling: "bootstrap3",
-        hide: !1,
-        before_close: function(a) {
-            return a.update({
-                title: a.options.title + " - Enjoy your Stay",
-                before_close: null
-            }), a.queueRemove(), !1
-        }
-    }))
+"undefined" != typeof PNotify && (console.log("init_PNotify"), new PNotify({
+title: "PNotify",
+type: "info",
+text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
+nonblock: {
+  nonblock: !0
+},
+addclass: "dark",
+styling: "bootstrap3",
+hide: !1,
+before_close: function(a) {
+  return a.update({
+      title: a.options.title + " - Enjoy your Stay",
+      before_close: null
+  }), a.queueRemove(), !1
+}
+}))
 }*/
-	   
-	   /* CUSTOM NOTIFICATION */
-			
-		function init_CustomNotification() {
-			
-			console.log('run_customtabs');
-			
-			if( typeof (CustomTabs) === 'undefined'){ return; }
-			console.log('init_CustomTabs');
-			
-			var cnt = 10;
 
-			TabbedNotification = function(options) {
-			  var message = "<div id='ntf" + cnt + "' class='text alert-" + options.type + "' style='display:none'><h2><i class='fa fa-bell'></i> " + options.title +
-				"</h2><div class='close'><a href='javascript:;' class='notification_close'><i class='fa fa-close'></i></a></div><p>" + options.text + "</p></div>";
+/* CUSTOM NOTIFICATION */
 
-			  if (!document.getElementById('custom_notifications')) {
-				alert('doesnt exists');
-			  } else {
-				$('#custom_notifications ul.notifications').append("<li><a id='ntlink" + cnt + "' class='alert-" + options.type + "' href='#ntf" + cnt + "'><i class='fa fa-bell animated shake'></i></a></li>");
-				$('#custom_notifications #notif-group').append(message);
-				cnt++;
-				CustomTabs(options);
-			  }
-			};
+function init_CustomNotification() {
 
-			CustomTabs = function(options) {
-			  $('.tabbed_notifications > div').hide();
-			  $('.tabbed_notifications > div:first-of-type').show();
-			  $('#custom_notifications').removeClass('dsp_none');
-			  $('.notifications a').click(function(e) {
-				e.preventDefault();
-				var $this = $(this),
-				  tabbed_notifications = '#' + $this.parents('.notifications').data('tabbed_notifications'),
-				  others = $this.closest('li').siblings().children('a'),
-				  target = $this.attr('href');
-				others.removeClass('active');
-				$this.addClass('active');
-				$(tabbed_notifications).children('div').hide();
-				$(target).show();
-			  });
-			};
+    console.log('run_customtabs');
 
-			CustomTabs();
+    if( typeof (CustomTabs) === 'undefined'){ return; }
+    console.log('init_CustomTabs');
 
-			var tabid = idname = '';
+    var cnt = 10;
 
-			$(document).on('click', '.notification_close', function(e) {
-			  idname = $(this).parent().parent().attr("id");
-			  tabid = idname.substr(-2);
-			  $('#ntf' + tabid).remove();
-			  $('#ntlink' + tabid).parent().remove();
-			  $('.notifications a').first().addClass('active');
-			  $('#notif-group div').first().css('display', 'block');
-			});
-			
-		};
+    TabbedNotification = function(options) {
+        var message = "<div id='ntf" + cnt + "' class='text alert-" + options.type + "' style='display:none'><h2><i class='fa fa-bell'></i> " + options.title +
+            "</h2><div class='close'><a href='javascript:;' class='notification_close'><i class='fa fa-close'></i></a></div><p>" + options.text + "</p></div>";
 
-		/* COMPOSE */
-		
-		function init_compose() {
-		
-			if( typeof ($.fn.slideToggle) === 'undefined'){ return; }
-			console.log('init_compose');
-		
-			$('#compose, .compose-close').click(function(){
-				$('.compose').slideToggle();
-			});
-		
-		};
-	   
-	   	/* CALENDAR */
-		  
-		    function  init_calendar() {
-					
-				if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
-				console.log('init_calendar');
-					
-				var date = new Date(),
-					d = date.getDate(),
-					m = date.getMonth(),
-					y = date.getFullYear(),
-					started,
-					categoryClass;
+        if (!document.getElementById('custom_notifications')) {
+            alert('doesnt exists');
+        } else {
+            $('#custom_notifications ul.notifications').append("<li><a id='ntlink" + cnt + "' class='alert-" + options.type + "' href='#ntf" + cnt + "'><i class='fa fa-bell animated shake'></i></a></li>");
+            $('#custom_notifications #notif-group').append(message);
+            cnt++;
+            CustomTabs(options);
+        }
+    };
 
-				var calendar = $('#calendar').fullCalendar({
-				  header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay,listMonth'
-				  },
-				  selectable: true,
-				  selectHelper: true,
-				  select: function(start, end, allDay) {
-					$('#fc_create').click();
+    CustomTabs = function(options) {
+        $('.tabbed_notifications > div').hide();
+        $('.tabbed_notifications > div:first-of-type').show();
+        $('#custom_notifications').removeClass('dsp_none');
+        $('.notifications a').click(function(e) {
+            e.preventDefault();
+            var $this = $(this),
+                tabbed_notifications = '#' + $this.parents('.notifications').data('tabbed_notifications'),
+                others = $this.closest('li').siblings().children('a'),
+                target = $this.attr('href');
+            others.removeClass('active');
+            $this.addClass('active');
+            $(tabbed_notifications).children('div').hide();
+            $(target).show();
+        });
+    };
 
-					started = start;
-					ended = end;
+    CustomTabs();
 
-					$(".antosubmit").on("click", function() {
-					  var title = $("#title").val();
-					  if (end) {
-						ended = end;
-					  }
+    var tabid = idname = '';
 
-					  categoryClass = $("#event_type").val();
+    $(document).on('click', '.notification_close', function(e) {
+        idname = $(this).parent().parent().attr("id");
+        tabid = idname.substr(-2);
+        $('#ntf' + tabid).remove();
+        $('#ntlink' + tabid).parent().remove();
+        $('.notifications a').first().addClass('active');
+        $('#notif-group div').first().css('display', 'block');
+    });
 
-					  if (title) {
-						calendar.fullCalendar('renderEvent', {
-							title: title,
-							start: started,
-							end: end,
-							allDay: allDay
-						  },
-						  true // make the event "stick"
-						);
-					  }
+};
 
-					  $('#title').val('');
+/* COMPOSE */
 
-					  calendar.fullCalendar('unselect');
+function init_compose() {
 
-					  $('.antoclose').click();
+    if( typeof ($.fn.slideToggle) === 'undefined'){ return; }
+    console.log('init_compose');
 
-					  return false;
-					});
-				  },
-				  eventClick: function(calEvent, jsEvent, view) {
-					$('#fc_edit').click();
-					$('#title2').val(calEvent.title);
+    $('#compose, .compose-close').click(function(){
+        $('.compose').slideToggle();
+    });
 
-					categoryClass = $("#event_type").val();
+};
 
-					$(".antosubmit2").on("click", function() {
-					  calEvent.title = $("#title2").val();
+/* CALENDAR */
 
-					  calendar.fullCalendar('updateEvent', calEvent);
-					  $('.antoclose2').click();
-					});
+function  init_calendar() {
 
-					calendar.fullCalendar('unselect');
-				  },
-				  editable: true,
-				  events: [{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				  }, {
-					title: 'Long Event',
-					start: new Date(y, m, d - 5),
-					end: new Date(y, m, d - 2)
-				  }, {
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				  }, {
-					title: 'Lunch',
-					start: new Date(y, m, d + 14, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				  }, {
-					title: 'Birthday Party',
-					start: new Date(y, m, d + 1, 19, 0),
-					end: new Date(y, m, d + 1, 22, 30),
-					allDay: false
-				  }, {
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				  }]
-				});
-				
-			};
-	   
-		/* DATA TABLES */
-			
-			function init_DataTables() {
-				
-				console.log('run_datatables');
-				
-				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-				console.log('init_DataTables');
-				
-				var handleDataTableButtons = function() {
-				  if ($("#datatable-buttons").length) {
-					$("#datatable-buttons").DataTable({
-					  dom: "Blfrtip",
-						info: false,
-                        paging: false,
-						searching:false,
-                        autoWidth: false,
-					  buttons: [
-						{
-						  extend: "copy",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "csv",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "excel",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "pdfHtml5",
-						  className: "btn-sm"
-						},
-						{
-						  extend: "print",
-						  className: "btn-sm"
-						},
-					  ],
-					  responsive: true
-					});
-				  }
-				};
+    if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
+    console.log('init_calendar');
 
-				TableManageButtons = function() {
-				  "use strict";
-				  return {
-					init: function() {
-					  handleDataTableButtons();
-					}
-				  };
-				}();
+    var date = new Date(),
+        d = date.getDate(),
+        m = date.getMonth(),
+        y = date.getFullYear(),
+        started,
+        categoryClass;
 
-				$('#datatable').dataTable();
+    var calendar = $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+            $('#fc_create').click();
 
-				$('#datatable-keytable').DataTable({
-				  keys: true
-				});
+            started = start;
+            ended = end;
 
-				$('#datatable-responsive').DataTable();
+            $(".antosubmit").on("click", function() {
+                var title = $("#title").val();
+                if (end) {
+                    ended = end;
+                }
 
-				$('#datatable-scroller').DataTable({
-				  ajax: "js/datatables/json/scroller-demo.json",
-				  deferRender: true,
-				  scrollY: 380,
-				  scrollCollapse: true,
-				  scroller: true
-				});
+                categoryClass = $("#event_type").val();
 
-				$('#datatable-fixed-header').DataTable({
-				  fixedHeader: true
-				});
+                if (title) {
+                    calendar.fullCalendar('renderEvent', {
+                            title: title,
+                            start: started,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true // make the event "stick"
+                    );
+                }
 
-				var $datatable = $('#datatable-checkbox');
+                $('#title').val('');
 
-				$datatable.dataTable({
-				  'order': [[ 1, 'asc' ]],
-				  'columnDefs': [
-					{ orderable: false, targets: [0] }
-				  ]
-				});
-				$datatable.on('draw.dt', function() {
-				  $('checkbox input').iCheck({
-					checkboxClass: 'icheckbox_flat-green'
-				  });
-				});
+                calendar.fullCalendar('unselect');
 
-				TableManageButtons.init();
-				
-			};
+                $('.antoclose').click();
 
-	   
-	$(document).ready(function() {
+                return false;
+            });
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+            $('#fc_edit').click();
+            $('#title2').val(calEvent.title);
 
-		init_sidebar();
-		init_InputMask();
-		init_knob();
-		init_TagsInput();
-		init_parsley();
-		init_daterangepicker();
-		init_daterangepicker_right();
-		init_daterangepicker_single_call();
-		init_daterangepicker_reservation();
-		init_select2();
-		init_validator();
-		init_DataTables();
-		//init_PNotify();
-		init_starrr();
-		init_calendar();
-		init_compose();
-		init_CustomNotification();
-		init_autosize();
-		init_autocomplete();
-				
-	});	
-	
+            categoryClass = $("#event_type").val();
 
+            $(".antosubmit2").on("click", function() {
+                calEvent.title = $("#title2").val();
+
+                calendar.fullCalendar('updateEvent', calEvent);
+                $('.antoclose2').click();
+            });
+
+            calendar.fullCalendar('unselect');
+        },
+        editable: true,
+        events: [{
+            title: 'All Day Event',
+            start: new Date(y, m, 1)
+        }, {
+            title: 'Long Event',
+            start: new Date(y, m, d - 5),
+            end: new Date(y, m, d - 2)
+        }, {
+            title: 'Meeting',
+            start: new Date(y, m, d, 10, 30),
+            allDay: false
+        }, {
+            title: 'Lunch',
+            start: new Date(y, m, d + 14, 12, 0),
+            end: new Date(y, m, d, 14, 0),
+            allDay: false
+        }, {
+            title: 'Birthday Party',
+            start: new Date(y, m, d + 1, 19, 0),
+            end: new Date(y, m, d + 1, 22, 30),
+            allDay: false
+        }, {
+            title: 'Click for Google',
+            start: new Date(y, m, 28),
+            end: new Date(y, m, 29),
+            url: 'http://google.com/'
+        }]
+    });
+
+};
+
+/* DATA TABLES */
+
+function init_DataTables() {
+
+    console.log('run_datatables');
+
+    if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+    console.log('init_DataTables');
+
+    var handleDataTableButtons = function() {
+        if ($("#datatable-buttons").length) {
+            $("#datatable-buttons").DataTable({
+                dom: "Blfrtip",
+                info: false,
+                paging: false,
+                searching:false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        extend: "copy",
+                        className: "btn-sm"
+                    },
+                    {
+                        extend: "csv",
+                        className: "btn-sm"
+                    },
+                    {
+                        extend: "excel",
+                        className: "btn-sm"
+                    },
+                    {
+                        extend: "pdfHtml5",
+                        className: "btn-sm"
+                    },
+                    {
+                        extend: "print",
+                        className: "btn-sm"
+                    },
+                ],
+                responsive: true
+            });
+        }
+    };
+
+    TableManageButtons = function() {
+        "use strict";
+        return {
+            init: function() {
+                handleDataTableButtons();
+            }
+        };
+    }();
+
+    $('#datatable').dataTable();
+
+    $('#datatable-keytable').DataTable({
+        keys: true
+    });
+
+    $('#datatable-responsive').DataTable();
+
+    $('#datatable-scroller').DataTable({
+        ajax: "js/datatables/json/scroller-demo.json",
+        deferRender: true,
+        scrollY: 380,
+        scrollCollapse: true,
+        scroller: true
+    });
+
+    $('#datatable-fixed-header').DataTable({
+        fixedHeader: true
+    });
+
+    var $datatable = $('#datatable-checkbox');
+
+    $datatable.dataTable({
+        'order': [[ 1, 'asc' ]],
+        'columnDefs': [
+            { orderable: false, targets: [0] }
+        ]
+    });
+    $datatable.on('draw.dt', function() {
+        $('checkbox input').iCheck({
+            checkboxClass: 'icheckbox_flat-green'
+        });
+    });
+
+    TableManageButtons.init();
+
+};
+//定义mydatepicker
+function init_mydatepicker() {
+    if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
+    console.log('init_mydatepicker');
+    //定义locale汉化插件
+    //日期控件初始化
+    $('.mydatepicker').daterangepicker(
+        {
+            singleDatePicker: true,
+            singleClasses: "picker_4",
+            locale:{
+                format: 'YYYY-MM-DD',
+                applyLabel: '确认',
+                cancelLabel: '取消',
+                fromLabel: '从',
+                toLabel: '到',
+                weekLabel: 'W',
+                customRangeLabel: 'Custom Range',
+                daysOfWeek:["日","一","二","三","四","五","六"],
+                monthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+                firstDay:1
+            },
+        },
+        function(start, end, label) {
+            //console.log(start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'), label);
+        });
+};
+//初始化
+$(document).ready(function() {
+
+    init_sidebar();
+    init_InputMask();
+    init_knob();
+    init_TagsInput();
+    init_parsley();
+    //init_daterangepicker();
+    //init_daterangepicker_right();
+    //init_daterangepicker_single_call();
+    //init_daterangepicker_reservation();
+    init_mydatepicker()
+    init_select2();
+    init_validator();
+    init_DataTables();
+    //init_PNotify();
+    init_starrr();
+    init_calendar();
+    init_compose();
+    init_CustomNotification();
+    init_autosize();
+    init_autocomplete();
+
+});
