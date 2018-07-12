@@ -430,7 +430,6 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-5">
-                                        <button type="submit" class="btn btn-primary">取消</button>
                                         <button id="send" type="submit" class="btn btn-success">添加</button>
                                     </div>
                                 </div>
@@ -577,8 +576,33 @@
 
     //刷新分页
     function updatepage(page){
+        ajaxdata={
+            pro_num:$('#pro_num').val().trim(),
+            pro_startTime:$('#pro_startTime').val().trim(),
+            pro_endTime:$('#pro_endTime').val().trim(),
+            pro_name:$('#pro_name').val().trim(),
+            pro_content:$('#pro_content').val().trim(),
+            pro_address01:$('#pro_address01').val().trim(),
+            pro_address02:$('#pro_address02').val().trim(),
+            pro_serviceObj:$('#pro_serviceObj').val().trim(),
+            pro_endMoney:$('#pro_endMoney').val().trim(),
+            pro_reportMoney:$('#pro_reportMoney').val().trim(),
+            pro_payMethod:$('#pro_payMethod').val().trim(),
+            pro_condition:$('#pro_condition').val().trim(),
+            pro_sub_content:$('#pro_sub_content').val().trim(),
+            pro_manage_require:$('#pro_manage_require').val().trim(),
+            pro_endCase_require:$('#pro_endCase_require').val().trim(),
+            pro_dem_company:$('#pro_dem_company').val().trim(),
+            pro_dem_contacts:$('#pro_dem_contacts').val().trim(),
+            pro_dem_mobile:$('#pro_dem_mobile').val().trim(),
+            pro_agent_company:$('#pro_agent_company').val().trim(),
+            pro_agent_contacts:$('#pro_agent_contacts').val().trim(),
+            pro_agent_mobile:$('#pro_agent_mobile').val().trim(),
+            pro_type:$('#pro_type').val().trim()
+
+        }
         $.ajaxSetup({async: true});
-        $.post("/project/proanalysis/ajaxpage",{query:'<?php echo $this->project_data[0]['pro_num']?>',page:page},
+        $.post("/project/proanalysis/ajaxpage",ajaxdata,
             function(returnedData,status){
                 var result=returnedData;
                 if(result!=null){
@@ -609,10 +633,10 @@
             " <a onclick=\"deltanalysis('<?php echo $this->project_data[0]['pro_num']?>','"+id+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
         $('#content').html(htmltext);
     }
-    //删除项目分析
-    function deltanalysis(pro_num,id) {
+    //添加项目
+    function addpro() {
         $.ajaxSetup({async: true});
-        $.post("/project/proanalysis/ajaxdelete",{pro_num:pro_num,id:id},
+        $.post("/project/project/ajaxadd",{pro_num:pro_num,id:id},
             function(returnedData,status){
                 var result=returnedData;
                 if(result>0){
@@ -631,7 +655,7 @@
                 }
                 else//网络错误
                 {alert("删除项目分析失败");}
-            });
+            }, "json");
     }
 </script>
 
