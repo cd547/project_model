@@ -231,7 +231,6 @@
             <!-- 板块1 -->
             <div class="row">
                 <div class="col-md-12">
-
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>创建项目</h2>
@@ -242,39 +241,39 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <form class="form-horizontal form-label-left" novalidate="">
+                            <form class="form-horizontal form-label-left">
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_num">项目编号 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_num">项目编号
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_num" class="form-control col-md-7 col-xs-12" placeholder="" required="required" type="text">
+                                        <input id="pro_num" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_name">项目名称 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_name">项目名称
                                     </label>
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_name" class="form-control col-md-7 col-xs-12"   placeholder="" required="required" type="text">
+                                        <input id="pro_name" class="form-control col-md-2 col-xs-12" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address01">项目归属 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address01">项目归属
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_address01"  required="required" class="form-control col-md-7 col-xs-12">
+                                        <input id="pro_address01" class="form-control col-md-7 col-xs-12">
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address02">项目实施地点 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address02">项目实施地点
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input type="number" id="pro_address02"  required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                                        <input type="text" id="pro_address02" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_startTime">项目开始时间 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_startTime">项目开始时间
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_startTime" placeholder="" aria-describedby="inputSuccess2Status3">
+                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_startTime" placeholder="">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
 
@@ -282,65 +281,149 @@
                                     </label>
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_endTime" placeholder="" aria-describedby="inputSuccess2Status3">
+                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_endTime" placeholder="">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_serviceObj">服务对象 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_serviceObj">服务对象
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_serviceObj" class="form-control col-md-7 col-xs-12" placeholder="" required="required" type="text">
+                                        <input id="pro_serviceObj" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endMoney">最高限价 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endMoney">最高限价
                                     </label>
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                         <div class="input-group">
-                                            <input id="pro_endMoney" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                            <input id="pro_endMoney" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
                                             <span class="input-group-addon">元</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                         <div class="input-group">
-                                            <input id="pro_reportMoney" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                            <input id="pro_reportMoney" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
                                             <span class="input-group-addon">元</span>
                                         </div>
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_payMethod">付款方式 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_payMethod">付款方式
                                     </label>
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_payMethod" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                        <input id="pro_payMethod" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">所属项目类型 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">所属项目类型
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_type" class="form-control col-md-7 col-xs-12" placeholder="" required="required" type="text">
+                                        <input id="pro_type" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目入录人 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目入录人
                                     </label>
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_enterPeople" class="form-control col-md-7 col-xs-12"  placeholder="" required="required" type="text">
+                                        <input id="pro_enterPeople" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                    </div>
+
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">承接组织需具备的条件 
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_condition" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">递交项目文本 
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_sub_content" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目监管要求 
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_manage_require" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目结案要求 
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_endCase_require" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目需求方信息（需求单位） 
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_dem_company" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目需求方信息（联系人） 
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_dem_contacts" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
                                     </div>
 
                                 </div>
 
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目内容 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目需求方信息（联系电话） 
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_dem_mobile" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目代理方信息（代理单位） 
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_agent_company" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
+                                    </div>
+
+                                </div>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目代理方信息（联系人）
+                                    </label>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_agent_contacts" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    </div>
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目代理方信息（联系电话）
+                                    </label>
+
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_agent_mobile" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                    </div>
+
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目内容
                                     </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <textarea id="pro_content" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                        <textarea id="pro_content" class="form-control col-md-7 col-xs-12"></textarea>
                                     </div>
                                 </div>
 
@@ -356,18 +439,9 @@
                         </div>
                     </div>
 
-
-
                 </div>
             </div>
             <!-- /板块1 -->
-            <!-- 板块2 -->
-            <div class="row">
-                <div class="col-md-12">
-
-                </div>
-            </div>
-            <!-- /板块2 -->
         </div>
         <!-- /页面内容 -->
 
