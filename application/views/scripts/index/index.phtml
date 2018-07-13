@@ -20,9 +20,9 @@
   </head>
   <body class="login">
     <div>
-      <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signup"></a>
         <a class="hiddenanchor" id="forgot"></a>
-      <a class="hiddenanchor" id="signin"></a>
+        <a class="hiddenanchor" id="signin"></a>
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
@@ -35,7 +35,7 @@
                 <input id="loginpassword" type="password" class="form-control" placeholder="密 码" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="javascript:void(0);" onclick="userlogin()">确 认</a>
+                <a id="enterbtn" class="btn btn-default submit" href="javascript:void(0);" onclick="userlogin()">确 认</a>
                 <a class="reset_pass" href="#forgot">忘记密码?</a>
               </div>
               <div class="clearfix"></div>
@@ -130,10 +130,39 @@
   <script src="/project/vendors/jquery/dist/jquery.min.js"></script>
   <script>
       var userid="<?php echo $this->img?>";
+      //获取按钮焦点
+      $('#enterbtn').focus();
+      $(function(){
+          //失去焦点时
+          $("#loginname").blur(function(){ $('#enterbtn').focus();});
+          $("#loginpassword").blur(function(){ $('#enterbtn').focus();});
+          //按下回车时
+          $("#loginname").keydown(function(event) {
+              if (event.keyCode == "13") {//keyCode=13是回车键
+                  $("#enterbtn").click();
+              }
+          });
+          $("#loginpassword").keydown(function(event) {
+              if (event.keyCode == "13") {//keyCode=13是回车键
+                  $("#enterbtn").click();
+              }
+          });
+      });
+
       function userlogin()
      {
 	  var username =  $("#loginname").val().trim(),
 	 	 password =  $("#loginpassword").val().trim();
+	  if(username=="")
+      {
+          alert('用户名不能为空')
+          return;
+      }
+      if(password=="")
+         {
+             alert('密码不能为空')
+             return;
+         }
 		$.post("/project/login/ajaxlogin",{ 
 			username:username,
 			password:password
