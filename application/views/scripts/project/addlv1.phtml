@@ -246,7 +246,7 @@
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_num">项目编号
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_num" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
+                                        <input id="pro_num" class="form-control col-md-7 col-xs-12"  readonly="readonly" placeholder="" type="text">
                                     </div>
 
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_name">项目名称
@@ -286,10 +286,13 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_serviceObj">服务对象
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_serviceObj" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
+                                        <div class="input-group">
+                                            <input id="pro_reportMoney" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                            <span class="input-group-addon">元</span>
+                                        </div>
                                     </div>
 
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endMoney">最高限价
@@ -303,122 +306,221 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额
+
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_serviceObj">服务对象
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <div class="input-group">
-                                            <input id="pro_reportMoney" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
-                                            <span class="input-group-addon">元</span>
-                                        </div>
+                                        <input id="pro_serviceObj" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
                                     </div>
+
+
 
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_payMethod">付款方式
                                     </label>
 
+                                    <!--    <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <input id="pro_payMethod" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                        </div>-->
+
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_payMethod" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+
+
+                                        <select id="pro_type" class="select2_group form-control" placeholder="">
+                                            <optgroup label="网上支付">
+                                                <option value="AK2">请选择</option>
+                                                <option value="AK">微信</option>
+                                                <option value="HI">支付宝</option>
+                                            </optgroup>
+                                            <optgroup label="当面支付">
+                                                <option value="CA">现金</option>
+                                                <option value="NV">其他</option>
+
+                                            </optgroup>
+
+
+                                        </select>
                                     </div>
+
+
+
+
                                 </div>
                                 <div class="item form-group">
+
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">所属项目类型
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_type" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
+
+
+                                        <select id="pro_type" class="select2_group form-control" placeholder="">
+                                            <optgroup label="类型标题1">
+                                                <option value="AK2">请选择</option>
+                                                <option value="AK">类型值1</option>
+                                                <option value="HI">类型值2</option>
+                                            </optgroup>
+                                            <optgroup label="Pacific Time Zone">
+                                                <option value="CA">California</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="WA">Washington</option>
+                                            </optgroup>
+                                            <optgroup label="Mountain Time Zone">
+                                                <option value="AZ">Arizona</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="WY">Wyoming</option>
+                                            </optgroup>
+
+                                        </select>
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目入录人
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">递交项目文本
                                     </label>
 
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_enterPeople" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                    <div class="btn-group">
+                                        <a class="btn" title="Insert picture (or just drag &amp; drop)" id="..."><i class="fa fa-picture-o"></i></a>
+                                        <input  id="pro_sub_content" type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+                                    </div>
+
+                                    <!--<div class="col-md-3 col-sm-6 col-xs-12">
+                                        <input id="pro_sub_content" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
+                                    </div>-->
+
+
+                                </div>
+
+
+
+                                <div class="item form-group">
+
+                                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <div class="panel">
+                                            <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <h6 class="panel-title">项目需求方信息</h6>
+                                            </a>
+                                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
+                                                <div class="panel-body">
+
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">需求单位
+                                                        </label>
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input id="pro_dem_company" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                                        </div>
+
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">联系人
+                                                        </label>
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input id="pro_dem_contacts" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="item form-group">
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">联系电话
+                                                        </label>
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input id="pro_dem_mobile" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                                <h6 class="panel-title">项目代理方信息</h6>
+                                            </a>
+                                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true">
+                                                <div class="panel-body">
+
+                                                    <div class="item form-group">
+
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">代理单位
+                                                        </label>
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input id="pro_agent_company" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
+                                                        </div>
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">联系人
+                                                        </label>
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input id="pro_agent_contacts" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="item form-group">
+
+                                                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">联系电话
+                                                        </label>
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                            <input id="pro_agent_mobile" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
+
+<br>
+
+
+
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">承接组织需具备的条件 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">承接组织需具备的条件
                                     </label>
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="col-md-8 col-sm-6 col-xs-12">
                                         <input id="pro_condition" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">递交项目文本 
-                                    </label>
-
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_sub_content" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
-                                    </div>
-
                                 </div>
 
 
-
-
-
-                                <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目监管要求 
+                                <!--<div class="item form-group">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目监管要求
                                     </label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                         <input id="pro_manage_require" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
                                     </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目结案要求 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目结案要求
                                     </label>
 
                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                         <input id="pro_endCase_require" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
                                     </div>
 
-                                </div>
-
+                                </div>-->
 
 
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目需求方信息（需求单位） 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目监管要求
                                     </label>
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_dem_company" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <textarea id="pro_manage_require" class="form-control col-md-7 col-xs-12"></textarea>
                                     </div>
-
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目需求方信息（联系人） 
-                                    </label>
-
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_dem_contacts" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
-                                    </div>
-
                                 </div>
-
                                 <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目需求方信息（联系电话） 
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目结案要求
                                     </label>
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_dem_mobile" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <textarea id="pro_endCase_require" class="form-control col-md-7 col-xs-12"></textarea>
                                     </div>
-
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目代理方信息（代理单位） 
-                                    </label>
-
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_agent_company" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
-                                    </div>
-
                                 </div>
 
-                                <div class="item form-group">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">项目代理方信息（联系人）
-                                    </label>
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_agent_contacts" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
-                                    </div>
 
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">项目代理方信息（联系电话）
-                                    </label>
 
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input id="pro_agent_mobile" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
-                                    </div>
-
-                                </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目内容
                                     </label>
@@ -427,9 +529,20 @@
                                     </div>
                                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-5">
+                                    <div class="col-md-6 col-md-offset-5">
                                         <button id="send" type="submit" class="btn btn-success">添加</button>
                                     </div>
                                 </div>
