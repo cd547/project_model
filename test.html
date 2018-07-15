@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .board{
+            border: solid 1px black;
+            width: 300px;height: 200px;
+            position: relative;
+        }
+        .me{
+            width: 10px;height: 10px;
+            background-color: #00A000;
+            position: relative;
+
+        }
+        .targ{
+            width: 10px;height: 10px;
+            background-color: red;
+            position: relative;
+
+        }
+        .text{
+            margin-top: 20px;
+            overflow: auto;
+            height: 200px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="board">
+    <div class="me"></div>
+</div>
+<div class="text"></div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var x,y;
+    var tx,ty;
+    function init(){
+    x=$('.board').width()/2-5, y=$('.board').height()/2-5;
+    $('.text').prepend("<li style='color:#00A000'>X:"+x+" Y:"+y+"</li><br>");
+    $('.me').css({'top':(y).toString()+'px','left':(x).toString()+'px'});
+
+    }
+
+    function move(x,y){
+    $('.me').css({'top':(y).toString()+'px','left':(x).toString()+'px'});
+    }
+
+    var iscontinue=false;
+    var mytimer;
+    $('.board').click(function(e){
+        iscontinue=false;
+        clearInterval(mytimer);
+        //清空targ
+        if($(".board").find(".targ")[0] == undefined)
+        {
+            $('.text').prepend("<li style='color:orange'>not found</li><br>");
+        }
+        else{$(".targ").remove();}
+
+        a=e.pageX-8;
+        b=e.pageY-8;
+        tx=a;
+        ty=b;
+        $('.text').prepend("<li style='color:red'>targX:"+a+" targY:"+b+"</li><br>");
+        $(".board").append("<div class='targ'></div>");
+        $(".targ").css("top",b+'px');
+        $(".targ").css("left",a+'px');
+        iscontinue=true;
+
+        mytimer=setInterval(function(){cal()}, 200);
+
+    });
+
+    function cal(){
+
+            if(iscontinue){
+            if(x<tx)
+            {
+                x+=1;
+                move(x,y);
+            }
+            else if(x>tx)
+            {
+                x-=1;
+                move(x,y);
+            }
+            if(y<ty)
+            {
+                y+=1;
+                move(x,y);
+            }
+            else if(y>ty)
+            {
+                y-=1;
+                move(x,y);
+            }
+            if(x==tx&&y==ty)
+            {
+                alert("ok");
+                clearInterval(mytimer);
+            }
+        }
+        else{return;}
+
+    }
+    ///
+    init();
+
+
+</script>
+</body>
+</html>
