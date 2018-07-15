@@ -8,6 +8,7 @@
             border: solid 1px black;
             width: 300px;height: 200px;
             position: relative;
+            margin-bottom: 20px;
         }
         .me{
             width: 10px;height: 10px;
@@ -22,42 +23,57 @@
 
         }
         .text{
-            margin-top: 20px;
+
             overflow: auto;
             height: 200px;
             width: 300px;
         }
+
     </style>
 </head>
 <body>
 <div class="board">
     <div class="me"></div>
 </div>
+<div class="k"></div>
+<div class="stat"></div>
+<div class="stat1"></div>
+<div class="t"></div>
 <div class="text"></div>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var x,y;
-    var tx,ty;
+    var x,y;//物体点
+    var tx,ty;//目标点
+    var k;//直线斜率
+
+    var iscontinue=false;//是否继续
+    var mytimer;//计时器函数
+
     function init(){
     x=$('.board').width()/2-5, y=$('.board').height()/2-5;
-    $('.text').prepend("<li style='color:#00A000'>X:"+x+" Y:"+y+"</li><br>");
+    $('.stat').html("x:"+x+" y:"+y);
+    $('.t').html("targX:"+tx+" targY:"+ty);
+    $('.text').prepend("<li style='color:#00A000'>X:"+x+" Y:"+y+"</li>");
     $('.me').css({'top':(y).toString()+'px','left':(x).toString()+'px'});
-
     }
 
     function move(x,y){
     $('.me').css({'top':(y).toString()+'px','left':(x).toString()+'px'});
     }
 
-    var iscontinue=false;
-    var mytimer;
+    function getline(x0,y0,x1,y1) {
+        k=(y1-y0)/(x1-x0);
+        $('.k').html('k='+k.toFixed(2));
+        return k;
+    }
+
     $('.board').click(function(e){
         iscontinue=false;
         clearInterval(mytimer);
         //清空targ
         if($(".board").find(".targ")[0] == undefined)
         {
-            $('.text').prepend("<li style='color:orange'>not found</li><br>");
+            $('.text').prepend("<li style='color:orange'>not found</li>");
         }
         else{$(".targ").remove();}
 
@@ -65,47 +81,87 @@
         b=e.pageY-8;
         tx=a;
         ty=b;
-        $('.text').prepend("<li style='color:red'>targX:"+a+" targY:"+b+"</li><br>");
+        $('.t').html("targX:"+a+" targY:"+b);
         $(".board").append("<div class='targ'></div>");
         $(".targ").css("top",b+'px');
         $(".targ").css("left",a+'px');
         iscontinue=true;
+        getline(x,y,tx,ty);
 
-        mytimer=setInterval(function(){cal()}, 200);
+        mytimer=setInterval(function(){cal()}, 20);
 
     });
 
-    function cal(){
+
+    function  cal_x(){
 
             if(iscontinue){
-            if(x<tx)
-            {
+                $('.stat').html("x:"+x.toFixed(2)+" y:"+y.toFixed(2));
+                $('.stat1').html(Math.random(10).toFixed(2));
+                if(x<tx)
+                {
                 x+=1;
+                y+=k;
+                $('.text').prepend("<li style='color:blue'>x="+x.toFixed(2)+"y="+y.toFixed(2)+"</li>");
                 move(x,y);
-            }
-            else if(x>tx)
-            {
-                x-=1;
-                move(x,y);
-            }
+                }
+                else if(x>tx)
+                {
+                    x-=1;
+                    y-=k;
+                    $('.text').prepend("<li style='color:blue'>x="+x.toFixed(2)+"y="+y.toFixed(2)+"</li>");
+                    move(x,y);
+                }
+                else
+                {
+                    //alert("ok");
+                    clearInterval(mytimer);
+                }
+
+        }
+        else{return;}
+
+    }
+
+    function  cal_y(){
+
+        if(iscontinue){
+            $('.stat').html("x:"+x.toFixed(2)+" y:"+y.toFixed(2));
+            $('.stat1').html(Math.random(10).toFixed(2));
             if(y<ty)
             {
                 y+=1;
+                x+=1/k;
+                $('.text').prepend("<li style='color:blue'>x="+x.toFixed(2)+"y="+y.toFixed(2)+"</li>");
                 move(x,y);
             }
             else if(y>ty)
             {
                 y-=1;
+                x-=1/k;
+                $('.text').prepend("<li style='color:blue'>x="+x.toFixed(2)+"y="+y.toFixed(2)+"</li>");
                 move(x,y);
             }
-            if(x==tx&&y==ty)
+            else
             {
-                alert("ok");
+                //alert("ok");
                 clearInterval(mytimer);
             }
+
         }
         else{return;}
 
+    }
+    function cal(){
+        if(Math.abs(x-tx)<1&&Math.abs(y-ty)<1)
+        {
+            //alert("ok");
+            clearInterval(mytimer);
+        }
+        if(Math.abs(k)>1)
+        {cal_y();}
+        else
+        {cal_x();}
     }
     ///
     init();
