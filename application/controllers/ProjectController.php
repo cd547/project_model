@@ -81,6 +81,23 @@ class ProjectController extends BaseController
         $this->render('ajaxpage');
     }
 
+    public function ajaxaddAction()
+    {
+        if (!session_id()) session_start();
+        if (!isset($_SESSION['loginuser'])) {
+            $this->redirect('/index/index');
+            exit();
+        }
+        //获取前台数据
+        $userData['pro_name']=$this->getRequest()->getParam("pro_name","");
+
+
+        $this->view->info= json_encode($this->getRequest()->getParams());
+
+
+        $this->render('ajax');
+    }
+
     //ajax 删除项目
     public function ajaxdeleteproAction()
     {
