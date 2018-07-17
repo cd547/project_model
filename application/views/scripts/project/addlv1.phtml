@@ -287,7 +287,7 @@
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endMoney">最高限价</label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
                                         <div class="input-group">
-                                            <input id="pro_endMoney" name=pro_endMoney" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                            <input id="pro_endMoney" name="pro_endMoney" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
                                             <span class="input-group-addon">元</span>
                                         </div>
                                     </div>
@@ -521,35 +521,28 @@
 <script src="/project/vendors/validator/validator.min.js"></script>
 </body>
 <script type="text/javascript">
-    //创建项目分析
-    function createalert(pro_num) {
-        $('#myModal1').modal('show');
-        $('.modal-title').empty();
-        $('.modal-title').html('添加'+'<strong><?php echo $this->project_data[0]['pro_name']?></strong>'+'项目分析');
-        $('#content').empty();
-        htmltext="<form id=\"demo-form2\" data-parsley-validate=\"\" class=\"form-horizontal form-label-left\" novalidate=\"\">\n" +
-            "<div class=\"form-group\">\n" +
-            "     <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">思考</label>\n" +
-            "     <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
-            "         <textarea class=\"form-control\" rows=\"4\" id=\"addproblem\"></textarea>\n" +
-            "     </div>\n" +
-            "</div>\n" +
-            "<div class=\"form-group\">\n" +
-            "      <label class=\"control-label col-md-2 col-sm-2 col-xs-12\">分析</label>\n" +
-            "      <div class=\"col-md-10 col-sm-10 col-xs-12\">\n" +
-            "         <textarea class=\"form-control\" rows=\"4\" id=\"addsolve\"></textarea>\n" +
-            "      </div>\n" +
-            "</div>\n" +
-            "<div class=\"ln_solid\"></div>\n" +
-            "<div class=\"form-group\">\n" +
-            "      <div class=\"col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n" +
-            "         <a class=\"btn btn-primary\" type=\"button\" data-dismiss=\"modal\">取消</a>\n" +
-            "         <a type=\"submit\" class=\"btn btn-success\" data-dismiss=\"modal\" onclick=\"createanalysis()\">提交</a>\n" +
-            "      </div>\n" +
-            "</div>\n" +
-            "</form>";
-        $('#content').html(htmltext);
-    }
+    $("#pro_reportMoney").blur(function(){
+        var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+        if (!reg.test( $("#pro_reportMoney").val().trim())) {
+            new PNotify({
+                title: '金额输入有误！',
+                text: "请在申报金额中输入正确金额",
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        }
+    });
+    $("#pro_endMoney").blur(function(){
+        var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+        if (!reg.test( $("#pro_endMoney").val().trim())) {
+            new PNotify({
+                title: '金额输入有误！',
+                text: "请在最高限价中输入正确金额",
+                type: 'error',
+                styling: 'bootstrap3'
+            });
+        }
+    });
     //增加项目分析
     function createanalysis()
     {
@@ -610,11 +603,27 @@
             function(returnedData,status){
                 var result=returnedData;
                 if(result!=null){
-                    var Length = 0;
-                    for (var item in result) {
-                        Length++;
+                    if(result.val==true){
+                        new PNotify({
+                            title: '项目添加成功！',
+                            text: "项目编号"+result.pro_num,
+                            type: 'success',
+                            nonblock: {
+                                nonblock: true
+                            },
+                            styling: 'bootstrap3'
+                        });
                     }
-                    alert(Length)
+                    else{
+                        new PNotify({
+                            title: '项目添加有误！',
+                            text: result.val,
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
+                    }
+
+
                 }
                 else//网络错误
                 {alert("失败");}

@@ -3,6 +3,7 @@ require_once 'BaseController.php';
 require_once APPLICATION_PATH.'/models/users.php';//model table
 require_once APPLICATION_PATH.'/models/pro_level1.php';//pro_level1表
 require_once APPLICATION_PATH.'/models/pro_analysis.php';//pro_analysis表
+require_once APPLICATION_PATH.'/models/pro_count.php';//pro_count表
 
 /*控制器用于响应登录*/
 class ProjectController extends BaseController
@@ -88,13 +89,62 @@ class ProjectController extends BaseController
             $this->redirect('/index/index');
             exit();
         }
+        $adduser=$_SESSION['loginuser'];
+
         //获取前台数据
-        $userData['pro_name']=$this->getRequest()->getParam("pro_name","");
+        $getdata=$this->getRequest()->getParams();
+        //file_put_contents("../log/useradd.log", $adduser['username']."\r\n",FILE_APPEND);
+        $returnans=array();
+        $validate=true;
+        {
+            //验证
+            if(trim($getdata['pro_endMoney'])=='')
+            { $getdata['pro_endMoney']=0;}
+            if(trim($getdata['pro_reportMoney'])=='')
+            { $getdata['pro_reportMoney']=0;}
+            if(trim($getdata['pro_name'])=='')
+            {
+                $validate=false;
+            }
+        }
+        if($validate)
+        {
+            //计数+1
+            $pro_count=new pro_count();
+            $pro_num=$pro_count->create_project_count();
+            /*
+            * 补0:0099
+            *strlen()
+            */
+            while(strlen($pro_num)<4)
+            {
+                $pro_num='0'.$pro_num;
+            }
 
+            //数组整理
+            date_default_timezone_set('PRC'); //设置中国时区
+            $time = time();
+            $this_year = date("Y",$time);
+            $a=array(
+                'pro_enterPeople'=>$adduser['username'],
+                'pro_num'=>'xm'.$this_year.$pro_num
+            );
+            $data=array_merge($getdata,$a);
+            $data=array_diff($data, [$data['controller'], $data['action'],$data['module']]);
+           // file_put_contents("../log/useradd.log", ."\r\n",FILE_APPEND);
 
-        $this->view->info= json_encode($this->getRequest()->getParams());
-
-
+            $pro_level1=new pro_level1();
+            $rowid=$pro_level1->create_project($data);
+            $returnans['id']=$rowid;
+            $returnans['pro_name']=$data['pro_name'];
+            $returnans['pro_num']=$data['pro_num'];
+            $returnans['val']=true;
+        }
+        else{
+            //验证失败
+            $returnans['val']='项目名称不能为空！';
+        }
+        $this->view->info= json_encode($returnans);
         $this->render('ajax');
     }
 
