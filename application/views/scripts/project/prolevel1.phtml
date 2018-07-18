@@ -221,9 +221,7 @@
         <!-- 页面标题 -->
         <div class="page-title">
           <div class="title_left">
-            <h3>
-                项目主表
-            </h3>
+
           </div>
         </div>
         <div class="clearfix"></div>
@@ -241,87 +239,215 @@
                 </div>
               <div class="x_content">
                 <br/>
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目编号:</label>
-                    <input type="text" class="form-control" id="1" placeholder="<?php echo $this->project_data[0]['pro_num']?>">
+                <form class="form-horizontal form-label-left" style="padding-bottom: 10px;">
+                  <div class="item form-group">
+                      <label class="control-label col-md-2 col-sm-3 col-xs-12">项目编号</label>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <input type="text" class="form-control" id="pro_num" name="pro_num">
+                      </div>
+                      <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_name">项目名称</label>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                          <input id="pro_name" name="pro_name" class="form-control col-md-2 col-xs-12" type="text">
+                      </div>
                   </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目归属:</label>
-                    <input type="text" class="form-control" id="2" placeholder="<?php echo $this->project_data[0]['pro_address01']?>">
-                    <button type="button" class="btn btn-dark btn-sm">32</button>
-                  </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address01">项目归属</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <input type="text" id="pro_address01" name="pro_address01" class="form-control col-md-7 col-xs-12">
+                        </div>
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_address02">项目实施地点</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <input type="text" id="pro_address02" name="pro_address02" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12">服务对象</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control" id="pro_serviceObj" name="pro_serviceObj">
+                        </div>
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_payMethod">付款方式</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <select id="pro_payMethod" name="pro_payMethod" class="select2_group form-control" placeholder="">
+                                <optgroup label="网上支付">
+                                    <option value="AK2">请选择</option>
+                                    <option value="AK">微信</option>
+                                    <option value="HI">支付宝</option>
+                                </optgroup>
+                                <optgroup label="当面支付">
+                                    <option value="CA">现金</option>
+                                    <option value="NV">其他</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="input-group">
+                                <input id="pro_reportMoney" name="pro_reportMoney" class="form-control col-md-7 col-xs-12" type="text">
+                                <span class="input-group-addon">元</span>
+                            </div>
+                        </div>
 
-                </form>
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endMoney">最高限价</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="input-group">
+                                <input id="pro_endMoney" name="pro_endMoney" class="form-control col-md-7 col-xs-12"  type="text">
+                                <span class="input-group-addon">元</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目名称:</label>
-                    <input type="text" class="form-control" style="width:350px;" id="3" placeholder="<?php echo $this->project_data[0]['pro_name']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">最高限价:</label>
-                    <input type="text" class="form-control" id="4" placeholder="<?php echo $this->project_data[0]['pro_endMoney']?>">
-                    <strong>元</strong>
-                  </div>
-                </form>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_startTime">项目开始时间</label>
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_startTime" name="pro_startTime">
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        </div>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">服务对象:</label>
-                    <input type="text" class="form-control" id="5" placeholder="<?php echo $this->project_data[0]['pro_serviceObj']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目实施地点:</label>
-                    <input type="text" class="form-control" id="6" placeholder="<?php echo $this->project_data[0]['pro_address02']?>">
-                  </div>
-                </form>
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endTime">项目结束时间</label>
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_endTime" name="pro_endTime">
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                        <label class="control-label col-md-1 col-sm-3 col-xs-12">总周期</label>
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control col-md-2 col-xs-12" id="9" readonly="readonly" placeholder="<?php
+                                function getMonthNum($date1,$date2){
+                                    $date1_stamp=strtotime($date1);
+                                    $date2_stamp=strtotime($date2);
+                                    list($date_1['y'],$date_1['m'])=explode("-",date('Y-m',$date1_stamp));
+                                    list($date_2['y'],$date_2['m'])=explode("-",date('Y-m',$date2_stamp));
+                                    return abs(($date_2['y']-$date_1['y'])*12 +$date_2['m']-$date_1['m']);
+                                }
+                                echo getMonthNum($this->project_data[0]['pro_endTime'],$this->project_data[0]['pro_startTime']);
+                                ?>">
+                                <span class="input-group-addon">月</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目开始日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="7" placeholder="<?php echo $this->project_data[0]['pro_startTime']?>">
-                  </div>
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">项目结束日期:</label>
-                    <input type="text" class="form-control" style="width:130px;" id="8" placeholder="<?php echo $this->project_data[0]['pro_endTime']?>">
-                  </div>
-                </form>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">所属项目类型</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <select id="pro_type" name="pro_type" class="select2_group form-control">
+                                <optgroup label="类型标题1">
+                                    <option value="AK2">请选择</option>
+                                    <option value="AK">类型值1</option>
+                                    <option value="HI">类型值2</option>
+                                </optgroup>
+                                <optgroup label="Pacific Time Zone">
+                                    <option value="CA">California</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="WA">Washington</option>
+                                </optgroup>
+                                <optgroup label="Mountain Time Zone">
+                                    <option value="AZ">Arizona</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="WY">Wyoming</option>
+                                </optgroup>
+                            </select>
+                        </div>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">总周期:</label>
-                    <input type="text" class="form-control" id="9" placeholder="<?php function getMonthNum($date1,$date2){
-                        $date1_stamp=strtotime($date1);
-                        $date2_stamp=strtotime($date2);
-                        list($date_1['y'],$date_1['m'])=explode("-",date('Y-m',$date1_stamp));
-                        list($date_2['y'],$date_2['m'])=explode("-",date('Y-m',$date2_stamp));
-                        return abs(($date_2['y']-$date_1['y'])*12 +$date_2['m']-$date_1['m']);
-                    }
-                    echo getMonthNum($this->project_data[0]['pro_endTime'],$this->project_data[0]['pro_startTime']);
-                    ?>" style="width:60px">&nbsp;
-                    <strong>月</strong>
-                  </div>
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">递交项目文本</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <input id="pro_sub_content" name="pro_sub_content" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
+                        </div>
+                    </div>
 
-                  <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                    <label class="control-label">申报金额:</label>
-                    <input type="text" class="form-control" id="10" placeholder="<?php echo $this->project_data[0]['pro_reportMoney']?>">&nbsp;
-                    <strong>元</strong>
-                  </div>
+                    <div class="item form-group">
+                        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel">
+                                <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h6 class="panel-title">项目需求方信息</h6>
+                                </a>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
+                                    <div class="panel-body">
 
-                </form>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">需求单位</label>
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <input id="pro_dem_company" name="pro_dem_company" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                            </div>
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">联系人</label>
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <input id="pro_dem_contacts" name="pro_dem_contacts" class="form-control col-md-7 col-xs-12"  placeholder=""  type="text">
+                                            </div>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="form-group">
-                    <label class="control-label">项目内容:</label>
-                    <a class="btn btn-primary btn-sm">二级目录</a>
-                  </div>
-                </form>
+                                        </div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">联系电话</label>
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <input id="pro_dem_mobile" name="pro_dem_mobile" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                            </div>
 
-                <form class="form-inline" style="padding-bottom: 10px;">
-                  <div class="form-group col-md-12">
-                    <textarea class="form-control" style="width: 100%" rows="4"  placeholder="<?php echo $this->project_data[0]['pro_content']?>" ></textarea>
-                  </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <h6 class="panel-title">项目代理方信息</h6>
+                                </a>
+                                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true">
+                                    <div class="panel-body">
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">代理单位</label>
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <input id="pro_agent_company" name="pro_agent_company" class="form-control col-md-7 col-xs-12" placeholder="" type="text">
+                                            </div>
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">联系人</label>
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <input id="pro_agent_contacts" name="pro_agent_contacts" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                                            </div>
+                                        </div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_enterPeople">联系电话</label>
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <input id="pro_agent_mobile" name="pro_agent_mobile" class="form-control col-md-7 col-xs-12"  placeholder="" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">承接组织需具备的条件</label>
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <input id="pro_condition" name="pro_condition" class="form-control col-md-7 col-xs-12" placeholder=""  type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目监管要求</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <textarea id="pro_manage_require" name="pro_manage_require" class="form-control col-md-7 col-xs-12"></textarea>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目结案要求</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <textarea id="pro_endCase_require" name="pro_endCase_require" class="form-control col-md-7 col-xs-12"></textarea>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_content">项目内容</label>
+                        <a class="btn btn-primary btn-sm">二级目录</a>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <textarea id="pro_content" name="pro_content" class="form-control col-md-7 col-xs-12"></textarea>
+                        </div>
+                    </div>
                 </form>
 
               </div>
@@ -455,6 +581,21 @@
   <script src="/project/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 </body>
 <script type="text/javascript">
+
+    var origin = new Array();
+    origin = <?php echo json_encode($this->project_data[0]);?>;
+    for(i in origin)
+    {
+        if($("#"+i).length>0){
+            $("#"+i).val(origin[i]);
+        }else{
+;
+        }
+    }
+
+
+    $("#pro_payMethod").val(origin.pro_payMethod);
+    $("#pro_payMethod").val(origin.pro_payMethod);
   //创建项目分析
   function createalert(pro_num) {
       $('#myModal1').modal('show');
