@@ -265,15 +265,16 @@
                                 <div class="item form-group">
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_startTime">项目开始时间</label>
                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_startTime" name="pro_startTime" placeholder="">
+                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_startTime" name="pro_startTime" readonly="readonly">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
 
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_endTime">项目结束时间</label>
-                                    <div class="col-md-3 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_endTime" name="pro_endTime" placeholder="">
+                                    <div class="col-md-2 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control has-feedback-left mydatepicker" id="pro_endTime" name="pro_endTime" readonly="readonly">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
+                                    总周期:<span class="badge bg-blue" id="total_time">0</span>个月
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_reportMoney">申报金额</label>
@@ -402,7 +403,7 @@
                                     </div>
                                 </div>
 
-<br>
+                                <br>
 
                                 <div class="item form-group">
                                     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="pro_type">承接组织需具备的条件</label>
@@ -522,92 +523,136 @@
 <script src="/project/vendors/validator/validator.min.js"></script>
 </body>
 <script type="text/javascript">
-    $("#pro_reportMoney").blur(function(){
-        var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
-        if (!reg.test( $("#pro_reportMoney").val().trim())) {
-            new PNotify({
-                title: '金额输入有误！',
-                text: "请在申报金额中输入正确金额",
-                type: 'error',
-                styling: 'bootstrap3'
-            });
-        }
-    });
-    $("#pro_endMoney").blur(function(){
-        var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
-        if (!reg.test( $("#pro_endMoney").val().trim())) {
-            new PNotify({
-                title: '金额输入有误！',
-                text: "请在最高限价中输入正确金额",
-                type: 'error',
-                styling: 'bootstrap3'
-            });
-        }
-    });
-    //增加项目分析
-    function createanalysis()
-    {
 
-        var addproblem=$('#addproblem').val().trim(), addsolve=$('#addsolve').val().trim();
-        if(addproblem==''||addsolve=='')
+        $("#pro_reportMoney").blur(function(){
+            var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+            if (!reg.test( $("#pro_reportMoney").val().trim())) {
+                new PNotify({
+                    title: '金额输入有误！',
+                    text: "请在申报金额中输入正确金额",
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            }
+        });
+        $("#pro_endMoney").blur(function(){
+            var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+            if (!reg.test( $("#pro_endMoney").val().trim())) {
+                new PNotify({
+                    title: '金额输入有误！',
+                    text: "请在最高限价中输入正确金额",
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            }
+        });
+        function getmonth(starttime,endtime)
         {
-            alert("创建项目分析<?php echo $this->project_data[0]['pro_name']?>失败！\n思考或分析不能为空！");
-            return;
+            var date1=new Date(starttime);
+            var y1 = date1.getFullYear();
+            var m1 = date1.getMonth() + 1;
+            var date2=new Date(endtime);
+            var y2 = date2.getFullYear();
+            var m2 = date2.getMonth() + 1;
+            return Math.abs((y2-y1)*12+m2-m1);
         }
-        $.ajaxSetup({async: true});
-        $.post("/project/proanalysis/ajaxadd",{pro_num:'<?php echo $this->project_data[0]['pro_num']?>',addproblem:addproblem,addsolve:addsolve},
-            function(returnedData,status){
-                var result=returnedData;
-                if(result>0){
-                    updatepage(1);
-                    new PNotify({
-                        title: '创建成功！',
-                        text: "创建项目分析<?php echo $this->project_data[0]['pro_name']?>成功！",
-                        type: 'success',
-                        styling: 'bootstrap3'
-                    });
 
-                }
-                else//网络错误
-                {alert("创建项目分析失败");}
-            });
-    }
+        $("#pro_startTime").change(function(){
+            months=getmonth($("#pro_startTime").val(),$("#pro_endTime").val());
+            $('#total_time').html(months);
+        });
+        $("#pro_endTime").change(function(){
+            months=getmonth($("#pro_startTime").val(),$("#pro_endTime").val());
+            $('#total_time').html(months);
+        });
 
-    //ajax表单提交
-    function add(){
-        ajaxdata=$('#form_add').serialize()/*{
-            pro_num:$('#pro_num').val().trim(),
-            pro_startTime:$('#pro_startTime').val().trim(),
-            pro_endTime:$('#pro_endTime').val().trim(),
-            pro_name:$('#pro_name').val().trim(),
-            pro_content:$('#pro_content').val().trim(),
-            pro_address01:$('#pro_address01').val().trim(),
-            pro_address02:$('#pro_address02').val().trim(),
-            pro_serviceObj:$('#pro_serviceObj').val().trim(),
-            pro_endMoney:$('#pro_endMoney').val().trim(),
-            pro_reportMoney:$('#pro_reportMoney').val().trim(),
-            pro_payMethod:$('#pro_payMethod').val().trim(),
-            pro_condition:$('#pro_condition').val().trim(),
-            pro_sub_content:$('#pro_sub_content').val().trim(),
-            pro_manage_require:$('#pro_manage_require').val().trim(),
-            pro_endCase_require:$('#pro_endCase_require').val().trim(),
-            pro_dem_company:$('#pro_dem_company').val().trim(),
-            pro_dem_contacts:$('#pro_dem_contacts').val().trim(),
-            pro_dem_mobile:$('#pro_dem_mobile').val().trim(),
-            pro_agent_company:$('#pro_agent_company').val().trim(),
-            pro_agent_contacts:$('#pro_agent_contacts').val().trim(),
-            pro_agent_mobile:$('#pro_agent_mobile').val().trim(),
-            pro_type:$('#pro_type').val().trim()
-        }*/
-        $.ajaxSetup({async: true});
-        $.post("/project/project/ajaxadd",ajaxdata,
-            function(returnedData,status){
-                var result=returnedData;
-                if(result!=null){
-                    if(result.val==true){
+        //增加项目分析
+        function createanalysis()
+        {
+
+            var addproblem=$('#addproblem').val().trim(), addsolve=$('#addsolve').val().trim();
+            if(addproblem==''||addsolve=='')
+            {
+                alert("创建项目分析<?php echo $this->project_data[0]['pro_name']?>失败！\n思考或分析不能为空！");
+                return;
+            }
+            $.ajaxSetup({async: true});
+            $.post("/project/proanalysis/ajaxadd",{pro_num:'<?php echo $this->project_data[0]['pro_num']?>',addproblem:addproblem,addsolve:addsolve},
+                function(returnedData,status){
+                    var result=returnedData;
+                    if(result>0){
+                        updatepage(1);
                         new PNotify({
-                            title: '项目添加成功！',
-                            text: "项目编号"+result.pro_num,
+                            title: '创建成功！',
+                            text: "创建项目分析<?php echo $this->project_data[0]['pro_name']?>成功！",
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                    else//网络错误
+                    {alert("创建项目分析失败");}
+                });
+        }
+
+        //ajax表单提交
+        function add(){
+            ajaxdata=$('#form_add').serialize();
+            $.ajaxSetup({async: true});
+            $.post("/project/project/ajaxadd",ajaxdata,
+                function(returnedData,status){
+                    var result=returnedData;
+                    if(result!=null){
+                        if(result.val==true){
+                            new PNotify({
+                                title: '项目添加成功！',
+                                text: "项目编号"+result.pro_num,
+                                type: 'success',
+                                nonblock: {
+                                    nonblock: true
+                                },
+                                styling: 'bootstrap3'
+                            });
+                        }
+                        else{
+                            new PNotify({
+                                title: '项目添加有误！',
+                                text: result.val,
+                                type: 'error',
+                                styling: 'bootstrap3'
+                            });
+                        }
+                    }
+                    else//网络错误
+                    {alert("失败");}
+                }, "json");
+        }
+        //编辑
+        function editanalysis(page,id)
+        {
+            alert('edit '+page+'_'+id)
+        }
+        //删除项目分析弹出框
+        function deltanalysisalert(page,id) {
+            $('#myModal1').modal('show');
+            $('.modal-title').empty();
+            $('.modal-title').html('删除确认');
+            $('#content').empty();
+            htmltext="<p>您确认要删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"吗？</p>" +
+                " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
+                " <a onclick=\"deltanalysis('<?php echo $this->project_data[0]['pro_num']?>','"+id+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
+            $('#content').html(htmltext);
+        }
+        //添加项目
+        function addpro() {
+            $.ajaxSetup({async: true});
+            $.post("/project/project/ajaxadd",{pro_num:pro_num,id:id},
+                function(returnedData,status){
+                    var result=returnedData;
+                    if(result>0){
+                        updatepage(1);
+                        new PNotify({
+                            title: '删除成功！',
+                            text: "删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"成功！",
                             type: 'success',
                             nonblock: {
                                 nonblock: true
@@ -615,61 +660,12 @@
                             styling: 'bootstrap3'
                         });
                     }
-                    else{
-                        new PNotify({
-                            title: '项目添加有误！',
-                            text: result.val,
-                            type: 'error',
-                            styling: 'bootstrap3'
-                        });
-                    }
+                    else//网络错误
+                    {alert("删除项目分析失败");}
+                }, "json");
+        }
 
 
-                }
-                else//网络错误
-                {alert("失败");}
-            }, "json");
-    }
-    //编辑
-    function editanalysis(page,id)
-    {
-        alert('edit '+page+'_'+id)
-    }
-    //删除项目分析弹出框
-    function deltanalysisalert(page,id) {
-        $('#myModal1').modal('show');
-        $('.modal-title').empty();
-        $('.modal-title').html('删除确认');
-        $('#content').empty();
-        htmltext="<p>您确认要删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"吗？</p>" +
-            " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
-            " <a onclick=\"deltanalysis('<?php echo $this->project_data[0]['pro_num']?>','"+id+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
-        $('#content').html(htmltext);
-    }
-    //添加项目
-    function addpro() {
-        $.ajaxSetup({async: true});
-        $.post("/project/project/ajaxadd",{pro_num:pro_num,id:id},
-            function(returnedData,status){
-                var result=returnedData;
-                if(result>0){
-                    updatepage(1);
-                    new PNotify({
-                        title: '删除成功！',
-                        text: "删除项目分析<?php echo $this->project_data[0]['pro_name']?>_"+id+"成功！",
-                        type: 'success',
-                        nonblock: {
-                            nonblock: true
-                        },
-                        styling: 'bootstrap3'
-                    });
-
-
-                }
-                else//网络错误
-                {alert("删除项目分析失败");}
-            }, "json");
-    }
 </script>
 
 </html>

@@ -224,8 +224,10 @@
             <div class="page-title">
                 <div class="title_left">
                     <h3>
-                        <strong>项目管理</strong>
+                        <strong>项目管理</strong>&nbsp;
+                        <a type="button" class="btn btn-success" href="/project/project/goaddlv1"><i class="fa fa-plus"></i>创建项目</a>
                     </h3>
+
                 </div>
                 <div class="title_right">
                     <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-right top_search">
@@ -246,7 +248,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h4>项目列表&nbsp;
-                                <a type="button" class="btn btn-success" href="/project/project/goaddlv1"><i class="fa fa-plus"></i>创建项目</a>
+
                             </h4>
                             <div class="clearfix"></div>
                         </div>
@@ -371,90 +373,91 @@
 <script src="/project/vendors/pnotify/dist/pnotify.nonblock.js"></script>
 </body>
 <script type="text/javascript">
-    function showdet() {;}
-    //删除项目弹出框
-    function deltalert(pro_num)
-    {
-        $('#myModal1').modal('show');
-        $('.modal-title').empty();
-        $('.modal-title').html('删除确认');
-        $('#content').empty();
-        htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
-            " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
-            " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
-        $('#content').html(htmltext);
-    }
-    //删除项目
-    function deltpro(pro_num)
-    {
-        $.ajaxSetup({async: true});
-        $.post("/project/project/ajaxdeletepro",{pro_num:pro_num},
-            function(returnedData,status){
-                var result=returnedData;
-                if(result==1){
-                    new PNotify({
-                        title: '删除成功！',
-                        text: "删除项目"+pro_num+"成功！",
-                        type: 'success',
-                        styling: 'bootstrap3'
-                    });
-                    search_projectlist($('#project_search').val());
-                }
-                else//网络错误
-                {alert("删除项目"+pro_num+"失败");}
-            });
 
-    }
-    //搜索项目
-    function search_projectlist(query)
-    {
-        $.ajaxSetup({async: true});
-        $.post("/project/main/ajaxpage",{query:query},
-            function(returnedData,status){
-                var result=returnedData;
-                if(result!=null){
-                    $('#project_list').empty();
-                    $('#project_list').html(result);
-                }
-                else//网络错误
-                {alert("失败");}
+        //删除项目弹出框
+        function deltalert(pro_num)
+        {
+            $('#myModal1').modal('show');
+            $('.modal-title').empty();
+            $('.modal-title').html('删除确认');
+            $('#content').empty();
+            htmltext="<p>您确认要删除项目"+pro_num+"吗？</p>" +
+                " <a type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</a>" +
+                " <a  onclick=\"deltpro('"+pro_num+"')\" class=\"btn btn-danger\" data-dismiss=\"modal\">确定</a> ";
+            $('#content').html(htmltext);
+        }
+        //删除项目
+        function deltpro(pro_num)
+        {
+            $.ajaxSetup({async: true});
+            $.post("/project/project/ajaxdeletepro",{pro_num:pro_num},
+                function(returnedData,status){
+                    var result=returnedData;
+                    if(result.pro_level1==1){
+                        new PNotify({
+                            title: '删除成功！',
+                            text: "删除项目"+pro_num+"成功！<br>同时删除了"+result.pro_analysis+"条项目分析",
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                        search_projectlist($('#project_search').val());
+                    }
+                    else//网络错误
+                    {alert("删除项目"+pro_num+"失败");}
+                },'json');
+
+        }
+        //搜索项目
+        function search_projectlist(query)
+        {
+            $.ajaxSetup({async: true});
+            $.post("/project/main/ajaxpage",{query:query},
+                function(returnedData,status){
+                    var result=returnedData;
+                    if(result!=null){
+                        $('#project_list').empty();
+                        $('#project_list').html(result);
+                    }
+                    else//网络错误
+                    {alert("失败");}
+                });
+        }
+        //搜索框展现
+        /*
+        $(function(){
+      //input获取焦点时在其旁边显示div输入
+            $('#project_search').keyup(function(){
+                var input = $(this);
+                var offset = input.offset();
+                //先后设置div的内容、位置，最后显示出来（渐进效果）
+                $('#searchresult')
+                    .css('left', offset.left-100 + 'px')
+                    .css('top', offset.top + input.height() + 10 + 'px')
+                    .css('width', input.width() + 200 + 'px')
+                    .fadeIn();
             });
-    }
-    //搜索框展现
-    /*
-    $(function(){
-  //input获取焦点时在其旁边显示div输入
-        $('#project_search').keyup(function(){
-            var input = $(this);
-            var offset = input.offset();
-            //先后设置div的内容、位置，最后显示出来（渐进效果）
-            $('#searchresult')
-                .css('left', offset.left-100 + 'px')
-                .css('top', offset.top + input.height() + 10 + 'px')
-                .css('width', input.width() + 200 + 'px')
-                .fadeIn();
+            //input获取焦点时在其旁边显示div
+            $('#project_search').next().click(function() {
+                var input = $(this).prev('input');
+                var offset = input.offset();
+                //先后设置div的内容、位置，最后显示出来（渐进效果）
+                $('#searchresult')
+                    .css('left', offset.left-100 + 'px')
+                    .css('top', offset.top + input.height() + 10 + 'px')
+                    .css('width', input.width() + 200 + 'px')
+                    .fadeIn();
+            });
+            $('#searchresult').click(function() {
+                $('#searchresult').css('display', 'none');
+                $('#searchresult').html("");
+            });
+            $("#searchresult").mouseleave(function() {
+                $('#searchresult').css('display', 'none');
+                $('#searchresult').html("");
+            });
         });
-        //input获取焦点时在其旁边显示div
-        $('#project_search').next().click(function() {
-            var input = $(this).prev('input');
-            var offset = input.offset();
-            //先后设置div的内容、位置，最后显示出来（渐进效果）
-            $('#searchresult')
-                .css('left', offset.left-100 + 'px')
-                .css('top', offset.top + input.height() + 10 + 'px')
-                .css('width', input.width() + 200 + 'px')
-                .fadeIn();
-        });
-        $('#searchresult').click(function() {
-            $('#searchresult').css('display', 'none');
-            $('#searchresult').html("");
-        });
-        $("#searchresult").mouseleave(function() {
-            $('#searchresult').css('display', 'none');
-            $('#searchresult').html("");
-        });
-    });
-    */
+        */
+
 </script>
 
 </html>

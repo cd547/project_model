@@ -130,9 +130,9 @@
   <script src="/project/vendors/jquery/dist/jquery.min.js"></script>
   <script>
       var userid="<?php echo $this->img?>";
-      //获取按钮焦点
-      $('#enterbtn').focus();
       $(function(){
+          //获取按钮焦点
+          $('#enterbtn').focus();
           //失去焦点时
           $("#loginname").blur(function(){ $('#enterbtn').focus();});
           $("#loginpassword").blur(function(){ $('#enterbtn').focus();});

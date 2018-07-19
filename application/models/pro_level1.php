@@ -1,5 +1,6 @@
 <?php
 require_once 'pro_count.php';
+require_once 'pro_analysis.php';
 class pro_level1 extends Zend_Db_Table
 {
 
@@ -40,8 +41,16 @@ class pro_level1 extends Zend_Db_Table
     {
         $db = $this->getAdapter();
         $where = $db->quoteInto('pro_num = ?', $pro_num);// 删除数据的where条件语句
-        return $rows_affected = $this->delete($where);// 删除数据并得到影响的行数
-
+        $rows_affected = $this->delete($where);// 删除数据并得到影响的行数
+        //删除相关项目分析
+        $table = 'pro_analysis';// 设定需要删除数据的表
+        $db1 = $this->getAdapter();
+        $where1 = $db1->quoteInto('pro_num = ?', $pro_num);// 删除数据的where条件语句
+        $rows_affected1 = $db1->delete($table, $where1);// 删除数据并得到影响的行数
+        return array(
+            'pro_level1'=>$rows_affected,
+            'pro_analysis'=>$rows_affected1
+        );
     }
 
     //获取项目编号最大值

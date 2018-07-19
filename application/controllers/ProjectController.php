@@ -161,8 +161,8 @@ class ProjectController extends BaseController
         $rows_affected =$pro_level1->deletepro($pro_num);
 
         //日志输出
-        file_put_contents("../log/db.log", $rows_affected."\r\n",FILE_APPEND);
-        $this->view->info=$rows_affected;
+       // file_put_contents("../log/db.log", $rows_affected."\r\n",FILE_APPEND);
+        $this->view->info=json_encode($rows_affected);
         $this->render('ajax');
     }
    
