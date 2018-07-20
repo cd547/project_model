@@ -102,7 +102,7 @@ class ProjectController extends BaseController
             { $getdata['pro_endMoney']=0;}
             if(trim($getdata['pro_reportMoney'])=='')
             { $getdata['pro_reportMoney']=0;}
-            if(trim($getdata['pro_name'])=='')
+            if(trim($getdata['pro_name'])==''||trim($getdata['pro_startTime'])==''||trim($getdata['pro_endTime'])=='')
             {
                 $validate=false;
             }
@@ -141,8 +141,22 @@ class ProjectController extends BaseController
             $returnans['val']=true;
         }
         else{
+            $valtext="";
+            if(trim($getdata['pro_name'])=='')
+            {
+                $valtext.="项目名称不能为空！<br>";
+            }
+            if(trim($getdata['pro_startTime'])=='')
+            {
+                $valtext.="项目开始时间不能为空！<br>";
+            }
+            if(trim($getdata['pro_endTime'])=='')
+            {
+                $valtext.="项目结束时间不能为空！<br>";
+            }
+
             //验证失败
-            $returnans['val']='项目名称不能为空！';
+            $returnans['val']=$valtext;
         }
         $this->view->info= json_encode($returnans);
         $this->render('ajax');

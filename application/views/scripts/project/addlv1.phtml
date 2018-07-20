@@ -51,6 +51,14 @@
         /*定义滑块 内阴影+圆角*/
         ::-webkit-scrollbar-thumb
         {background-color: #666;}
+        .blur {
+            filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+            -webkit-filter: blur(10px); /* Chrome, Opera */
+            -moz-filter: blur(10px);
+            -ms-filter: blur(10px);
+            filter: blur(10px);
+            filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+        }
     </style>
 </head>
 
@@ -174,7 +182,9 @@
                             <i class="fa fa-bars"></i>
                         </a>
                     </div>
-
+                    <div id="fog">
+                        <div class="frostedglass-inner">提交中...</div>
+                    </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -438,6 +448,8 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-5">
                                         <a id="send" onclick="add()" class="btn btn-success">添加</a>
+                                        <a id="sending" class="btn btn-primary">添加中...</a>
+                                        <input type="reset" name="reset" style="display: none;" />
                                     </div>
                                 </div>
                             </form>
@@ -523,7 +535,7 @@
 <script src="/project/vendors/validator/validator.min.js"></script>
 </body>
 <script type="text/javascript">
-
+    $("#sending").hide();
         $("#pro_reportMoney").blur(function(){
             var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
             if (!reg.test( $("#pro_reportMoney").val().trim())) {
@@ -596,6 +608,8 @@
 
         //ajax表单提交
         function add(){
+            $('#send').hide();
+            $("#sending").show();
             ajaxdata=$('#form_add').serialize();
             $.ajaxSetup({async: true});
             $.post("/project/project/ajaxadd",ajaxdata,
@@ -612,6 +626,9 @@
                                 },
                                 styling: 'bootstrap3'
                             });
+                            $('#send').show();
+                            $("#sending").hide();
+                            $("input[type=reset]").trigger("click");
                         }
                         else{
                             new PNotify({
@@ -620,6 +637,9 @@
                                 type: 'error',
                                 styling: 'bootstrap3'
                             });
+                            $('#send').show();
+                            $("#sending").hide();
+
                         }
                     }
                     else//网络错误
