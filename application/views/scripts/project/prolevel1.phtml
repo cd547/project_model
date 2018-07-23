@@ -240,7 +240,7 @@
                         <div class="x_content">
                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">一级项目主页</a>
+                                    <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true" onclick="getlv1('<?php echo $this->project_data[0]['pro_num']?>')">一级项目主页</a>
                                     </li>
                                     <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">二级项目目录</a>
                                     </li>
@@ -735,6 +735,36 @@
             months= Math.abs((y2-y1)*12+m2-m1);
             $('#total_time').html(months);
         });
+
+        function getlv1(pnum)
+        {
+            $.ajaxSetup({async: false});
+            $.post("/project/project/ajaxlv1",{pro_num:pnum},
+                function(returnedData,status){
+                    var result=returnedData;
+                    if(result[0].id>0){
+
+                        for(i in result[0])
+                        {
+                            if($("#"+i).length>0){
+                                $("#"+i).val(result[0][i]);
+                            }else{
+                                ;
+                            }
+                        }
+                        var date1=new Date($("#pro_startTime").val());
+                        var y1 = date1.getFullYear();
+                        var m1 = date1.getMonth() + 1;
+                        var date2=new Date($("#pro_endTime").val());
+                        var y2 = date2.getFullYear();
+                        var m2 = date2.getMonth() + 1;
+                        months= Math.abs((y2-y1)*12+m2-m1);
+                        $('#total_time').html(months);
+                    }
+                    else//网络错误
+                    {alert("查询失败");}
+                },'json');
+        }
 </script>
 
 </html>

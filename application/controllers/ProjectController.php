@@ -179,7 +179,24 @@ class ProjectController extends BaseController
         $this->view->info=json_encode($rows_affected);
         $this->render('ajax');
     }
-   
+
+    public  function  ajaxlv1Action()
+    {
+        if (!session_id()) session_start();
+        if (!isset($_SESSION['loginuser'])) {
+            $this->redirect('/index/index');
+            exit();
+        }
+        $pro_num=$this->getRequest()->getParam("pro_num","");
+        //获取项目信息
+        $pro_level1=new pro_level1();
+        $db=$pro_level1->getAdapter();
+        $sql=$db->select()->from('pro_level1','*')->where('pro_num=?',$pro_num);
+        $result= $db->query($sql);
+        $rows=$result->fetchAll();
+        $this->view->info= json_encode($rows);
+        $this->render('ajax');
+    }
 
 }
 
