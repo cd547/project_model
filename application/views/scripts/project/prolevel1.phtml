@@ -743,7 +743,7 @@
                 function(returnedData,status){
                     var result=returnedData;
                     if(result[0].id>0){
-
+                        origin=result[0];
                         for(i in result[0])
                         {
                             if($("#"+i).length>0){
