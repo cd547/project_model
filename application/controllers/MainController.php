@@ -6,9 +6,10 @@ require_once APPLICATION_PATH.'/models/pro_level1.php';//pro_level1表
 /*控制器用于响应登录*/
 class MainController extends BaseController
 {
+    //vv
     //主页
 	public function indexAction()
-    {
+    {//vv
         if (!session_id())session_start();
         if (!isset($_SESSION['loginuser']))
         {
